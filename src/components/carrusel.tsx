@@ -1,12 +1,16 @@
-import SliderComponent from "react-slick";
-import regulariza from "../assets/banners/regulariza.png";
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
-// Forzamos la compatibilidad de módulos: si viene empaquetado como objeto,
-// extraemos .default, de lo contrario usamos la función directa.
+
+import regulariza from '../assets/banners/regulariza.png'
+import regulariza2 from '../assets/banners/regulariza2.webp'
+
+
+import SliderComponent from "react-slick";
 const Slider = (SliderComponent as any).default || SliderComponent;
 
-export default function Carrusel() {
+
+
+function Carrusel() {
   const settings = {
     dots: true,
     fade: true,
@@ -16,27 +20,23 @@ export default function Carrusel() {
     slidesToScroll: 1,
     waitForAnimate: false
   };
-
   return (
-  <Box sx={{ width: '100%', overflow: 'hidden' }}>
-    <Slider {...settings}>
-      <Box sx={{ width: '100%' }}>
-        <Box 
-          component="img" 
-          src={regulariza} 
-          alt="banner regularizate 2026" 
-          sx={{ width: '100%', height: 'auto', display: 'block', borderRadius: 3 }} 
-        />
-      </Box>
-      <Box sx={{ width: '100%' }}>
-        <Box 
-          component="img" 
-          src={regulariza} 
-          alt="banner regularizate 2026" 
-          sx={{ width: '100%', height: 'auto', display: 'block', borderRadius: 3, filter:'grayscale(10%)'  }} 
-        />
-      </Box>
-    </Slider>
-  </Box>
-);
+    <Box className="slider-container" sx={{width:'100%', height:'auto'}}>
+      <Slider {...settings}>
+
+        <Box>
+          <Box component='img' src={regulariza}  sx={{width:'50%', aspectRatio:'16/9', display:'block'}} />
+        </Box>
+        <Box>
+          <Box component='img' src={regulariza2} sx={{width:'45%',display:'block'}}/>
+        </Box>
+ 
+      </Slider>
+    </Box>
+  );
 }
+
+export default Carrusel;
+
+
+

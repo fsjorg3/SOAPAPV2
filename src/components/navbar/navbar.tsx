@@ -41,15 +41,14 @@ function Navbar() {
 
   const drawerContent = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Box sx={{ justifyContent: "center", gap: "8px" }}>
-        <Box
-          component="img"
-          src={dropMinimalist}
-          sx={{ display: "block" }}
-        ></Box>
+
+      <Box sx={{ justifyContent: "center", gap: "8px", display:'flex' }}>
+
+        <Box component="img" src={dropMinimalist} sx={{ display: "block" }} />
         <Typography variant="h6" sx={{ my: 2 }}>
           SOAPAP {/* CAMBIAR POR LOGO*/}
         </Typography>
+
       </Box>
 
       <List>
@@ -83,7 +82,7 @@ function Navbar() {
     <AppBar
       component="nav"
       elevation={0}
-      sx={{ backgroundColor: "primary.light", color: "primary.contrastText", width:{xs:"100%",md:"70%" } }}
+      sx={{ backgroundColor: "primary.light", color: "primary.contrastText", width:{xs:"90%",md:"70%" } }}
     >
       <Toolbar>
         {/*Hamburger button */}
