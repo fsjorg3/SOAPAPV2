@@ -13,7 +13,7 @@ import regulariza2Mobile from "../assets/banners/regulariza29-16.png";
 import WatterCultureOptions from "../components/watter-culture/watter-culture-options";
 
 import aneas from '../assets/sitios/aneas.png'
-import conagua from '../assets/sitios/conagua.webp'
+import conagua from '../assets/sitios/conagua.png'
 import agua_puebla from '../assets/sitios/agua_puebla.png'
 
 export default function Inicio() {
@@ -69,7 +69,7 @@ export default function Inicio() {
       <Box
         sx={{
           width: "100%",
-          height: "400dvh",
+          //height: "400dvh",
           marginTop: { xs: "40px", md: "80px" },
         }}
       >
