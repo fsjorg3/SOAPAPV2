@@ -1,6 +1,22 @@
 // theme.ts
 import { createTheme,alpha } from "@mui/material/styles";
 
+// 1. Extendemos Paper porque es el padre mecánico de la propiedad variant
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    standard: true;
+    outstanding:true;
+  }
+}
+
+// 2. Extendemos Card para asegurar la consistencia del componente final
+declare module '@mui/material/Card' {
+  interface CardPropsVariantOverrides {
+    standard: true;
+    outstanding:true;
+  }
+}
+
 
 const InstitutionalFlatSystem = createTheme({
   palette: {
@@ -187,17 +203,65 @@ const InstitutionalFlatSystem = createTheme({
       },
     },
 
+
+
+
+
+
     MuiCard: {
       styleOverrides: {
         root: {
+          
           backgroundImage: "none",
           border: "1px solid #E9ECEF",
           boxShadow: "none",
           borderRadius: 8,
-          padding: 24,
+          padding: 8,
         },
-      },
+      },variants: [
+        {
+          props: {
+            variant: "standard",
+          },
+          style: {
+            borderLeft: '10px solid #5B132B',
+            "&:hover": {
+              borderLeft: '10px solid #9F7122',
+              backgroundColor:'#F8F9FB',
+              //400: "#D8DADC", 500: "#A7ADB3",
+            },
+            "&:active": {
+              borderLeft: '10px solid #9F7122',
+              backgroundColor:'#F8F9FB',
+            },
+          },
+        },
+        {
+          props: {
+            variant: "outstanding",
+          },
+          style: {
+            borderLeft: '10px solid #B8822A',
+            "&:hover": {
+              borderLeft: '10px solid #9F7122',
+              backgroundColor:'#F2F4F6',
+            },
+            "&:active": {
+              borderLeft: '10px solid #9F7122',
+              backgroundColor:'#F2F4F6',
+            },
+          },
+        },
+      ],
     },
+
+
+
+
+
+
+
+
 
     MuiButton: {
   styleOverrides: {

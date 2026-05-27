@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { Divider, Typography } from "@mui/material";
+import { useTheme, useMediaQuery } from '@mui/material';
 
 import Carrusel, { type SlideData } from "../components/carrusel";
 import puebla from "../assets/logos/nuevo_gobierno-estado.webp";
@@ -9,45 +10,49 @@ import regulariza from "../assets/banners/regulariza16-9.png";
 import regularizaMobile from "../assets/banners/regulariza9-16.png";
 import regulariza2 from "../assets/banners/regulariza216-9.png";
 import regulariza2Mobile from "../assets/banners/regulariza29-16.png";
+import WatterCultureOptions from "../components/watter-culture/watter-culture-options";
 
 export default function Inicio() {
 
-    const carouselData: SlideData[] = [
-    { 
-      src: regulariza, 
-      alt: 'regulariza', 
-      url: '/contacto' 
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
+  const carouselData: SlideData[] = [
+    {
+      src: regulariza,
+      alt: 'regulariza',
+      url: '/contacto'
     },
-    { 
-      src: regulariza2, 
-      alt: 'regulariza2' , 
+    {
+      src: regulariza2,
+      alt: 'regulariza2',
       url: '/directorio'
     },
-    { 
-      src: regulariza, 
-      alt: 'regulariza' , 
-      url: 'https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html' 
+    {
+      src: regulariza,
+      alt: 'regulariza',
+      url: 'https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html'
     }
   ];
 
   const carouselDataMobile: SlideData[] = [
-    { 
-      src: regularizaMobile, 
-      alt: 'regulariza', 
-      url: '/contacto' 
+    {
+      src: regularizaMobile,
+      alt: 'regulariza',
+      url: '/contacto'
     },
-    { 
-      src: regulariza2Mobile, 
-      alt: 'regulariza2' , 
+    {
+      src: regulariza2Mobile,
+      alt: 'regulariza2',
       url: '/directorio'
     },
-    { 
-      src: regularizaMobile, 
-      alt: 'regulariza' , 
-      url: 'https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html' 
+    {
+      src: regularizaMobile,
+      alt: 'regulariza',
+      url: 'https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html'
     }
   ];
-  
+
   return (
     <>
       <Box
@@ -139,27 +144,62 @@ export default function Inicio() {
 
           <Box
             sx={{
-              width: { xs: "40%", md: "10%" },
-              height: "5px",
-              backgroundColor: "secondary.main",
-            }}
-          ></Box>
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: { xs: "20px", md: "40px" },
+            }}>
+            <Carrusel slides={isDesktop ? carouselData : carouselDataMobile} width={{ xs: '100%', md: '70%' }}></Carrusel>
+          </Box>
+
         </Box>
 
 
+        {/*Cultura del agua */}
+
         <Box
-        sx={{
+          sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: { xs: "20px", md: "40px" },
-          }}>
-            <Carrusel slides={carouselDataMobile} width={{ xs: '100%', md: '70%' }}></Carrusel>
+
+          }}
+        >
+          {/*Titulo*/}
+          <Typography
+            sx={{
+              margin: "80px 80px 0px 80px",
+              textAlign: "center",
+              fontSize: "40px",
+              fontWeight: "900",
+              color: "primary.main",
+              borderBottom: "2px solid secondary.main",
+            }}
+          >
+            Cultura del Agua
+          </Typography>
+
+          <Box
+          sx={{}}>
+
+            <WatterCultureOptions></WatterCultureOptions>
+
+          </Box>
+
+
+
+
+
         </Box>
-        
-        {/*<Carrusel></Carrusel>*/}
+
+
+
+
       </Box>
+
+
     </>
   );
 }
