@@ -56,7 +56,7 @@ function WaterCultureOptions() {
   const [selectedCard, setSelectedCard] = React.useState(cards[0]);
   
   // 1. Instanciamos la referencia para el contenedor del video
-  const videoSectionRef = React.useRef(null);
+  const videoSectionRef = React.useRef<HTMLDivElement>(null);
 
   // 2. Creamos un manejador unificado para el clic
   const handleCardSelection = (card:WaterCultureCard) => {

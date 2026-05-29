@@ -18,7 +18,7 @@ import dropMinimalist from "../../assets/drop-minimalist.svg";
 
 const drawerWidth = 250;
 
-const navbarItems = [
+export const navbarItems = [
   { texto: "Inicio", ruta: "/" },
   { texto: "Contacto", ruta: "/contacto" },
   { texto: "Directorio", ruta: "/directorio" },
@@ -42,7 +42,7 @@ function Navbar() {
   const drawerContent = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
 
-      <Box sx={{ justifyContent: "center", gap: "8px", display:'flex' }}>
+      <Box sx={{ justifyContent: "center", gap: "8px", display: 'flex' }}>
 
         <Box component="img" src={dropMinimalist} sx={{ display: "block" }} />
         <Typography variant="h6" sx={{ my: 2 }}>
@@ -52,27 +52,27 @@ function Navbar() {
       </Box>
 
       <List>
-        {navbarItems.map((item) =>{
+        {navbarItems.map((item) => {
           const esRutaActiva = location.pathname === item.ruta;
           return (
-          <ListItem key={item.ruta+"Drawer"} disablePadding>
-            <ListItemButton
-              onClick={()=> navigate(item.ruta)}
-              sx={{
-                textAlign: "center",
-                color:esRutaActiva?'secondary.light':'primary.contrastText',
-                borderBottom:esRutaActiva?'2px solid':'none',
-                ":hover": {
-                  color: "secondary.light",
-                  borderBottom: "2px solid",
-                },
-              }}
-            >
-              <ListItemText primary={item.texto} />
-            </ListItemButton>
-          </ListItem>
+            <ListItem key={item.ruta + "Drawer"} disablePadding>
+              <ListItemButton
+                onClick={() => navigate(item.ruta)}
+                sx={{
+                  textAlign: "center",
+                  color: esRutaActiva ? 'secondary.light' : 'primary.contrastText',
+                  borderBottom: esRutaActiva ? '2px solid' : 'none',
+                  ":hover": {
+                    color: "secondary.light",
+                    borderBottom: "2px solid",
+                  },
+                }}
+              >
+                <ListItemText primary={item.texto} />
+              </ListItemButton>
+            </ListItem>
           )
-          }
+        }
         )}
       </List>
     </Box>
@@ -82,7 +82,7 @@ function Navbar() {
     <AppBar
       component="nav"
       elevation={0}
-      sx={{ backgroundColor: "primary.light", color: "primary.contrastText", width:{xs:"90%",md:"70%" } }}
+      sx={{ backgroundColor: "primary.light", color: "primary.contrastText", width: { xs: "90%", md: "70%" } }}
     >
       <Toolbar>
         {/*Hamburger button */}

@@ -5,6 +5,8 @@ import { Box, IconButton, Stack, Typography, ButtonBase } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router';
+import Autoplay from 'embla-carousel-autoplay';
+
 
 export interface SlideData {
   src: string;
@@ -16,16 +18,16 @@ interface EmblaCarouselProps {
   slides: SlideData[];
   width?: string | number | Record<string, string | number>;
   // Nueva propiedad para inyectar la relación de aspecto
-  aspectRatio?: string | Record<string, string>; 
+  aspectRatio?: string | Record<string, string>;
 }
 
-const Carrusel: React.FC<EmblaCarouselProps> = ({ 
-  slides, 
-  width = '100%', 
+const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
+  slides,
+  width = '100%',
   // Valor por defecto: 9/16 en móviles (xs), 16/9 de tablets (sm) en adelante
-  aspectRatio = { xs: '9/16', sm: '16/9' } 
+  aspectRatio = { xs: '9/16', sm: '16/9' }
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay({ delay: 2000 })]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const navigate = useNavigate();
@@ -60,7 +62,7 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
 
   return (
     <Box sx={{ width: width, margin: 'auto', position: 'relative' }}>
-      
+
       <Box ref={emblaRef} sx={{ overflow: 'hidden', borderRadius: 2, boxShadow: 3 }}>
         <Box sx={{ display: 'flex' }}>
           {slides.map((slide, index) => {
@@ -80,10 +82,10 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
                   src={slide.src}
                   alt={slide.alt || `Slide ${index + 1}`}
                   onClick={() => handleSlideClick(slide.url)}
-                  sx={{ 
+                  sx={{
                     width: '100%',
                     // Eliminamos height y aplicamos aspectRatio
-                    aspectRatio: aspectRatio, 
+                    aspectRatio: aspectRatio,
                     objectFit: 'cover',
                     cursor: isClickable ? 'pointer' : 'default',
                     transition: 'transform 0.3s ease',
@@ -100,7 +102,7 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
         onClick={scrollPrev}
         disabled={selectedIndex === 0}
         sx={{
-          position: 'absolute', top: '50%', left: 16, transform: 'translateY(-50%)', 
+          position: 'absolute', top: '50%', left: 16, transform: 'translateY(-50%)',
           bgcolor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(4px)',
           '&:hover': { bgcolor: 'white' }, '&.Mui-disabled': { bgcolor: 'rgba(255, 255, 255, 0.4)' }
         }}
@@ -112,7 +114,7 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
         onClick={scrollNext}
         disabled={selectedIndex === scrollSnaps.length - 1}
         sx={{
-          position: 'absolute', top: '50%', right: 16, transform: 'translateY(-50%)', 
+          position: 'absolute', top: '50%', right: 16, transform: 'translateY(-50%)',
           bgcolor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(4px)',
           '&:hover': { bgcolor: 'white' }, '&.Mui-disabled': { bgcolor: 'rgba(255, 255, 255, 0.4)' }
         }}
@@ -120,8 +122,8 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
         <ArrowForwardIosIcon fontSize="small" />
       </IconButton>
 
-      <Stack direction="row"  sx={{ mt: 2, px: 1, alignItems:"center", justifyContent:"space-between" }}>
-        <Typography variant="body2" sx={{ color:"text.secondary", fontWeight:"bold"}}>
+      <Stack direction="row" sx={{ mt: 2, px: 1, alignItems: "center", justifyContent: "space-between" }}>
+        <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: "bold" }}>
           {selectedIndex + 1} / {scrollSnaps.length}
         </Typography>
 
@@ -144,4 +146,4 @@ const Carrusel: React.FC<EmblaCarouselProps> = ({
   );
 };
 
-export default Carrusel;
+export default PromotionalSlider;
