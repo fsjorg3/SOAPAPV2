@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router";
 import App from "./App";
 import LayoutPublico from "./layouts/LayoutPublico";
 import Inicio from "./routes/inicio";
-//import LayoutAdmin from './layouts/LayoutAdmin'; // Tu futuro layout seguro
+import Contacto from "./routes/contacto";
+
 const Directorio = () => <div>Directorio Institucional</div>;
-const Contacto = () => <div>Formulario de Contacto</div>;
 const QuienesSomos = () => <div>Quiénes Somos</div>;
 const Recursos = () => <div>Recursos y Documentos</div>;
 const Pagina404 = () => (
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "admin", //
+        path: "dashboard", //proximamente
         element: <></>,
         children: [
           // { index: true, element: <Dashboard /> }
