@@ -1,11 +1,14 @@
+import { useState } from "react"
 import { Box, Button, Divider, Typography } from "@mui/material"
 import { Link } from "react-router"
+import { PdfViewer } from "./pdfviewer/PdfViewer"
 
 import drop from '../assets/drop-minimalist.svg'
 import { navbarItems } from "../components/navbar/navbar"
 
 
 export default function Footer() {
+    const [openPdf, setOpenPdf] = useState(false);
     return (<>
 
         <Box sx={{ width: '100%', minHeight: '250px', backgroundColor: 'primary.main', borderRadius: '8px' }}>
@@ -65,16 +68,41 @@ export default function Footer() {
                     </Box>
 
                 </Box>
-                <Divider sx={{ display: 'flex', width: '100%', height: '1px', backgroundColor: 'primary.contrastText' }} />
+                <Divider sx={{ display: 'flex', width: '100%', height: '1px', backgroundColor: 'primary.contrastText', my: 2 }} />
                 <Box sx={{ display: 'flex', gap: '20px' }}>
-                    <Typography component='a' href="#" sx={{ color: 'primary.contrastText' }}>Aviso de privacidad</Typography>
-                    <Typography component='a' href="#" sx={{ color: 'primary.contrastText' }}>Plataforma Nacional de Transparencia</Typography>
+                    <Typography
+                        component='a'
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); setOpenPdf(true); }}
+                        sx={{ color: 'primary.contrastText', cursor: 'pointer', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                    >
+                        Aviso de privacidad
+                    </Typography>
+                    <Typography
+                        component='a'
+                        href="https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml?idEntidad=MjE=&idSujetoObligado=NDIzNg==#inicio"
+                        sx={{
+                            color: 'primary.contrastText',
+                            textDecoration: 'none',
+                            '&:hover': { textDecoration: 'underline' }
+                        }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Plataforma Nacional de Transparencia
+                    </Typography>
                 </Box>
             </Box>
 
 
         </Box>
 
+        <PdfViewer
+            open={openPdf}
+            onClose={() => setOpenPdf(false)}
+            pdfUrl="/pdfs/aviso-privacidad.pdf"
+        />
     </>)
 
 

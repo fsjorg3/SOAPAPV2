@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import Divider from "@mui/material/Divider";
-import ReactPlayer from "react-player"; 
+import ReactPlayer from "react-player";
 
 import cuidar_agua from "../../assets/watter-culture/cuidar_agua.webp";
 import ciclo_agua from "../../assets/watter-culture/ciclo_agua.webp";
@@ -21,7 +21,7 @@ export interface WaterCultureCard {
   src: string;
 }
 
-const cards:WaterCultureCard[] = [
+const cards: WaterCultureCard[] = [
   {
     id: 1,
     img: cuidar_agua,
@@ -54,47 +54,47 @@ const cards:WaterCultureCard[] = [
 
 function WaterCultureOptions() {
   const [selectedCard, setSelectedCard] = React.useState(cards[0]);
-  
+
   // 1. Instanciamos la referencia para el contenedor del video
   const videoSectionRef = React.useRef<HTMLDivElement>(null);
 
   // 2. Creamos un manejador unificado para el clic
-  const handleCardSelection = (card:WaterCultureCard) => {
+  const handleCardSelection = (card: WaterCultureCard) => {
     setSelectedCard(card);
-    
+
     // Si la referencia existe en el DOM, ejecutamos el scroll suave.
     // En escritorio, como el elemento ya está a la vista, el navegador ignorará el salto de forma inteligente.
     if (videoSectionRef.current) {
-      videoSectionRef.current.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "start" 
+      videoSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
       });
     }
   };
 
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        flexDirection: { xs: 'column', md: 'row' }, 
-        gap: 3, 
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        gap: 3,
         width: '100%',
-        alignItems: 'stretch' 
+        alignItems: 'stretch'
       }}
     >
-      
+
       {/* PANEL IZQUIERDO: Tarjetas de Opciones */}
-      <Card 
-        sx={{ 
-          width: { xs: "100%", md: "40%", lg: "35%" }, 
+      <Card
+        sx={{
+          width: { xs: "100%", md: "40%", lg: "35%" },
           display: 'flex',
           flexDirection: 'column',
-          bgcolor: 'background.default', 
+          bgcolor: 'background.default',
           boxShadow: 2
         }}
       >
         <CardContent sx={{ pb: 0 }}>
-          <Typography variant="h6"  gutterBottom sx={{fontWeight:"bold"}}>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
             Temas de interes
           </Typography>
           <Divider sx={{ mb: 2 }} />
@@ -148,22 +148,22 @@ function WaterCultureOptions() {
       </Card>
 
       {/* PANEL DERECHO: Video Principal */}
-      <Card 
+      <Card
         variant="outstanding"
         // 4. Anclamos la referencia al componente padre de la sección del video
         ref={videoSectionRef}
-        sx={{ 
+        sx={{
           width: { xs: '100%', md: '60%', lg: '65%' },
           boxShadow: 3,
           display: 'flex',
           flexDirection: 'column',
           // Opcional: Agregar scroll-margin-top para que al hacer el salto, 
           // el componente no quede completamente pegado al borde superior de la pantalla
-          scrollMarginTop: '24px' 
+          scrollMarginTop: '24px'
         }}
       >
         <CardContent sx={{ pb: 2 }}>
-          <Typography variant="overline" color="primary"  sx={{ display: 'block', lineHeight: 1.2, mb: 0.5,fontWeight:"bold" }}>
+          <Typography variant="overline" color="primary" sx={{ display: 'block', lineHeight: 1.2, mb: 0.5, fontWeight: "bold" }}>
             {selectedCard.title}
           </Typography>
           <Typography variant="body1" component="h2" color="text.secondary">
@@ -176,23 +176,23 @@ function WaterCultureOptions() {
             width: '100%',
             aspectRatio: "16/9",
             position: "relative",
-            bgcolor: "black", 
+            bgcolor: "black",
             mt: 'auto',
-            borderRadius:'8px'
+            borderRadius: '8px'
 
           }}
         >
-          <ReactPlayer 
-            src={selectedCard.src} 
+          <ReactPlayer
+            src={selectedCard.src}
             controls={true}
-            width="100%"    
-            height="100%"   
+            width="100%"
+            height="100%"
             config={{
               youtube: {
                 //playerVars: { origin: window.location.origin }
               }
             }}
-            style={{borderRadius:'8px'}}
+            style={{ borderRadius: '8px' }}
           />
         </Box>
       </Card>
