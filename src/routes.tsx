@@ -6,14 +6,9 @@ import Contacto from "./routes/contacto";
 import Directorio from "./routes/directorio";
 import QuienesSomos from "./routes/quienes-somos";
 import Normatividad from "./routes/normatividad";
+import InformacionFinanciera from "./routes/informacion-financiera";
 
-const Recursos = () => <div>Recursos y Documentos</div>;
-const Pagina404 = () => (
-  <div style={{ textAlign: "center", padding: "40px 20px" }}>
-    <h2>Error 404: Página no encontrada</h2>
-    <p>El recurso al que intentas acceder no existe o fue movido.</p>
-  </div>
-);
+import Error404 from "./routes/error-404";
 
 export const router = createBrowserRouter([
   {
@@ -28,9 +23,9 @@ export const router = createBrowserRouter([
           { path: "contacto", element: <Contacto /> },
           { path: "directorio", element: <Directorio /> },
           { path: "quienes-somos", element: <QuienesSomos /> },
-          { path: "recursos", element: <Recursos /> },
           { path: "normatividad", element: <Normatividad /> },
-          { path: "*", element: <Pagina404 /> },
+          { path: "informacion-financiera", element: <InformacionFinanciera /> },
+          { path: "*", element: <Error404 /> },
         ],
       },
       {

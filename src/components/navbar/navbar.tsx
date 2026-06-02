@@ -24,7 +24,7 @@ export const navbarItems = [
   { texto: "Directorio", ruta: "/directorio" },
   { texto: "Quienes somos", ruta: "/quienes-somos" },
   { texto: "Normatividad", ruta: "/normatividad" },
-  { texto: "Recursos", ruta: "/recursos" }
+  { texto: "Información Financiera", ruta: "/informacion-financiera" }
 ];
 
 function Navbar() {
