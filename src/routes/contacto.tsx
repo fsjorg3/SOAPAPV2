@@ -22,6 +22,7 @@ interface IFormInput {
   comment: string;
 }
 
+
 export default function Contacto() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -463,16 +464,16 @@ export function InteractiveOSMMap() {
   // 3. Template Literals para las URLs dinámicas
   // URL de incrustación interactiva para el iframe de OpenStreetMap
   const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${minLng}%2C${minLat}%2C${maxLng}%2C${maxLat}&layer=mapnik&marker=${latitude}%2C${longitude}`;
-  
+
   // URL universal de redirección para Google Maps (Funciona en Web y App Móvil)
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
 
   return (
-    <Paper 
-      elevation={2} 
-      sx={{ 
-        p: 3, 
-        borderRadius: 3, 
+    <Paper
+      elevation={2}
+      sx={{
+        p: 3,
+        borderRadius: 3,
         //maxWidth: 700, 
         mx: 'auto',
         display: 'flex',
@@ -491,11 +492,11 @@ export function InteractiveOSMMap() {
       </Box>
 
       {/* Contenedor del Mapa Interactivo (Sin bloqueos de clic) */}
-      <Box 
-        sx={{ 
-          width: '100%', 
-          height: { xs: '300px', md: '450px' }, 
-          borderRadius: 2, 
+      <Box
+        sx={{
+          width: '100%',
+          height: { xs: '300px', md: '450px' },
+          borderRadius: 2,
           overflow: 'hidden',
           border: '1px solid',
           borderColor: 'divider',
@@ -522,8 +523,8 @@ export function InteractiveOSMMap() {
           href={googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          sx={{ 
-            fontWeight: 'bold', 
+          sx={{
+            fontWeight: 'bold',
             textTransform: 'none',
             px: 4,
             py: 1.2,

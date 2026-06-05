@@ -33,7 +33,7 @@ export default function Inicio() {
     {
       src: regulariza,
       alt: "regulariza",
-      url: "https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html",
+      url: "/regularizate_2026",
     },
   ];
 
@@ -51,7 +51,7 @@ export default function Inicio() {
     {
       src: regularizaMobile,
       alt: "regulariza",
-      url: "https://soapap.gob.mx/programas-ayudas/regularizate_2026/index.html",
+      url: "/regularizate_2026",
     },
   ];
 

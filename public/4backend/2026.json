@@ -1,0 +1,555 @@
+{
+    "año": 2026,
+    "secciones": [
+        {
+            "titulo": "Estados financieros, contables, presupuestales y programáticos",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2026_1_estado_actividades"
+                        },
+                        {
+                            "titulo": "Estado de Situación Financiera",
+                            "link": "2026_1_estado_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2026_1_estado_variacion_hacienda_publica"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2026_1_estado_cambios_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2026_1_estado_flujo_efectivo"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2026_1_estado_analitico_activo"
+                        },
+                        {
+                            "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2026_1_estado_analitico_deuda_pasivos"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2026_1_estado_analitico_ingresos"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2026_1_estado_analitico_ejercicio_presupuesto_egresos_economica"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2026_1_estado_analitico_ejercicio_presupuesto_egresos_objeto_gasto"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2026_1_estado_analitico_ejercicio_presupuesto_egresos_administrativa"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2026_1_estado_analitico_ejercicio_presupuesto_egresos_funcional"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2026_1_gasto_categoria_programatica"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2026_1_informe_pasivos_contingentes"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2026_1_endeudamiento_neto"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2026_1_intereses_deuda"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": "2026_1_indicadores_resultados"
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2026_1_programas_proyectos_inversion"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2026_1_disciplina_financiera"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": "2026_1_sistema_alertas"
+                        },
+                        {
+                            "titulo": "Manual de contabilidad",
+                            "link": "2026_1_manual_contabilidad"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2026_2_estado_actividades"
+                        },
+                        {
+                            "titulo": "Estado de Situación Financiera",
+                            "link": "2026_2_estado_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2026_2_estado_variacion_hacienda_publica"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2026_2_estado_cambios_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2026_2_estado_flujo_efectivo"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2026_2_estado_analitico_activo"
+                        },
+                        {
+                            "titulo": "Estado Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2026_2_estado_analitico_deuda_pasivos"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2026_2_estado_analitico_ingresos"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2026_2_estado_analitico_ejercicio_presupuesto_egresos_economica"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2026_2_estado_analitico_ejercicio_presupuesto_egresos_objeto_gasto"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2026_2_estado_analitico_ejercicio_presupuesto_egresos_administrativa"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2026_2_estado_analitico_ejercicio_presupuesto_egresos_funcional"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2026_2_gasto_categoria_programatica"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2026_2_informe_pasivos_contingentes"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2026_2_endeudamiento_neto"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2026_2_intereses_deuda"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": "2026_2_indicadores_resultados"
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2026_2_programas_proyectos_inversion"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2026_2_disciplina_financiera"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": "2026_2_sistema_alertas"
+                        },
+                        {
+                            "titulo": "Manual de contabilidad",
+                            "link": "2026_2_manual_contabilidad"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2026_3_estado_actividades"
+                        },
+                        {
+                            "titulo": "Estado de Situación Financiera",
+                            "link": "2026_3_estado_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2026_3_estado_variacion_hacienda_publica"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2026_3_estado_cambios_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2026_3_estado_flujo_efectivo"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2026_3_estado_analitico_activo"
+                        },
+                        {
+                            "titulo": "Estado Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2026_3_estado_analitico_deuda_pasivos"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2026_3_estado_analitico_ingresos"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2026_3_estado_analitico_ejercicio_presupuesto_egresos_economica"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2026_3_estado_analitico_ejercicio_presupuesto_egresos_objeto_gasto"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2026_3_estado_analitico_ejercicio_presupuesto_egresos_administrativa"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2026_3_estado_analitico_ejercicio_presupuesto_egresos_funcional"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2026_3_gasto_categoria_programatica"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2026_3_informe_pasivos_contingentes"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2026_3_endeudamiento_neto"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2026_3_intereses_deuda"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": "2026_3_indicadores_resultados"
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2026_3_programas_proyectos_inversion"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2026_3_disciplina_financiera"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": "2026_3_sistema_alertas"
+                        },
+                        {
+                            "titulo": "Manual de contabilidad",
+                            "link": "2026_3_manual_contabilidad"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2026_4_estado_actividades"
+                        },
+                        {
+                            "titulo": "Estado de Situación Financiera",
+                            "link": "2026_4_estado_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2026_4_estado_variacion_hacienda_publica"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2026_4_estado_cambios_situacion_financiera"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2026_4_estado_flujo_efectivo"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2026_4_estado_analitico_activo"
+                        },
+                        {
+                            "titulo": "Estado Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2026_4_estado_analitico_deuda_pasivos"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2026_4_estado_analitico_ingresos"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2026_4_estado_analitico_ejercicio_presupuesto_egresos_economica"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2026_4_estado_analitico_ejercicio_presupuesto_egresos_objeto_gasto"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2026_4_estado_analitico_ejercicio_presupuesto_egresos_administrativa"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2026_4_estado_analitico_ejercicio_presupuesto_egresos_funcional"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2026_4_gasto_categoria_programatica"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2026_4_informe_pasivos_contingentes"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2026_4_endeudamiento_neto"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2026_4_intereses_deuda"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": "2026_4_indicadores_resultados"
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2026_4_programas_proyectos_inversion"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2026_4_disciplina_financiera"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": "2026_4_sistema_alertas"
+                        },
+                        {
+                            "titulo": "Manual de contabilidad",
+                            "link": "2026_4_manual_contabilidad"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Montos pagados por ayudas y subsidios",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2026_1_montos_pagados_ayudas_subsidios"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2026_2_montos_pagados_ayudas_subsidios"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2026_3_montos_pagados_ayudas_subsidios"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2026_4_montos_pagados_ayudas_subsidios"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Notas a los Estados Financieros",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los Estados Financieros",
+                            "link": "2026_1_notas_estados_financieros"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los Estados Financieros",
+                            "link": "2026_2_notas_estados_financieros"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los Estados Financieros",
+                            "link": "2026_3_notas_estados_financieros"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los Estados Financieros",
+                            "link": "2026_4_notas_estados_financieros"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Relación de bienes que componen el patrimonio",
+            "periodos": [
+                {
+                    "periodo": "Primer semestre",
+                    "documentos": [
+                        {
+                            "titulo": "Inventario SOAPAP",
+                            "link": "2026_1_inventario_soapap"
+                        },
+                        {
+                            "titulo": "Inventario en Concesión",
+                            "link": "2026_1_inventario_ci"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo semestre",
+                    "documentos": [
+                        {
+                            "titulo": "Inventario SOAPAP",
+                            "link": "2026_1_inventario_soapap"
+                        },
+                        {
+                            "titulo": "Inventario en Concesión",
+                            "link": "2026_1_inventario_ci"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Información financiera relativa a la evaluación y rendición de cuentas",
+            "periodos": [
+                {
+                    "periodo": "Información financiera relativa a la evaluación y rendición de cuentas",
+                    "documentos": [
+                        {
+                            "titulo": "Programa Anual de Evaluación 2026",
+                            "link": "2026_programa_anual_evaluacion"
+                        },
+                        {
+                            "titulo": "Ficha Tecnica Programa Presupuestario Primer Trimestre",
+                            "link": "2026_ficha_tecnica_programa_presupuestario_1"
+                        },
+                        {
+                            "titulo": "Ficha Tecnica Programa Presupuestario Segundo Trimestre",
+                            "link": "2026_ficha_tecnica_programa_presupuestario_2"
+                        },
+                        {
+                            "titulo": "Ficha Tecnica Programa Presupuestario Tercer Trimestre",
+                            "link": "2026_ficha_tecnica_programa_presupuestario_3"
+                        },
+                        {
+                            "titulo": "Ficha Tecnica Programa Presupuestario Cuarto Trimestre",
+                            "link": "2026_ficha_tecnica_programa_presupuestario_4"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Presupuesto de Ingresos y Egresos",
+            "periodos": [
+                {
+                    "periodo": "Presupuesto de Ingresos y Egresos",
+                    "documentos": [
+                        {
+                            "titulo": "Ingresos 2026",
+                            "link": "2026_ingresos"
+                        },
+                        {
+                            "titulo": "Egresos  2026",
+                            "link": "2026_egresos"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+            "periodos": [
+                {
+                    "periodo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+                    "documentos": [
+                        {
+                            "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de gresos",
+                            "link": "2026_norma_difusion_ciudadania_ley_ingresos_presupuesto_egresos"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+            "periodos": [
+                {
+                    "periodo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+                    "documentos": [
+                        {
+                            "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+                            "link": "2026_norma_establecer_estructura_informacion_formato_ejercicio_destino_gastos"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
