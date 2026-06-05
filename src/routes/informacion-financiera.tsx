@@ -1,9 +1,11 @@
-import { Box, Container, Grid, Typography, FormControl, InputLabel, Select, MenuItem, Radio, RadioGroup, FormControlLabel, Accordion, AccordionSummary, AccordionDetails, Card, Skeleton, Snackbar, Alert } from "@mui/material";
+import { Box, Container, Grid, Typography, FormControl, InputLabel, Select, MenuItem, Radio, RadioGroup, FormControlLabel, Accordion, AccordionSummary, AccordionDetails, Card, Skeleton, Snackbar, Alert, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
 import useSWR from "swr";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LaunchIcon from '@mui/icons-material/Launch';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { PdfViewer } from '../components/pdfviewer/PdfViewer';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -118,14 +120,25 @@ export default function InformacionFinanciera() {
                         backgroundColor: "secondary.main",
                     }}
                 />
+                <Typography
+                    variant="body1"
+                    sx={{
+                        color: "text.secondary",
+                        marginTop: "16px",
+                        textAlign: "left",
+                        maxWidth: "800px",
+                    }}
+                >
+                    Consulta la información financiera, contable, presupuestal y programática del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla por periodo fiscal.
+                </Typography>
             </Box>
 
 
 
             <Grid container spacing={2}>
                 <Grid size={{ xs: 12, md: 3, lg: 4 }}>
-                    <Card variant="standard" sx={{ height: 'fit-content', mb: { xs: 2, md: 0 }, position: { md: 'sticky' }, top: { md: '20px' } }}>
-                        <FormControl fullWidth>
+                    <Card variant="outlined" sx={{ p: 3, height: 'fit-content', mb: { xs: 2, md: 0 }, position: { md: 'sticky' }, top: { md: '20px' } }}>
+                        <FormControl fullWidth sx={{ mt: 1.5 }}>
                             <InputLabel id="select-anio-label">Año</InputLabel>
                             <Select
                                 labelId="select-anio-label"
@@ -136,7 +149,8 @@ export default function InformacionFinanciera() {
                                 disabled={isLoadingAnios}
                             >
                                 {aniosList.map((anio: string) => (
-                                    <MenuItem key={anio} value={anio}>
+                                    <MenuItem key={anio} value={anio} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <CalendarTodayIcon sx={{ fontSize: '1.1rem', color: 'action.active', marginRight: "8px" }} />
                                         {anio}
                                     </MenuItem>
                                 ))}
@@ -144,32 +158,62 @@ export default function InformacionFinanciera() {
                         </FormControl>
 
                         {dataDetalle?.secciones && (
-                            <Box sx={{ mt: 3 }}>
+                            <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 1 }}>
                                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1, textTransform: 'capitalize' }}>
-                                    categorias
+                                    categorías
                                 </Typography>
-                                <FormControl component="fieldset">
-                                    <RadioGroup
-                                        aria-label="categorias"
-                                        name="categorias-radio-group"
-                                        value={activeCategoria}
-                                        onChange={(e) => handleCategoriaChange(e.target.value)}
+                                <Button
+                                    variant="text"
+                                    onClick={() => handleCategoriaChange("todos")}
+                                    sx={{
+                                        justifyContent: "flex-start",
+                                        textAlign: "left",
+                                        width: "100%",
+                                        pr: "5%",
+                                        borderRadius: "0px",
+                                        color: activeCategoria === "todos" ? "primary.main" : "text.secondary",
+                                        fontWeight: activeCategoria === "todos" ? 700 : 500,
+                                        borderRight: "4px solid",
+                                        borderColor: activeCategoria === "todos" ? "primary.main" : "transparent",
+                                        backgroundColor: activeCategoria === "todos" ? "rgba(97, 103, 57, 0.03)" : "transparent",
+                                        "&:hover": {
+                                            backgroundColor: "rgba(97, 103, 57, 0.03)",
+                                        },
+                                        textTransform: "capitalize",
+                                    }}
+                                >
+                                    todos
+                                </Button>
+                                {dataDetalle.secciones.map((seccion: any, index: number) => (
+                                    <Button
+                                        key={index}
+                                        variant="text"
+                                        onClick={() => handleCategoriaChange(seccion.titulo)}
+                                        sx={{
+                                            justifyContent: "flex-start",
+                                            textAlign: "left",
+                                            width: "100%",
+                                            pr: "5%",
+                                            borderRadius: "0px",
+                                            color: activeCategoria === seccion.titulo ? "primary.main" : "text.secondary",
+                                            fontWeight: activeCategoria === seccion.titulo ? 700 : 500,
+                                            borderRight: "4px solid",
+                                            borderColor: activeCategoria === seccion.titulo ? "primary.main" : "transparent",
+                                            backgroundColor: activeCategoria === seccion.titulo ? "rgba(97, 103, 57, 0.03)" : "transparent",
+                                            "&:hover": {
+                                                backgroundColor: "rgba(97, 103, 57, 0.03)",
+                                            },
+                                            textTransform: "capitalize",
+                                        }}
                                     >
-                                        <FormControlLabel value="todos" control={<Radio />} label="todos" />
-                                        {dataDetalle.secciones.map((seccion: any, index: number) => (
-                                            <FormControlLabel
-                                                key={index}
-                                                value={seccion.titulo}
-                                                control={<Radio />}
-                                                label={seccion.titulo}
-                                            />
-                                        ))}
-                                    </RadioGroup>
-                                </FormControl>
+                                        {seccion.titulo}
+                                    </Button>
+                                ))}
                             </Box>
                         )}
                     </Card>
                 </Grid>
+
                 <Grid size={{ xs: 12, md: 9, lg: 8 }} sx={{ p: { xs: 0, md: 3 } }}>
 
                     {isLoadingDetalle ? (
@@ -223,9 +267,12 @@ export default function InformacionFinanciera() {
                                                             } : {}
                                                         }}
                                                     >
-                                                        <Typography variant="body1" sx={{ color: 'inherit', fontWeight: 500 }}>
-                                                            {doc.titulo}
-                                                        </Typography>
+                                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                            <DocumentScannerIcon sx={{ fontSize: '1rem', color: 'primary.main', mr: 1 }} />
+                                                            <Typography variant="body1" sx={{ fontSize: '0.8rem', color: 'inherit', fontWeight: 400 }}>
+                                                                {doc.titulo}
+                                                            </Typography>
+                                                        </Box>
                                                         {doc.link ? <LaunchIcon sx={{ fontSize: '1.2rem', color: 'primary.main' }} /> : null}
                                                     </Box>
                                                 ))}

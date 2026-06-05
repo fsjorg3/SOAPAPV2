@@ -225,8 +225,8 @@ export default function Regularizate2026() {
             <Box sx={{ width: '100%', minHeight: '70px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', p: '1rem', bgcolor: '#771e36' }}>
               <Typography sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' }, fontWeight: 'bold', color: 'white', m: 0, textTransform: 'uppercase' }}>USUARIOS TIPO DOMÉSTICO</Typography>
             </Box>
-            <TableContainer>
-              <Table>
+            <TableContainer sx={{ overflowX: 'hidden' }}>
+              <Table sx={{ overflowX: 'hidden' }}>
                 <TableHead sx={{ bgcolor: '#f1f3f5', borderBottom: '2px solid #ddd' }}>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' }, textAlign: 'left', pl: '1.5rem' }}>Estrato</TableCell>
@@ -234,7 +234,7 @@ export default function Regularizate2026() {
                     <TableCell align="center" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>Estratos<br />5 y 6</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody sx={{ overflowX: 'hidden' }}>
                   <TableRow sx={{ transition: 'all 0.3s ease', '&:hover': { bgcolor: '#fff2f5', transform: 'scale(1.02)', boxShadow: '0 5px 15px rgba(119, 30, 54, 0.15)' } }}>
                     <TableCell sx={{ fontWeight: 'bold', color: '#555', fontSize: { xs: '0.9rem', md: '1.1rem' }, pl: '1.5rem' }}>6 a 11<br />periodos de adeudo</TableCell>
                     <TableCell align="center" sx={{ color: '#444', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>50%</TableCell>
@@ -261,8 +261,8 @@ export default function Regularizate2026() {
             <Box sx={{ width: '100%', minHeight: '70px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', p: '1rem', bgcolor: '#f49300' }}>
               <Typography sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' }, fontWeight: 'bold', color: 'white', m: 0, textTransform: 'uppercase' }}>USUARIOS TIPO COMERCIAL E INDUSTRIAL</Typography>
             </Box>
-            <TableContainer>
-              <Table>
+            <TableContainer sx={{ overflowX: 'hidden' }}>
+              <Table sx={{ overflowX: 'hidden' }}>
                 <TableHead sx={{ bgcolor: '#f1f3f5', borderBottom: '2px solid #ddd' }}>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' }, textAlign: 'left', pl: '1.5rem' }}>Estrato</TableCell>
@@ -270,7 +270,7 @@ export default function Regularizate2026() {
                     <TableCell align="center" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>VI, VII y VIII</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody sx={{ overflowX: 'hidden' }}>
                   <TableRow sx={{ transition: 'all 0.3s ease', '&:hover': { bgcolor: '#fff9f0', transform: 'scale(1.02)', boxShadow: '0 5px 15px rgba(244, 147, 0, 0.15)' } }}>
                     <TableCell sx={{ fontWeight: 'bold', color: '#555', fontSize: { xs: '0.9rem', md: '1.1rem' }, pl: '1.5rem' }}>6 a 11<br />periodos de adeudo</TableCell>
                     <TableCell align="center" sx={{ color: '#444', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>50%</TableCell>
@@ -304,8 +304,8 @@ export default function Regularizate2026() {
             <Box sx={{ width: '100%', minHeight: '70px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', p: '1rem', bgcolor: '#42ac7c' }}>
               <Typography sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' }, fontWeight: 'bold', color: 'white', m: 0, textTransform: 'uppercase' }}>CONVENIOS DE PAGO</Typography>
             </Box>
-            <TableContainer>
-              <Table>
+            <TableContainer sx={{ overflowX: 'hidden' }}>
+              <Table sx={{ overflowX: 'hidden' }}>
                 <TableHead sx={{ bgcolor: '#f1f3f5', borderBottom: '2px solid #ddd' }}>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' }, textAlign: 'left', pl: '1.5rem' }}>CLASIFICACIÓN</TableCell>
@@ -313,7 +313,7 @@ export default function Regularizate2026() {
                     <TableCell align="center" sx={{ fontWeight: 'bold', color: '#333', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>PLAZO</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody sx={{ overflowX: 'hidden' }}>
                   {[
                     ['Doméstico: Estratos 1, 2 y 3', '20%', 'HASTA 24 MESES'],
                     ['Doméstico: Estratos 4', '30%', 'HASTA 24 MESES'],

@@ -76,6 +76,7 @@ export default function Inicio() {
         >
           <Box
             component="img"
+            loading="lazy"
             src={puebla}
             sx={{ width: { xs: "40%", md: "25%" }, height: "auto" }}
           />
@@ -95,6 +96,7 @@ export default function Inicio() {
           />
           <Box
             component="img"
+            loading="lazy"
             src={soapap}
             sx={{ width: { xs: "40%", md: "25%" }, height: "90%" }}
           />
@@ -115,6 +117,7 @@ export default function Inicio() {
           />
           <Box
             component="img"
+            loading="lazy"
             src={amor}
             sx={{ width: "16%", display: { xs: "none", md: "block" } }}
           />
