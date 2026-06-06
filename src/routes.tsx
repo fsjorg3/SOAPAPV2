@@ -8,6 +8,7 @@ import QuienesSomos from "./routes/quienes-somos";
 import Normatividad from "./routes/normatividad";
 import InformacionFinanciera from "./routes/informacion-financiera";
 import Regularizate2026 from "./routes/regularizate_2026";
+import RegularizacionDomestica from "./routes/regularizacion-domestica";
 
 import Error404 from "./routes/error-404";
 
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
           { path: "normatividad", element: <Normatividad /> },
           { path: "informacion-financiera", element: <InformacionFinanciera /> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
+          { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
           { path: "*", element: <Error404 /> },
         ],
       },
