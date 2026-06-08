@@ -27,6 +27,28 @@ export default function InformacionFinanciera() {
 
     const activeAnio = searchParams.get("anio") || (aniosList.length > 0 ? aniosList[0] : "");
     const activeCategoria = searchParams.get("categoria") || "todos";
+    const fileParam = searchParams.get("file");
+
+    useEffect(() => {
+        if (fileParam) {
+            const targetUrl = `${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${encodeURIComponent(fileParam)}`;
+            setCurrentPdfUrl(targetUrl);
+            setPdfViewerOpen(true);
+        } else {
+            setPdfViewerOpen(false);
+        }
+    }, [fileParam]);
+
+    const handleClosePdf = () => {
+        if (searchParams.get('file')) {
+            const newParams = new URLSearchParams(searchParams);
+            newParams.delete('file');
+            setSearchParams(newParams);
+        } else {
+            setPdfViewerOpen(false);
+            setCurrentPdfUrl("");
+        }
+    };
 
     const { data: dataDetalle, error: errorDetalle, isLoading: isLoadingDetalle } = useSWR(
         activeAnio ? `${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/informacion_financiera/${activeAnio}` : null,
@@ -65,7 +87,10 @@ export default function InformacionFinanciera() {
         try {
             const response = await fetch(targetUrl, { method: 'HEAD' });
             if (response.ok) {
-                setCurrentPdfUrl(targetUrl);
+                const newParams = new URLSearchParams(searchParams);
+                newParams.set('file', basename);
+                setSearchParams(newParams);
+                return;
             } else {
                 setCurrentPdfUrl('/pdfs/test.pdf');
                 setSnackbar({ open: true, message: 'El documento original no está disponible, abriendo versión de prueba.', severity: 'warning' });
@@ -286,7 +311,7 @@ export default function InformacionFinanciera() {
                 </Grid>
             </Grid>
 
-            <PdfViewer open={pdfViewerOpen} onClose={() => setPdfViewerOpen(false)} pdfUrl={currentPdfUrl} />
+            <PdfViewer open={pdfViewerOpen} onClose={handleClosePdf} pdfUrl={currentPdfUrl} />
 
             <Snackbar open={snackbar.open} autoHideDuration={5000} onClose={handleCloseSnackbar} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
                 <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>

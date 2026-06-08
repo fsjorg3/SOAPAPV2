@@ -8,8 +8,8 @@ import soapap from "../assets/logos/soapap.webp";
 import amor from "../assets/logos/amor_puebla.webp";
 import regulariza from "../assets/banners/regulariza16-9.png";
 import regularizaMobile from "../assets/banners/regulariza9-16.png";
-import regulariza2 from "../assets/banners/regulariza216-9.png";
-import regulariza2Mobile from "../assets/banners/regulariza29-16.png";
+import regularizaDomestica from "../assets/banners/regularizacion-domestica1.webp";
+import regularizaDomesticaMobile from "../assets/banners/regularizacion-domestica2.webp";
 import WatterCultureOptions from "../components/watter-culture/watter-culture-options";
 import InterestSlider from "../components/interest-slider";
 
@@ -21,14 +21,9 @@ export default function Inicio() {
 
   const carouselData: SlideData[] = [
     {
-      src: regulariza,
-      alt: "regulariza",
-      url: "/contacto",
-    },
-    {
-      src: regulariza2,
-      alt: "regulariza2",
-      url: "/directorio",
+      src: regularizaDomestica,
+      alt: "regularizaDomestica",
+      url: "/regularizacion_domestica",
     },
     {
       src: regulariza,
@@ -39,14 +34,9 @@ export default function Inicio() {
 
   const carouselDataMobile: SlideData[] = [
     {
-      src: regularizaMobile,
-      alt: "regulariza",
-      url: "/contacto",
-    },
-    {
-      src: regulariza2Mobile,
-      alt: "regulariza2",
-      url: "/directorio",
+      src: regularizaDomesticaMobile,
+      alt: "regularizaDomestica",
+      url: "/regularizacion_domestica",
     },
     {
       src: regularizaMobile,

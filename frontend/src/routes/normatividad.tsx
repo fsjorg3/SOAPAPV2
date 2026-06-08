@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router';
 import useSWR from 'swr';
 import { Box, Button, Card, CardActions, CardContent, Container, Divider, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -21,6 +22,25 @@ export interface SeccionConcesion {
 
 export default function Normatividad() {
     const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const fileParam = searchParams.get('file');
+
+    useEffect(() => {
+        if (fileParam) {
+            setSelectedPdf(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${fileParam}`);
+        } else {
+            setSelectedPdf(null);
+        }
+    }, [fileParam]);
+
+    const handleOpenPdf = (fileName: string) => {
+        setSearchParams({ file: fileName });
+    };
+
+    const handleClosePdf = () => {
+        setSearchParams({});
+    };
+
     const [expandedPanels, setExpandedPanels] = useState<number[]>([]);
 
     const handleAccordionChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -33,229 +53,8 @@ export default function Normatividad() {
     const { data: normatividad, error: normatividadError } =
         useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/normatividad`, fetcher);
 
-    const fallbackTituloConcesion: SeccionConcesion[] = [
-        {
-            titulo: "TITULO DE CONCESIÓN",
-            documentos: [
-                {
-                    titulo: "TITULO DE CONCESIÓN",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO I",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO II",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO III",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO V",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VI",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VIII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IX",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO X",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XI",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XIII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XIV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XVI",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XVII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XVIII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XIX",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO XX",
-                    link: "/pdfs/test.pdf",
-                },
-            ]
-        },
-        {
-            titulo: "MODIFICACIÓN AL TITULO DE CONCESIÓN",
-            documentos: [
-                {
-                    titulo: "MODIFICACIÓN AL TITULO DE CONCESIÓN",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO I",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO II",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO III",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO V",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VI",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VIII",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IX",
-                    link: "/pdfs/test.pdf",
-                },
-            ]
-        },
-        {
-            titulo: "SEGUNDO CONVENIO MODIFICATORIO",
-            documentos: [
-                {
-                    titulo: "SEGUNDO CONVENIO MODIFICATORIO",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO I",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO II",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO III",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO V",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO VI",
-                    link: "/pdfs/test.pdf",
-                },
-            ]
-        },
-        {
-            titulo: "TERCER CONVENIO MODIFICATORIO",
-            documentos: [
-                {
-                    titulo: "TERCER CONVENIO MODIFICATORIO",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO I",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO II",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO III",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO IV",
-                    link: "/pdfs/test.pdf",
-                },
-                {
-                    titulo: "ANEXO V",
-                    link: "/pdfs/test.pdf",
-                },
-            ]
-        }
-    ]
-
-    const [tituloConcesion, setTituloConcesion] = useState<SeccionConcesion[]>([]);
-    const [loadingConcesion, setLoadingConcesion] = useState(true);
-
-    useEffect(() => {
-        // Preparando la implementación para solicitar al backend
-        const fetchConcesion = async () => {
-            try {
-                // TODO: Simulación de llamada al backend
-                // const response = await fetch('/api/normatividad/concesion');
-                // const data = await response.json();
-                // setTituloConcesion(data);
-
-                // Fallback temporal utilizando los archivos locales de /public/pdfs
-                setTituloConcesion(fallbackTituloConcesion);
-            } catch (error) {
-                console.error("Error fetching concesion data:", error);
-                setTituloConcesion(fallbackTituloConcesion);
-            } finally {
-                setLoadingConcesion(false);
-            }
-        };
-
-        fetchConcesion();
-    }, []);
+    const { data: tituloConcesionData, error: tituloError } =
+        useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/titulo`, fetcher);
 
     return (<>
         <Container sx={{ py: 4, minHeight: '80vh' }}>
@@ -314,7 +113,7 @@ export default function Normatividad() {
                                     color="primary"
                                     size="small"
                                     endIcon={<LaunchIcon />}
-                                    onClick={() => setSelectedPdf(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${norma.filename}`)}
+                                    onClick={() => handleOpenPdf(norma.filename)}
                                     fullWidth
                                     sx={{
                                         borderRadius: 2,
@@ -361,16 +160,17 @@ export default function Normatividad() {
                     }}
                 />
                 <Typography variant="subtitle1" color="text.secondary">
-                    Mostrando {tituloConcesion.reduce((acc, seccion) => acc + seccion.documentos.length, 0)} documentos en {tituloConcesion.length} secciones
+                    Mostrando {tituloConcesionData ? tituloConcesionData.reduce((acc: number, seccion: SeccionConcesion) => acc + seccion.documentos.length, 0) : 0} documentos en {tituloConcesionData ? tituloConcesionData.length : 0} secciones
                 </Typography>
             </Box>
 
 
-            {loadingConcesion ? (
+            {tituloError && <Typography color="error">Error al cargar los documentos de la concesión.</Typography>}
+            {!tituloConcesionData && !tituloError ? (
                 <Typography>Cargando documentos...</Typography>
             ) : (
                 <Box sx={{ width: '100%', mb: 8 }}>
-                    {tituloConcesion.map((seccion, index) => {
+                    {tituloConcesionData && tituloConcesionData.map((seccion: SeccionConcesion, index: number) => {
                         const isOpen = expandedPanels.includes(index);
                         return (
                             <Accordion
@@ -400,7 +200,7 @@ export default function Normatividad() {
                                             <Box
                                                 component="a"
                                                 key={docIndex}
-                                                onClick={() => setSelectedPdf(doc.link)}
+                                                onClick={() => handleOpenPdf(doc.link.split('/').pop() || '')}
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -432,7 +232,7 @@ export default function Normatividad() {
             {/* Visor de PDF Modal */}
             <PdfViewer
                 open={selectedPdf !== null}
-                onClose={() => setSelectedPdf(null)}
+                onClose={handleClosePdf}
                 pdfUrl={selectedPdf || ''}
             />
         </Container>

@@ -27,7 +27,7 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
   // Valor por defecto: 9/16 en móviles (xs), 16/9 de tablets (sm) en adelante
   aspectRatio = { xs: '9/16', sm: '16/9' }
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay({ delay: 2000 })]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay({ delay: 5000 })]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const navigate = useNavigate();

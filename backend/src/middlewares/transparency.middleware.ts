@@ -22,7 +22,12 @@ const findFileRecursive = (dir: string, filename: string): string | null => {
 // Middleware para el endpoint que genera el JSON de archivos de transparencia
 export const validateTransparencyList = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const category = (req.params.category || req.query.category || req.query.type || 'normatividad').toString().toLowerCase();
+    const rawCategory = req.params.category || req.query.category || req.query.type;
+    if (!rawCategory) {
+      res.status(400).json({ success: false, message: 'Categoría no proporcionada' });
+      return;
+    }
+    const category = rawCategory.toString().toLowerCase();
     const yearParam = req.query.year || req.params.year;
 
     // Normalizar la ruta base de PDFs
@@ -57,6 +62,64 @@ export const validateTransparencyList = (req: Request, res: Response, next: Next
             };
           });
         res.status(200).json(files);
+        return;
+      }
+      res.status(200).json([]);
+      return;
+    }
+
+    if (category === 'titulo') {
+      const tituloDir = path.join(pdfPath, 'titulo');
+      const jsonPath = path.join(tituloDir, 'titulo.json');
+
+      if (fs.existsSync(jsonPath)) {
+        try {
+          const fileContent = fs.readFileSync(jsonPath, 'utf8');
+          res.status(200).json(JSON.parse(fileContent));
+          return;
+        } catch (err) {
+          // Fallback a lectura dinámica si el JSON tiene un error de sintaxis
+        }
+      }
+
+      if (fs.existsSync(tituloDir)) {
+        const files = fs.readdirSync(tituloDir).filter(f => f.toLowerCase().endsWith('.pdf'));
+        const mainTitles = files.filter(f => !f.includes('_anexo'));
+        
+        const result = mainTitles.map(mainFile => {
+          const prefix = mainFile.replace(/\.pdf$/i, '');
+          const annexes = files.filter(f => f.startsWith(prefix + '_anexo'));
+          
+          return {
+            titulo: `TÍTULO DE CONCESIÓN ${prefix.replace('t', '')}`,
+            documentos: [
+              {
+                titulo: `TÍTULO DE CONCESIÓN ${prefix.replace('t', '')}`,
+                link: `/assets/titulo/${mainFile}`
+              },
+              ...annexes.map(a => {
+                const match = a.match(/_anexo-?(\d+)/i);
+                const num = match ? match[1] : '';
+                return {
+                  titulo: `ANEXO ${num}`,
+                  link: `/assets/titulo/${a}`
+                };
+              })
+            ]
+          };
+        });
+
+        if (result.length > 0) {
+          res.status(200).json(result);
+          return;
+        }
+        
+        // Fallback genérico si no encaja en la estructura esperada
+        const fallback = files.map(f => ({
+          titulo: f.replace(/\.pdf$/i, '').toUpperCase(),
+          filename: f
+        }));
+        res.status(200).json(fallback);
         return;
       }
       res.status(200).json([]);

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router';
 import useSWR from 'swr';
 import { Box, Button, Card, CardActions, CardContent, Container, Typography, Chip } from "@mui/material";
 import LaunchIcon from '@mui/icons-material/Launch';
@@ -16,9 +17,27 @@ export interface Convocatoria {
 
 export default function Convocatorias() {
     const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const fileParam = searchParams.get('file');
+
+    useEffect(() => {
+        if (fileParam) {
+            setSelectedPdf(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${encodeURIComponent(fileParam)}`);
+        } else {
+            setSelectedPdf(null);
+        }
+    }, [fileParam]);
+
+    const handleOpenPdf = (fileName: string) => {
+        setSearchParams({ file: fileName });
+    };
+
+    const handleClosePdf = () => {
+        setSearchParams({});
+    };
 
     const fetcher = (url: string) => fetch(url).then(res => res.json());
-    
+
     // Solicitamos la información usando el backend API
     const { data: convocatorias, error: convocatoriasError } =
         useSWR<Convocatoria[]>(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/convocatorias`, fetcher);
@@ -64,7 +83,7 @@ export default function Convocatorias() {
             {/* Lista de convocatorias */}
             {convocatoriasError && <Typography color="error">Error al cargar las convocatorias. {convocatoriasError.message}</Typography>}
             {!convocatorias && !convocatoriasError && <Typography>Cargando convocatorias...</Typography>}
-            
+
             {convocatorias && (
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3, marginBottom: { xs: "40px", md: "80px" } }}>
                     {convocatorias.map((convocatoria) => (
@@ -76,7 +95,7 @@ export default function Convocatorias() {
                                     </Typography>
                                     <Chip label={convocatoria.category} size="small" color="primary" variant="outlined" />
                                 </Box>
-                                
+
                                 <Typography variant="h6" component="h3" color="primary.main" sx={{ fontWeight: "bold", mb: 1.5, lineHeight: 1.3 }}>
                                     {convocatoria.expediente}
                                 </Typography>
@@ -92,7 +111,7 @@ export default function Convocatorias() {
                                     color="primary"
                                     size="small"
                                     endIcon={<LaunchIcon />}
-                                    onClick={() => setSelectedPdf(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${encodeURIComponent(convocatoria.filename)}`)}
+                                    onClick={() => handleOpenPdf(convocatoria.filename)}
                                     sx={{
                                         borderRadius: 2,
                                         '&:hover, &:active': {
@@ -111,7 +130,7 @@ export default function Convocatorias() {
             {/* Visor de PDF Modal */}
             <PdfViewer
                 open={selectedPdf !== null}
-                onClose={() => setSelectedPdf(null)}
+                onClose={handleClosePdf}
                 pdfUrl={selectedPdf || ''}
             />
         </Container>
