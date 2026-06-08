@@ -1,0 +1,47 @@
+[
+  {
+    "id": "SOAPAP-GAF-LP-ADQ-2025-002-2",
+    "expediente": "Segunda convocatoria SOAPAP-GAF-LP-ADQ-2025-002",
+    "year": 2025,
+    "category": "Adquisición",
+    "description": "Adquisición de vehículos que serán usados por las diferentes áreas del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla.",
+    "filename": "segunda_convocatoria_soapap_gaf_lp_adq_2025_002.pdf",
+    "path": "/assets/convocatorias/segunda_convocatoria_soapap_gaf_lp_adq_2025_002.pdf"
+  },
+  {
+    "id": "SOAPAP-GAF-LP-ADQ-2025-002",
+    "expediente": "SOAPAP-GAF-LP-ADQ-2025-002",
+    "year": 2025,
+    "category": "Adquisición",
+    "description": "Adquisición de vehículos que serán usados por las diferentes áreas del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla.",
+    "filename": "soapap_gaf_lp_adq_2025_002.pdf",
+    "path": "/assets/convocatorias/soapap_gaf_lp_adq_2025_002.pdf"
+  },
+  {
+    "id": "SOAPAP-GAF-LP-ADQ-2025-001",
+    "expediente": "SOAPAP-GAF-LP-ADQ-2025-001",
+    "year": 2025,
+    "category": "Adquisición",
+    "description": "Suministro de agua potable en vehículo cisterna (pipa) en la zona metropolitana de la ciudad de Puebla, como parte de las acciones para mitigar la temporada de estiaje por la sequía 2025.",
+    "filename": "soapap_gaf_lp_adq_2025_001.pdf",
+    "path": "/assets/convocatorias/soapap_gaf_lp_adq_2025_001.pdf"
+  },
+  {
+    "id": "SOAPAP-OP-LPE-2025-002",
+    "expediente": "SOAPAP-OP-LPE-2025-002",
+    "year": 2025,
+    "category": "Obra pública",
+    "description": "Rehabilitación Integral de la Zona del Manantial, en Santa María Acuexcomac, San Pedro Cholula, Puebla.",
+    "filename": "soapap_op_lpe_2025_002.pdf",
+    "path": "/assets/convocatorias/soapap_op_lpe_2025_002.pdf"
+  },
+  {
+    "id": "SOAPAP-OP-LPE-2025-001",
+    "expediente": "SOAPAP-OP-LPE-2025-001",
+    "year": 2025,
+    "category": "Obra pública",
+    "description": "Equipamiento de Pozo Profundo y Construcción de una Línea de Conducción de 4” Desde el Pozo Profundo a Tanque, en la Localidad de San Buenaventura Nealtican, Municipio de Nealtican, Puebla",
+    "filename": "soapap_op_lpe_2025_001.pdf",
+    "path": "/assets/convocatorias/soapap_op_lpe_2025_001.pdf"
+  }
+]

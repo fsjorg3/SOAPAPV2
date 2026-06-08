@@ -40,27 +40,36 @@ export default function Footer() {
 
                     <Box sx={{ display: 'flex', width: { xs: '100%', md: '50%' }, justifyContent: { xs: 'center', md: 'flex-end' }, marginTop: { xs: '20px', md: '0px' } }}>
 
-                        <Box component="nav" sx={{ display: "flex", flexDirection: "column" }}>
-                            {navbarItems.map(({ texto, ruta }) => (
+                        <Box 
+                            component="nav" 
+                            sx={{ 
+                                display: "grid", 
+                                gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, 
+                                gap: { xs: 0, md: 1 },
+                                width: { xs: '100%', md: 'auto' }
+                            }}
+                        >
+                            {navbarItems.flatMap(item => item.subItems ? item.subItems : [item]).map((link) => (
                                 <Button
-                                    key={texto}
+                                    key={link.texto}
                                     component={Link}
-                                    to={ruta}
+                                    to={link.ruta!}
                                     sx={{
                                         textAlign: 'center',
-                                        justifyContent: { xs: "center", md: 'left' }, // Alinear texto a la izquierda
-                                        textTransform: "none", // Evitar mayúsculas automáticas
-                                        paddingLeft: 0, // Eliminar padding por defecto del componente Button
-                                        color: (theme) => theme.palette.primary.contrastText, // Color del texto
+                                        justifyContent: { xs: "center", md: 'flex-start' }, // Centrado en móvil, a la izquierda en PC
+                                        textTransform: "none",
+                                        padding: { xs: '2px 0', md: '6px 12px' }, // Padding más pequeño en móvil para hacerlo compacto
+                                        minHeight: '32px', // Reduce la altura predeterminada del botón en móvil
+                                        color: (theme) => theme.palette.primary.contrastText,
                                         '&:hover': {
-                                            color: 'secondary.main', // Color del texto al hacer hover
+                                            color: 'secondary.main',
                                         },
                                         "&.active": {
-                                            color: "secondary.light", // Clase interna que NavLink inyecta automáticamente
+                                            color: "secondary.light",
                                         },
                                     }}
                                 >
-                                    {texto}
+                                    {link.texto}
                                 </Button>
                             ))}
                         </Box>

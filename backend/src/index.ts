@@ -1,0 +1,105 @@
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import hpp from 'hpp';
+import { validateContactForm } from './middlewares/contact.middleware';
+import { validateTransparencyList, validatePdfRequest } from './middlewares/transparency.middleware';
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
+app.disable('x-powered-by');
+
+// 2. Cabeceras de seguridad globales con Helmet
+// Configuramos crossOriginResourcePolicy en 'cross-origin' para permitir que el frontend
+// de origen cruzado (ej. http://localhost:5173) cargue y visualice los archivos estáticos sin problemas.
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
+
+// 3. Configuración de CORS
+const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+app.use(cors({
+  origin: corsOrigin
+}));
+
+// 4. Límites de tamaño en los payloads para mitigar ataques de denegación de servicio (DoS)
+// limitando el volumen de datos que un atacante puede enviar al servidor.
+app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+// 5. Prevenir la contaminación de parámetros HTTP (HTTP Parameter Pollution - HPP)
+app.use(hpp());
+
+// 6. Configuración de Rate Limiters diferenciados
+const rateLimitWindowMs = parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10); // 15 minutos
+
+// Rate Limiter para endpoints de la API (más estricto)
+const apiLimiterMax = parseInt(process.env.RATE_LIMIT_API_MAX || '100', 10);
+const apiLimiter = rateLimit({
+  windowMs: rateLimitWindowMs,
+  max: apiLimiterMax,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    status: 429,
+    message: 'Demasiadas peticiones desde esta IP. Por favor, intente de nuevo más tarde.'
+  }
+});
+
+// Rate Limiter para los assets estáticos (más permisivo para permitir múltiples peticiones de rangos parciales de PDFs)
+const assetsLimiterMax = parseInt(process.env.RATE_LIMIT_ASSETS_MAX || '1000', 10);
+const assetsLimiter = rateLimit({
+  windowMs: rateLimitWindowMs,
+  max: assetsLimiterMax,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    status: 429,
+    message: 'Límite de descargas de recursos excedido para esta IP. Por favor, intente más tarde.'
+  }
+});
+
+// Aplicar Rate Limiter de assets a la ruta de estáticos
+const pdfPath = path.resolve(process.env.PDF_STORAGE_PATH || './assets');
+app.use('/assets', assetsLimiter, express.static(pdfPath));
+
+// Aplicar Rate Limiter general a todas las demás rutas
+app.use(apiLimiter);
+
+// Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Bienvenido a la API de SOAPAPV2' });
+});
+
+// Endpoint 1: Recibir el contenido del formulario de contacto
+app.post('/soapapv2/api/contact', validateContactForm, (req, res) => {
+  // TODO: Implementar lógica para procesar los datos del formulario (ej. envío de email)
+  res.status(200).json({ message: 'Formulario recibido correctamente (En construcción)' });
+});
+
+// Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad e información financiera)
+app.get('/soapapv2/api/transparency/files', validateTransparencyList, (req, res) => {
+  // TODO: Leer el directorio de PDFs dinámicamente y devolver la estructura en JSON
+  res.status(200).json({ message: 'Listado de archivos JSON (En construcción)', files: [] });
+});
+
+// Endpoint 3: Servir el PDF solicitado (obtenido a través de la ruta o JSON)
+// La ruta captura el nombre del archivo proveniente del JSON (ej. /soapapv2/api/transparency/file/2026_Q1_Estado_de_Actividades.pdf)
+app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, res) => {
+  // TODO: Validar y servir el archivo PDF físico utilizando res.sendFile()
+  res.status(200).json({ message: 'Servicio de descarga de PDF (En construcción)' });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+  console.log(`📂 Carpeta de PDFs configurada en: ${pdfPath}`);
+});
+

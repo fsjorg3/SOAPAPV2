@@ -31,37 +31,37 @@ export default function Normatividad() {
     const normatividad = [
         {
             titulo: "DECRETO DE CREACIÓN",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/decreto_creacion_soapap.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "LEY DEL AGUA PARA EL ESTADO DE PUEBLA",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/ley_del_agua_puebla.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "REGLAMENTO INTERNO",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/reglamento_interior_soapap.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "REFORMAS AL REGLAMENTO INTERNO",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/reformas_reglamento_interior_soapap.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "CÓDIGO DE CONDUCTA",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/codigo_conducta_soapap.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "CÓDIGO DE ÉTICA",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/codigo_etica_soapap.pdf",
             actualizacion: '01/ene/2014'
         },
         {
             titulo: "ACUERDO GENERAL",
-            link: "/pdfs/test.pdf",
+            link: "http://localhost:3000/assets/normatividad/acuerdo_general.pdf",
             actualizacion: '01/ene/2014'
         }
     ]
@@ -333,7 +333,7 @@ export default function Normatividad() {
                 {normatividad.map((norma, index) => (
                     <Card key={index} variant="outlined" sx={{ display: 'flex', flexDirection: 'column', transition: 'transform 0.2s', '&:hover': { transform: 'translateY(-4px)', boxShadow: 4 } }}>
                         <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography variant="h6" component="h3" color="primary.main" sx={{fontWeight:"medium"}} gutterBottom>
+                            <Typography variant="h6" component="h3" color="primary.main" sx={{ fontWeight: "medium" }} gutterBottom>
                                 {norma.titulo}
                             </Typography>
 
