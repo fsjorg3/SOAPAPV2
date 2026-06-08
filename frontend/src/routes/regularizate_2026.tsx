@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, Card, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { Box, Typography, Grid, Card, Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from "@mui/material";
 
 export default function Regularizate2026() {
   return (

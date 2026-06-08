@@ -21,28 +21,29 @@ export default function Inicio() {
 
   const carouselData: SlideData[] = [
     {
-      src: regularizaDomestica,
-      alt: "regularizaDomestica",
-      url: "/regularizacion_domestica",
-    },
-    {
       src: regulariza,
       alt: "regulariza",
       url: "/regularizate_2026",
     },
+    {
+      src: regularizaDomestica,
+      alt: "regularizaDomestica",
+      url: "/regularizacion_domestica",
+    },
+
   ];
 
   const carouselDataMobile: SlideData[] = [
     {
+      src: regularizaMobile,
+      alt: "regulariza",
+      url: "/regularizate_2026",
+    }, {
       src: regularizaDomesticaMobile,
       alt: "regularizaDomestica",
       url: "/regularizacion_domestica",
     },
-    {
-      src: regularizaMobile,
-      alt: "regulariza",
-      url: "/regularizate_2026",
-    },
+
   ];
 
   return (

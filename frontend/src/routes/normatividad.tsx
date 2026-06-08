@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router';
 import useSWR from 'swr';
-import { Box, Button, Card, CardActions, CardContent, Container, Divider, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, Container, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import LaunchIcon from '@mui/icons-material/Launch';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -43,7 +43,7 @@ export default function Normatividad() {
 
     const [expandedPanels, setExpandedPanels] = useState<number[]>([]);
 
-    const handleAccordionChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    const handleAccordionChange = (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpandedPanels(prev =>
             isExpanded ? [...prev, panel] : prev.filter(p => p !== panel)
         );

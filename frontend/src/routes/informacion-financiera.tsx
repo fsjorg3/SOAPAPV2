@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, FormControl, InputLabel, Select, MenuItem, Radio, RadioGroup, FormControlLabel, Accordion, AccordionSummary, AccordionDetails, Card, Skeleton, Snackbar, Alert, Button } from "@mui/material";
+import { Box, Container, Grid, Typography, FormControl, InputLabel, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Card, Skeleton, Snackbar, Alert, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
 import useSWR from "swr";
@@ -11,7 +11,7 @@ import { PdfViewer } from '../components/pdfviewer/PdfViewer';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function InformacionFinanciera() {
-    const { data: dataAnios, error: errorAnios, isLoading: isLoadingAnios } = useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/anios`, fetcher);
+    const { data: dataAnios, isLoading: isLoadingAnios } = useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/anios`, fetcher);
     const [searchParams, setSearchParams] = useSearchParams();
     const [pdfViewerOpen, setPdfViewerOpen] = useState(false);
     const [currentPdfUrl, setCurrentPdfUrl] = useState("");
@@ -102,7 +102,8 @@ export default function InformacionFinanciera() {
         setPdfViewerOpen(true);
     };
 
-    const handleCloseSnackbar = (event?: React.SyntheticEvent | Event, reason?: string) => {
+
+    const handleCloseSnackbar = (_event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') return;
         setSnackbar(prev => ({ ...prev, open: false }));
     };

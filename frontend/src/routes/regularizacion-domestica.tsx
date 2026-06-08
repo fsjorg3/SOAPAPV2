@@ -2,6 +2,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+import { useState } from "react";
+import ColoniasDialog from "../components/colonias-dialog";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import img_regularizacion_domestica from "../assets/regularizacion_domestica/regularizar.webp";
@@ -14,28 +17,23 @@ import MapIcon from '@mui/icons-material/Map';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CheckIcon from '@mui/icons-material/Check';
 import WarningIcon from '@mui/icons-material/Warning';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import InfoIcon from '@mui/icons-material/Info';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined';
 import DevicesIcon from '@mui/icons-material/Devices';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import BalanceIcon from '@mui/icons-material/Balance';
 import AgricultureIcon from '@mui/icons-material/Agriculture';
 import HomeIcon from '@mui/icons-material/Home';
 import StarIcon from '@mui/icons-material/Star';
 import PeopleIcon from '@mui/icons-material/People';
 import img_contratacion_unifamiliar from "../assets/regularizacion_domestica/contratacion_unifamiliar.webp";
+import pipeImg from "../assets/pipe.png";
 import gota from '/assets/regularizate_2026/gota.png';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import PowerIcon from '@mui/icons-material/Power';
 import BlockIcon from '@mui/icons-material/Block';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
@@ -44,6 +42,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import DoNotDisturbOffIcon from '@mui/icons-material/DoNotDisturbOff';
 
 export default function RegularizacionDomestica() {
+    const [openColoniasDialog, setOpenColoniasDialog] = useState(false);
+
     return (<>
         <Container maxWidth='lg'>
 
@@ -163,7 +163,7 @@ export default function RegularizacionDomestica() {
                                         <PointOfSaleIcon
                                             sx={{
                                                 fontSize: '7vh', color: 'secondary.contrastText',
-                                                backgroundColor: 'secondary.main', padding: '10px', borderRadius: '35%'
+                                                backgroundColor: 'primary.main', padding: '10px', borderRadius: '35%'
                                             }} />
                                         <Typography variant="body2" sx={{ fontWeight: 'bold', marginTop: '20px', color: 'primary.main' }}>
                                             PAGO ÚNICO
@@ -207,15 +207,33 @@ export default function RegularizacionDomestica() {
                             </Card>
                         </Box>
                         <Box sx={{ width: { xs: '100%', md: '50%' }, display: 'flex', textAlign: 'center', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'stretch', gap: 3 }}>
-                            <Card variant="outlined" sx={{ width: { xs: '100%', md: '45%' }, height: { xs: 'auto', md: '50%' }, justifyContent: 'center', alignContent: 'center' }} >
+                            <Card
+                                variant="outlined"
+                                onClick={() => setOpenColoniasDialog(true)}
+                                sx={{
+                                    width: { xs: '100%', md: '45%' },
+                                    height: { xs: 'auto', md: '50%' },
+                                    justifyContent: 'center',
+                                    alignContent: 'center',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease-in-out',
+                                    '&:hover': {
+                                        transform: 'translateY(-4px)',
+                                        boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
+                                        borderColor: 'primary.main'
+                                    }
+                                }}
+                            >
                                 <CardContent sx={{ padding: 0 }}>
                                     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                         <MapIcon sx={{ fontSize: '7vh', color: 'primary.contrastText', backgroundColor: 'primary.main', padding: '10px', borderRadius: '50%' }} />
-                                        <Typography variant="body2"
+                                        <Typography
+                                            variant="body2"
                                             sx={{
-                                                fontWeight: 400, marginTop: '20px',
+                                                fontWeight: 500, marginTop: '20px',
                                                 color: 'primary.main', textAlign: 'left',
                                                 paddingLeft: '5px',
+                                                fontSize: '0.875rem'
                                             }}>
                                             CONSULTA SI TU COLONIA PARTICIPA EN EL PROGRAMA
                                         </Typography>
@@ -431,317 +449,7 @@ export default function RegularizacionDomestica() {
                 </Grid>
             </Grid>
 
-            {/* ========================================================================= */}
-            {/* SECTION: ¿QUIÉNES PUEDEN ACCEDER? */}
-            {/* ========================================================================= */}
-            <Grid container spacing={4} sx={{ mt: 6, mb: 6 }}>
-                <Grid size={12}>
-                    <Box
-                        sx={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            marginBottom: { xs: "20px", md: "40px" },
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                textAlign: "center",
-                                fontSize: { xs: "28px", md: "40px" },
-                                fontWeight: "900",
-                                color: "primary.main",
-                                textTransform: "uppercase"
-                            }}
-                        >
-                            ¿QUIÉNES PUEDEN ACCEDER?
-                        </Typography>
-                        <Box
-                            sx={{
-                                width: { xs: "25%", md: "15%" },
-                                height: "5px",
-                                backgroundColor: "secondary.main",
-                                mt: 1
-                            }}
-                        />
-                    </Box>
-                </Grid>
 
-                {/* Card 1: Uso Doméstico */}
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        p: 4,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-                        transition: 'transform 0.2s',
-                        '&:hover': {
-                            transform: 'translateY(-4px)',
-                            boxShadow: '0 6px 16px rgba(0,0,0,0.04)'
-                        }
-                    }}>
-                        <Box sx={{
-                            border: '2.5px solid #1E50A2',
-                            borderRadius: '12px',
-                            width: '60px',
-                            height: '60px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#1E50A2',
-                            mb: 3
-                        }}>
-                            <HomeOutlinedIcon sx={{ fontSize: '2rem' }} />
-                        </Box>
-                        <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 'bold', mb: 2 }}>
-                            Uso Doméstico
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                            Usuarios que tengan contratados los Servicios Hídricos en uso doméstico.
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                {/* Card 2: Tandeo */}
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        p: 4,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-                        transition: 'transform 0.2s',
-                        '&:hover': {
-                            transform: 'translateY(-4px)',
-                            boxShadow: '0 6px 16px rgba(0,0,0,0.04)'
-                        }
-                    }}>
-                        <Box sx={{
-                            border: '2.5px solid #1E50A2',
-                            borderRadius: '12px',
-                            width: '60px',
-                            height: '60px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#1E50A2',
-                            mb: 3
-                        }}>
-                            <CalendarTodayOutlinedIcon sx={{ fontSize: '1.8rem' }} />
-                        </Box>
-                        <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 'bold', mb: 2 }}>
-                            Tandeo
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                            Que su servicio de tandeo sea de un día a la semana.
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                {/* Card 3: Colonias Participantes */}
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        p: 4,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-                        transition: 'transform 0.2s',
-                        '&:hover': {
-                            transform: 'translateY(-4px)',
-                            boxShadow: '0 6px 16px rgba(0,0,0,0.04)'
-                        }
-                    }}>
-                        <Box sx={{
-                            border: '2.5px solid #1E50A2',
-                            borderRadius: '12px',
-                            width: '60px',
-                            height: '60px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#1E50A2',
-                            mb: 3
-                        }}>
-                            <LocationOnOutlinedIcon sx={{ fontSize: '2rem' }} />
-                        </Box>
-                        <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 'bold', mb: 2 }}>
-                            Colonias Participantes
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                            Independientemente del estrato en que se encuentre ubicada, de conformidad con el Anexo Uno del presente Acuerdo.
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                {/* Info Banner */}
-                <Grid size={12}>
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: '#E6F0FA',
-                        border: '1.5px solid #1E50A2',
-                        borderRadius: '8px',
-                        p: 2.5,
-                        gap: 2.5,
-                        width: '100%',
-                        mt: 2,
-                        mb: 2
-                    }}>
-                        <InfoIcon sx={{ color: '#1E50A2', fontSize: '2.5rem', flexShrink: 0 }} />
-                        <Typography sx={{ color: 'text.primary', fontWeight: 'bold', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                            Los costos, cuotas y beneficios aplicables dentro del presente Programa se determinarán y aplicarán por cada vivienda registrada de manera individual en el Sistema Comercial del Prestador de Servicios.
-                        </Typography>
-                    </Box>
-                </Grid>
-            </Grid>
-
-            {/* ========================================================================= */}
-            {/* SECTION: ¿DÓNDE APLICA? */}
-            {/* ========================================================================= */}
-            <Grid container spacing={3} sx={{ mt: 4, mb: 6 }}>
-                <Grid size={12}>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1.5, mb: 4 }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', fontSize: '2.5rem' }} />
-                        <Typography sx={{ color: 'primary.main', fontWeight: '900', fontSize: { xs: "28px", md: "40px" }, textTransform: 'uppercase' }}>
-                            ¿DÓNDE APLICA?
-                        </Typography>
-                    </Box>
-                </Grid>
-
-                {/* Puebla */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                Puebla
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-
-                {/* Amozoc */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                Amozoc
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-
-                {/* Cuautlancingo */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                Cuautlancingo
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-
-                {/* Ocoyucan */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                Ocoyucan
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-
-                {/* San Andrés Cholula */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                San Andrés Cholula
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-
-                {/* San Pedro Cholula */}
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                    <Card variant="outlined" sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        p: 2.5,
-                        borderRadius: '12px',
-                        border: '1px solid rgba(0, 0, 0, 0.08)',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                    }}>
-                        <LocationOnIcon sx={{ color: 'primary.main', mr: 2, fontSize: '1.8rem' }} />
-                        <Box>
-                            <Typography sx={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                                San Pedro Cholula
-                            </Typography>
-                            <Box sx={{ width: '25px', height: '2px', backgroundColor: '#D58B29', mt: 0.5 }} />
-                        </Box>
-                    </Card>
-                </Grid>
-            </Grid>
 
             {/* ========================================================================= */}
             {/* SECTION: ¿CÓMO ACCEDER AL BENEFICIO? */}
@@ -967,7 +675,7 @@ export default function RegularizacionDomestica() {
             {/* ========================================================================= */}
             {/* SECTION: PAGO ÚNICO POR SERVICIOS (TABLA) */}
             {/* ========================================================================= */}
-            <Grid container spacing={3} sx={{ mt: 4, mb: 6 }}>
+            <Grid container spacing={3} sx={{ mt: 4, mb: 6, alignItems: "center" }}>
                 <Grid size={12}>
                     <Typography
                         sx={{
@@ -983,7 +691,7 @@ export default function RegularizacionDomestica() {
                     </Typography>
                 </Grid>
 
-                <Grid size={12}>
+                <Grid size={{ xs: 12, lg: 8 }} sx={{ pt: '50px' }}>
                     <TableContainer component={Paper} variant="outlined" sx={{
                         borderRadius: '12px',
                         overflowX: 'auto',
@@ -1059,29 +767,78 @@ export default function RegularizacionDomestica() {
 
                                 {/* Total Row */}
                                 <TableRow sx={{
-                                    backgroundColor: 'secondary.main',
+
                                     borderTop: '2px solid #D58B29',
                                     borderBottom: '2px solid #D58B29',
-                                    '&:hover': {
-                                        backgroundColor: 'secondary.main'
-                                    }
+                                    backgroundColor: 'secondary.main',
+                                    color: 'secondary.contrastText',
+
                                 }}>
-                                    <TableCell align="center" sx={{ fontWeight: '900', color: 'primary.main', fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                                    <TableCell align="center" sx={{
+                                        fontWeight: '900',
+                                        fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+                                        borderTop: '2px solid #D58B29',
+                                        borderBottom: '2px solid #D58B29',
+                                        backgroundColor: 'secondary.light',
+                                        color: 'secondary.contrastText',
+
+                                    }}>
                                         Total
                                     </TableCell>
-                                    <TableCell align="center" sx={{ fontWeight: '900', color: 'text.primary', fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                                    <TableCell align="center" sx={{
+                                        fontWeight: '900',
+                                        fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+                                        borderTop: '2px solid #D58B29',
+                                        borderBottom: '2px solid #D58B29',
+                                        backgroundColor: 'secondary.light',
+                                        color: 'secondary.contrastText',
+                                    }}>
                                         $6,550.00
                                     </TableCell>
-                                    <TableCell align="center" sx={{ fontWeight: '900', color: 'text.primary', fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                                    <TableCell align="center" sx={{
+                                        fontWeight: '900',
+                                        fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+                                        borderTop: '2px solid #D58B29',
+                                        borderBottom: '2px solid #D58B29',
+                                        backgroundColor: 'secondary.light',
+                                        color: 'secondary.contrastText',
+                                    }}>
                                         $2,665.00
                                     </TableCell>
-                                    <TableCell align="center" sx={{ fontWeight: '900', color: 'text.primary', fontSize: '1.05rem' }}>
+                                    <TableCell align="center" sx={{
+                                        fontWeight: '900',
+                                        fontSize: '1.05rem', borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+                                        borderTop: '2px solid #D58B29',
+                                        borderBottom: '2px solid #D58B29',
+                                        backgroundColor: 'secondary.light',
+                                        color: 'secondary.contrastText',
+                                    }}>
                                         $3,875.00
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>
                     </TableContainer>
+                </Grid>
+
+                <Grid size={{ xs: 12, lg: 4 }} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: { md: '-25px' } }}>
+                    <Box component="img" src="/assets/regularizate_2026/gota2.png" alt="gota explicativa" sx={{ width: '90%', maxWidth: '250px', mb: '-2rem', zIndex: 1, filter: 'drop-shadow(0 10px 10px rgba(0,0,0,0.1))' }} />
+                    <Box sx={{ bgcolor: 'primary.main', color: 'white', p: '3rem 2rem 2rem', borderRadius: '15px', width: '100%', boxShadow: '0 10px 20px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'center' }}>
+                        <Box>
+                            <Typography sx={{ color: 'secondary.main', fontSize: '1rem', mb: '0.5rem', textTransform: 'uppercase', fontWeight: 'bold' }}>PUNTOS DE ATENCIÓN</Typography>
+                            <Box component="a" href="/contacto" sx={{ display: 'block', textDecoration: 'none', color: 'white', fontSize: '1.1rem', fontWeight: 'bold', mb: '0.5rem' }}>Oficinas de SOAPAP</Box>
+                            <Box component="a" href="https://www.aguapuebla.mx/lugares-de-pago-y-centros-de-atencion/" target="_blank" rel="noreferrer" sx={{ display: 'block', textDecoration: 'none', color: 'white', fontSize: '1.1rem', fontWeight: 'bold' }}>Agua De Puebla</Box>
+                        </Box>
+                        <Box>
+                            <Typography sx={{ color: 'secondary.main', fontSize: '1rem', mb: '0.5rem', textTransform: 'uppercase', fontWeight: 'bold' }}>OPCIONES DE PAGO</Typography>
+                            <Typography sx={{ display: 'block', color: 'white', fontSize: '1.1rem', fontWeight: 'bold', mb: '0.5rem' }}>Ventanilla</Typography>
+                            <Box component="a" href="https://www.aguapuebla.mx/donde-pagar/" target="_blank" rel="noreferrer" sx={{ display: 'block', textDecoration: 'none', color: 'white', fontSize: '1.1rem', fontWeight: 'bold' }}>Plataforma digital</Box>
+                        </Box>
+                        <Box>
+                            <Typography sx={{ color: 'secondary.main', fontSize: '1rem', mb: '0.5rem', textTransform: 'uppercase', fontWeight: 'bold' }}>REQUISITOS</Typography>
+                            <Typography sx={{ display: 'block', color: 'white', fontSize: '1.1rem', fontWeight: 'bold' }}>NIS</Typography>
+                        </Box>
+                    </Box>
                 </Grid>
             </Grid>
             {/* ========================================================================= */}
@@ -2059,7 +1816,7 @@ export default function RegularizacionDomestica() {
                                 justifyContent: 'center',
                                 color: 'primary.main'
                             }}>
-                                <PowerIcon sx={{ fontSize: '1.5rem' }} />
+                                <Box component="img" src={pipeImg} alt="tubería" sx={{ width: '24px', height: '24px' }} />
                             </Box>
                             <Box sx={{
                                 position: 'absolute',
@@ -2165,6 +1922,7 @@ export default function RegularizacionDomestica() {
                     </Typography>
                 </Box>
             </Card>
+            <ColoniasDialog open={openColoniasDialog} onClose={() => setOpenColoniasDialog(false)} />
         </Container>
-    </>)
+    </>);
 }

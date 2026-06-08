@@ -114,8 +114,7 @@ function Navbar() {
                     }}
                   >
                     <ListItemText
-                      primary={item.texto}
-                      primaryTypographyProps={{ fontWeight: isTransparenciaActive ? 600 : 400 }}
+                      primary={<Typography sx={{ fontWeight: isTransparenciaActive ? 600 : 400 }}>{item.texto}</Typography>}
                     />
                     {openMobileTransparencia ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
@@ -146,8 +145,7 @@ function Navbar() {
                             }}
                           >
                             <ListItemText
-                              primary={subItem.texto}
-                              primaryTypographyProps={{ fontWeight: esSubRutaActiva ? 600 : 400, fontSize: '0.9rem' }}
+                              primary={<Typography sx={{ fontWeight: esSubRutaActiva ? 600 : 400, fontSize: '0.9rem' }}>{subItem.texto}</Typography>}
                             />
                           </ListItemButton>
                         </ListItem>
@@ -183,8 +181,7 @@ function Navbar() {
                 }}
               >
                 <ListItemText
-                  primary={item.texto}
-                  primaryTypographyProps={{ fontWeight: esRutaActiva ? 600 : 400 }}
+                  primary={<Typography sx={{ fontWeight: esRutaActiva ? 600 : 400 }}>{item.texto}</Typography>}
                 />
               </ListItemButton>
             </ListItem>
@@ -276,8 +273,10 @@ function Navbar() {
                     anchorEl={anchorElTransparencia}
                     open={openTransparencia}
                     onClose={handleCloseTransparencia}
-                    MenuListProps={{
-                      'aria-labelledby': 'basic-button',
+                    slotProps={{
+                      list: {
+                        'aria-labelledby': 'basic-button',
+                      }
                     }}
                     sx={{
                       "& .MuiPaper-root": {

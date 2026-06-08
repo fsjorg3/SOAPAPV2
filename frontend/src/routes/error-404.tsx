@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import { useNavigate } from 'react-router';
 import mascotaError from '../assets/mascota/mascota-error-404.webp';
 
