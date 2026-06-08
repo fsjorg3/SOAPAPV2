@@ -261,7 +261,7 @@ export default function RegularizacionDomestica() {
                                                     paddingLeft: '5px',
                                                 }}>
 
-                                                01 de Agosto a 31 de Octubre de 2026
+                                                Del 4 de mayo al 31 de diciembre de 2026
                                             </Typography>
                                         </Box>
                                     </Box>
