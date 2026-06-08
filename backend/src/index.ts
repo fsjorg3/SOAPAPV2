@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import { validateContactForm } from './middlewares/contact.middleware';
-import { validateTransparencyList, validatePdfRequest } from './middlewares/transparency.middleware';
+import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
 
 dotenv.config();
 
@@ -24,9 +24,9 @@ app.use(helmet({
 }));
 
 // 3. Configuración de CORS
-const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+//const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
 app.use(cors({
-  origin: corsOrigin
+  origin: "*"//corsOrigin
 }));
 
 // 4. Límites de tamaño en los payloads para mitigar ataques de denegación de servicio (DoS)
@@ -84,17 +84,23 @@ app.post('/soapapv2/api/contact', validateContactForm, (req, res) => {
   res.status(200).json({ message: 'Formulario recibido correctamente (En construcción)' });
 });
 
-// Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad e información financiera)
+// Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad, información financiera, título de concesión o convocatorias)
 app.get('/soapapv2/api/transparency/files', validateTransparencyList, (req, res) => {
-  // TODO: Leer el directorio de PDFs dinámicamente y devolver la estructura en JSON
-  res.status(200).json({ message: 'Listado de archivos JSON (En construcción)', files: [] });
+  // La lógica fue delegada al middleware validateTransparencyList
+});
+app.get('/soapapv2/api/transparency/files/:category', validateTransparencyList, (req, res) => {
+  // La lógica fue delegada al middleware validateTransparencyList
+});
+app.get('/soapapv2/api/transparency/files/:category/:year', validateTransparencyList, (req, res) => {
+  // La lógica fue delegada al middleware validateTransparencyList
 });
 
+// Endpoint para obtener los años disponibles de información financiera
+app.get('/soapapv2/api/transparency/anios', getFinancialYears);
+
 // Endpoint 3: Servir el PDF solicitado (obtenido a través de la ruta o JSON)
-// La ruta captura el nombre del archivo proveniente del JSON (ej. /soapapv2/api/transparency/file/2026_Q1_Estado_de_Actividades.pdf)
 app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, res) => {
-  // TODO: Validar y servir el archivo PDF físico utilizando res.sendFile()
-  res.status(200).json({ message: 'Servicio de descarga de PDF (En construcción)' });
+  // La lógica fue delegada al middleware validatePdfRequest
 });
 
 // Start server

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import { Box, Button, Card, CardActions, CardContent, Container, Divider, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import LaunchIcon from '@mui/icons-material/Launch';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -28,43 +29,9 @@ export default function Normatividad() {
         );
     };
 
-    const normatividad = [
-        {
-            titulo: "DECRETO DE CREACIÓN",
-            link: "http://localhost:3000/assets/normatividad/decreto_creacion_soapap.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "LEY DEL AGUA PARA EL ESTADO DE PUEBLA",
-            link: "http://localhost:3000/assets/normatividad/ley_del_agua_puebla.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "REGLAMENTO INTERNO",
-            link: "http://localhost:3000/assets/normatividad/reglamento_interior_soapap.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "REFORMAS AL REGLAMENTO INTERNO",
-            link: "http://localhost:3000/assets/normatividad/reformas_reglamento_interior_soapap.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "CÓDIGO DE CONDUCTA",
-            link: "http://localhost:3000/assets/normatividad/codigo_conducta_soapap.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "CÓDIGO DE ÉTICA",
-            link: "http://localhost:3000/assets/normatividad/codigo_etica_soapap.pdf",
-            actualizacion: '01/ene/2014'
-        },
-        {
-            titulo: "ACUERDO GENERAL",
-            link: "http://localhost:3000/assets/normatividad/acuerdo_general.pdf",
-            actualizacion: '01/ene/2014'
-        }
-    ]
+    const fetcher = (url: string) => fetch(url).then(res => res.json());
+    const { data: normatividad, error: normatividadError } =
+        useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/normatividad`, fetcher);
 
     const fallbackTituloConcesion: SeccionConcesion[] = [
         {
@@ -322,48 +289,47 @@ export default function Normatividad() {
                     }}
                 />
                 <Typography variant="subtitle1" color="text.secondary">
-                    Mostrando {normatividad.length - 1} resultados
+                    Mostrando {normatividad ? normatividad.length : 0} resultados
                 </Typography>
             </Box>
 
 
 
             {/* Grid de tarjetas */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(3, 1fr)' }, gap: 3, marginBottom: { xs: "40px", md: "80px" }, }}>
-                {normatividad.map((norma, index) => (
-                    <Card key={index} variant="outlined" sx={{ display: 'flex', flexDirection: 'column', transition: 'transform 0.2s', '&:hover': { transform: 'translateY(-4px)', boxShadow: 4 } }}>
-                        <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography variant="h6" component="h3" color="primary.main" sx={{ fontWeight: "medium" }} gutterBottom>
-                                {norma.titulo}
-                            </Typography>
+            {normatividadError && <Typography color="error">Error al cargar la normatividad. {normatividadError.message}</Typography>}
+            {!normatividad && !normatividadError && <Typography>Cargando normatividad...</Typography>}
+            {normatividad && (
+                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' }, gap: 2, marginBottom: { xs: "40px", md: "80px" }, }}>
+                    {normatividad.map((norma: any, index: number) => (
+                        <Card key={index} variant="outlined" sx={{ display: 'flex', flexDirection: 'column', transition: 'transform 0.2s', '&:hover': { transform: 'translateY(-4px)', boxShadow: 4 } }}>
+                            <CardContent sx={{ flexGrow: 1, p: 2 }}>
+                                <Typography variant="subtitle1" component="h3" color="primary.main" sx={{ fontWeight: "medium", lineHeight: 1.2 }} gutterBottom>
+                                    {norma.titulo}
+                                </Typography>
+                            </CardContent>
 
-                            <Divider sx={{ my: 1.5 }} />
-
-                            <Typography variant="body2" color="text.secondary">
-                                Actualizado: {norma.actualizacion}
-                            </Typography>
-                        </CardContent>
-
-                        <CardActions sx={{ p: 2, pt: 0 }}>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                endIcon={<LaunchIcon />}
-                                onClick={() => setSelectedPdf(norma.link)}
-                                fullWidth
-                                sx={{
-                                    borderRadius: 2,
-                                    '&:hover, &:active': {
-                                        backgroundColor: 'secondary.main'
-                                    }
-                                }}
-                            >
-                                Explorar
-                            </Button>
-                        </CardActions>
-                    </Card>
-                ))}
-            </Box>
+                            <CardActions sx={{ p: 1.5, pt: 0 }}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    endIcon={<LaunchIcon />}
+                                    onClick={() => setSelectedPdf(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${norma.filename}`)}
+                                    fullWidth
+                                    sx={{
+                                        borderRadius: 2,
+                                        '&:hover, &:active': {
+                                            backgroundColor: 'secondary.main'
+                                        }
+                                    }}
+                                >
+                                    Explorar
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    ))}
+                </Box>
+            )}
 
 
             {/* Title 2 */}

@@ -11,7 +11,7 @@ import { PdfViewer } from '../components/pdfviewer/PdfViewer';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function InformacionFinanciera() {
-    const { data: dataAnios, error: errorAnios, isLoading: isLoadingAnios } = useSWR('/4backend/anios.json', fetcher);
+    const { data: dataAnios, error: errorAnios, isLoading: isLoadingAnios } = useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/anios`, fetcher);
     const [searchParams, setSearchParams] = useSearchParams();
     const [pdfViewerOpen, setPdfViewerOpen] = useState(false);
     const [currentPdfUrl, setCurrentPdfUrl] = useState("");
@@ -29,7 +29,7 @@ export default function InformacionFinanciera() {
     const activeCategoria = searchParams.get("categoria") || "todos";
 
     const { data: dataDetalle, error: errorDetalle, isLoading: isLoadingDetalle } = useSWR(
-        activeAnio ? `/4backend/${activeAnio}.json` : null,
+        activeAnio ? `${import.meta.env.VITE_API_URL}soapapv2/api/transparency/files/informacion_financiera/${activeAnio}` : null,
         fetcher
     );
 
@@ -60,13 +60,12 @@ export default function InformacionFinanciera() {
     };
 
     const handlePdfClick = async (linkString: string) => {
-        const targetUrl = `/pdfs/${linkString}.pdf`;
+        const basename = linkString.split('/').pop() || linkString;
+        const targetUrl = `${import.meta.env.VITE_API_URL}soapapv2/api/transparency/file/${encodeURIComponent(basename)}`;
         try {
             const response = await fetch(targetUrl, { method: 'HEAD' });
             if (response.ok) {
-                //setCurrentPdfUrl(targetUrl);
-                setCurrentPdfUrl('/pdfs/test.pdf'); //temporalmente mientras esta en primeras pruebas
-
+                setCurrentPdfUrl(targetUrl);
             } else {
                 setCurrentPdfUrl('/pdfs/test.pdf');
                 setSnackbar({ open: true, message: 'El documento original no está disponible, abriendo versión de prueba.', severity: 'warning' });

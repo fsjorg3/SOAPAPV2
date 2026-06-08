@@ -32,7 +32,8 @@ export const navbarItems = [
     texto: "Transparencia",
     subItems: [
       { texto: "Normatividad", ruta: "/normatividad" },
-      { texto: "Información Financiera", ruta: "/informacion-financiera" }
+      { texto: "Información Financiera", ruta: "/informacion-financiera" },
+      { texto: "Convocatorias", ruta: "/convocatorias" }
     ]
   }
 ];

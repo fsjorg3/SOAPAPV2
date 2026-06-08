@@ -1,12 +1,35 @@
 [
   {
+    "id": "SOAPAP-OP-LPE-2026-001",
+    "expediente": "LICITACIÓN PÚBLICA ESTATAL NÚMERO SOAPAP-OP-LPE-2026-001",
+    "year": 2026,
+    "category": "Obra pública",
+    "description": "Rehabilitación y mantenimiento de tres pozos (Módulo Deportivo, Cantera y Bachiller) en San Buenaventura Nealtican, Puebla.",
+    "filename": "SOAPAP-OP-LPE-2026-001.pdf"
+  },
+  {
+    "id": "SOAPAP-GAF-LP-ADQ-2026-001",
+    "expediente": "LICITACIÓN PÚBLICA NACIONAL NÚMERO SOAPAP-GAF-LP-ADQ-2026-001",
+    "year": 2026,
+    "category": "Adquisición",
+    "description": "Adquisición de vehículos para las diversas áreas del Sistema Operador de los Servicios De Agua Potable y Alcantarillado del Municipio De Puebla.",
+    "filename": "SOAPAP-GAF-LP-ADQ-2026-001(2).pdf"
+  },
+  {
+    "id": "PRODDER-2025-Y-PROSANEAR-2025",
+    "expediente": "CONVOCATORIAS OBRAS PÚBLICAS FEDERALES PRODDER 2025 Y PROSANEAR 2025",
+    "year": 2025,
+    "category": "Obra pública",
+    "description": "Construcción de línea de conducción Nealtican (tramo san Andrés-tanque Guadalupe hidalgo) con tubería de 30” de diámetro PEAD, RD-11 y RD-13-5, con una longitud de 1.58 KM ubicada en lomas de Angelópolis, Puebla.",
+    "filename": "SOAPAP-OP-LPN-PRODDER-2025-003.pdf"
+  },
+  {
     "id": "SOAPAP-GAF-LP-ADQ-2025-002-2",
     "expediente": "Segunda convocatoria SOAPAP-GAF-LP-ADQ-2025-002",
     "year": 2025,
     "category": "Adquisición",
     "description": "Adquisición de vehículos que serán usados por las diferentes áreas del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla.",
-    "filename": "segunda_convocatoria_soapap_gaf_lp_adq_2025_002.pdf",
-    "path": "/assets/convocatorias/segunda_convocatoria_soapap_gaf_lp_adq_2025_002.pdf"
+    "filename": "segunda_convocatoria_soapap_gaf_lp_adq_2025_002.pdf"
   },
   {
     "id": "SOAPAP-GAF-LP-ADQ-2025-002",
@@ -14,8 +37,7 @@
     "year": 2025,
     "category": "Adquisición",
     "description": "Adquisición de vehículos que serán usados por las diferentes áreas del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla.",
-    "filename": "soapap_gaf_lp_adq_2025_002.pdf",
-    "path": "/assets/convocatorias/soapap_gaf_lp_adq_2025_002.pdf"
+    "filename": "soapap_gaf_lp_adq_2025_002.pdf"
   },
   {
     "id": "SOAPAP-GAF-LP-ADQ-2025-001",
@@ -23,8 +45,7 @@
     "year": 2025,
     "category": "Adquisición",
     "description": "Suministro de agua potable en vehículo cisterna (pipa) en la zona metropolitana de la ciudad de Puebla, como parte de las acciones para mitigar la temporada de estiaje por la sequía 2025.",
-    "filename": "soapap_gaf_lp_adq_2025_001.pdf",
-    "path": "/assets/convocatorias/soapap_gaf_lp_adq_2025_001.pdf"
+    "filename": "soapap_gaf_lp_adq_2025_001.pdf"
   },
   {
     "id": "SOAPAP-OP-LPE-2025-002",
@@ -32,8 +53,7 @@
     "year": 2025,
     "category": "Obra pública",
     "description": "Rehabilitación Integral de la Zona del Manantial, en Santa María Acuexcomac, San Pedro Cholula, Puebla.",
-    "filename": "soapap_op_lpe_2025_002.pdf",
-    "path": "/assets/convocatorias/soapap_op_lpe_2025_002.pdf"
+    "filename": "soapap_op_lpe_2025_002.pdf"
   },
   {
     "id": "SOAPAP-OP-LPE-2025-001",
@@ -41,7 +61,6 @@
     "year": 2025,
     "category": "Obra pública",
     "description": "Equipamiento de Pozo Profundo y Construcción de una Línea de Conducción de 4” Desde el Pozo Profundo a Tanque, en la Localidad de San Buenaventura Nealtican, Municipio de Nealtican, Puebla",
-    "filename": "soapap_op_lpe_2025_001.pdf",
-    "path": "/assets/convocatorias/soapap_op_lpe_2025_001.pdf"
+    "filename": "soapap_op_lpe_2025_001.pdf"
   }
 ]
