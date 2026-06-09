@@ -4,243 +4,220 @@ import Typography from "@mui/material/Typography";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import img_regularizacion_domestica from "../../assets/regularizacion_domestica/regularizar.webp";
+import img_gota_regularizacion from "../../assets/mascota/gota.webp";
 import { Card, CardContent } from "@mui/material";
 import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
 import BadgeIcon from '@mui/icons-material/Badge';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import MapIcon from '@mui/icons-material/Map';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EastIcon from '@mui/icons-material/East';
 
 export default function HeroSection({ setOpenColoniasDialog }: { setOpenColoniasDialog: (v: boolean) => void }) {
     return (
-        <>
-            <Grid container spacing={2} sx={{ alignItems: 'center', marginBottom: { xs: "20px", md: "40px" } }}
-                className='grid-padre-1'>
+        <Box sx={{ position: 'relative', pb: { xs: 4, md: 8 }, maxHeight: { md: '100vh' } }}>
+            <Grid container spacing={{ xs: 3, md: 4 }} sx={{ alignItems: 'center', mb: { xs: "20px", md: "40px" }, mt: 2 }}>
                 <Grid size={{ xs: 12, md: 6 }}
                     sx={{
                         display: 'flex', height: '100%', flexDirection: 'column',
-                        justifyContent: 'flex-start', alignItems: 'flex-start'
-                    }}
-                    className='grid-padre-2'>
-                    <Box sx={{
-                        width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
-                        justifyContent: 'flex-start', alignItems: 'flex-start'
-                    }} className='contenedor-1'>
-                        <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap' }}>
-                            {/* Title */}
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "start",
-                                    marginBottom: { xs: "20px", md: "40px" },
-                                }}
-                            >
-                                <Typography
-                                    sx={{
-                                        textAlign: "left",
-                                        fontSize: { xs: '38px', md: "60px" },
-                                        color: "primary.main",
-                                        borderBottom: "2px solid secondary.main",
-                                    }}
-                                >
-                                    PROGRAMA DE <Box component='em' sx={{ fontWeight: "900", }}>REGULARIZACIÓN</Box>
-                                </Typography>
-                                <Box
-                                    sx={{
-                                        width: { xs: "50%", md: "45%" },
-                                        height: "5px",
-                                        backgroundColor: "secondary.main",
-                                    }}
-                                />
+                        justifyContent: 'center', alignItems: 'flex-start',
+                        px: { xs: 2, sm: 4, md: 6 }
+                    }}>
 
-                            </Box>
-                        </Box>
-                        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'column', gap: '20px' }}>
-                            <Box sx={{
-                                width: { xs: '100%', md: '75%' }, backgroundColor: 'secondary.main', display: 'flex',
-                                justifyContent: 'center', alignItems: 'center', borderRadius: '20px',
-                                gap: 3, p: 2
-                            }}>
-                                <AccountCircleIcon sx={{ fontSize: '7vh', color: 'secondary.contrastText' }} />
-                                <Typography
-                                    sx={{
-                                        textAlign: "left",
-                                        fontSize: "1rem",
-                                        color: "primary.contrastText",
-                                        borderBottom: "2px solid secondary.main",
-                                        fontWeight: 800,
-                                    }}
-                                >
-                                    Para usuarios en situación vulnerable
-                                </Typography>
-                            </Box>
-                            <Box sx={{
-                                width: { xs: '100%', md: '75%' }, backgroundColor: 'secondary.main', display: 'flex',
-                                justifyContent: 'center', alignItems: 'center', borderRadius: '20px',
-                                gap: 3, p: 2
-                            }}>
-                                <ArticleIcon sx={{ fontSize: '7vh', color: 'secondary.contrastText' }} />
-                                <Typography
-                                    sx={{
-                                        textAlign: "left",
-                                        fontSize: "1rem",
-                                        color: "primary.contrastText",
-                                        borderBottom: "2px solid secondary.main",
-                                        fontWeight: 800,
-                                    }}
-                                >
-                                    Contratación de servicios de carácter unifamiliar irregular.
-                                </Typography>
-                            </Box>
-                        </Box>
-                    </Box>
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', mt: { xs: 4, md: 0 } }}>
-                    <Box component='img' src={img_regularizacion_domestica} sx={{ display: 'block', width: { xs: '100%', md: '75%' }, maxWidth: '500px', height: 'auto' }} />
-                </Grid>
-                <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', mt: { xs: 4, md: 0 } }}>
+                    {/* Title */}
                     <Box
                         sx={{
-                            width: '100%', display: 'flex', justifyContent: 'center',
-                            flexDirection: { xs: 'column-reverse', md: 'row' }
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: { xs: 'center', md: 'start' },
+                            textAlign: { xs: 'center', md: 'left' },
+                            mb: { xs: 4, md: 6 },
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontSize: { xs: '2rem', sm: '3.5rem', md: "4rem" },
+                                color: "primary.main",
+                                fontWeight: 300,
+                                lineHeight: 1.1,
+                                mb: 1
+                            }}
+                        >
+                            PROGRAMA DE <br />
+                            <Box component='span' sx={{ fontWeight: 900, color: 'primary.main' }}>REGULARIZACIÓN</Box>
+                        </Typography>
+                        <Box
+                            sx={{
+                                width: { xs: "80px", md: "120px" },
+                                height: "6px",
+                                backgroundColor: "secondary.main",
+                                borderRadius: '3px'
+                            }}
+                        />
+                    </Box>
 
+                    {/* Info items */}
+                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2.5, alignItems: { xs: 'center', md: 'flex-start' } }}>
+                        <Box sx={{
+                            width: { xs: '100%', sm: '80%', md: '90%', lg: '85%' },
+                            backgroundColor: 'secondary.main',
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            borderRadius: '16px',
+                            gap: { xs: 2, md: 3 },
+                            p: { xs: 2, md: 2.5 },
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                            transition: 'transform 0.3s',
+                            '&:hover': { transform: 'translateX(8px)' }
                         }}>
-
-                        <Box sx={{ width: { xs: '100%', md: '50%' }, display: 'flex', textAlign: 'center', padding: 3, gap: 2, flexWrap: { xs: 'wrap', md: 'nowrap' }, justifyContent: 'center', alignItems: 'stretch' }}>
-                            <Card variant="outlined" sx={{ width: { xs: '100%', md: '33%' }, display: 'flex', flexDirection: 'column', border: 2, borderColor: 'primary.light' }}>
-                                <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexGrow: 1, height: '100%' }}>
-                                        <InsertPageBreakIcon
-                                            sx={{
-                                                fontSize: '7vh', color: 'primary.contrastText',
-                                                backgroundColor: 'primary.main', padding: '10px', borderRadius: '35%'
-                                            }} />
-                                        <Typography variant="body2" sx={{ fontWeight: 'bold', marginTop: '20px', color: 'primary.main' }}>
-                                            SIN SOLICITUD POR ESCRITO
-                                        </Typography>
-                                        <Box sx={{ marginTop: 'auto', pt: 1, width: { xs: '50%' }, height: '5px', backgroundColor: 'secondary.main' }}></Box>
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                            <Card variant="outlined" sx={{ width: { xs: '100%', md: '33%' }, display: 'flex', flexDirection: 'column', border: 2, borderColor: 'primary.light' }}>
-                                <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexGrow: 1, height: '100%' }}>
-                                        <PointOfSaleIcon
-                                            sx={{
-                                                fontSize: '7vh', color: 'secondary.contrastText',
-                                                backgroundColor: 'primary.main', padding: '10px', borderRadius: '35%'
-                                            }} />
-                                        <Typography variant="body2" sx={{ fontWeight: 'bold', marginTop: '20px', color: 'primary.main' }}>
-                                            PAGO ÚNICO
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ fontSize: '0.7rem' }}>
-                                            EN UNA SOLA EXHIBICIÓN
-                                        </Typography>
-                                        <Box
-                                            sx={{
-                                                marginTop: 'auto', pt: 1, width: { xs: '50%' },
-                                                height: '5px', backgroundColor: 'secondary.main'
-                                            }} />
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                            <Card variant="outlined" sx={{ width: { xs: '100%', md: '33%' }, display: 'flex', flexDirection: 'column', border: 2, borderColor: 'primary.light' }}>
-                                <CardContent sx={{ paddingBottom: 0, paddingInline: 0, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <Box sx={{
-                                        paddingBottom: 0, paddingInline: 0, display: 'flex', flexDirection: 'column',
-                                        justifyContent: 'center', alignItems: 'center', flexGrow: 1, height: '100%'
-                                    }}>
-                                        <BadgeIcon
-                                            sx={{
-                                                fontSize: '7vh', color: 'primary.contrastText',
-                                                backgroundColor: 'primary.main', padding: '10px', borderRadius: '35%'
-                                            }} />
-                                        <Typography variant="body2" sx={{ fontWeight: 'bold', marginTop: '20px', color: 'primary.main' }}>
-                                            TRAMITE CON NIS
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ fontSize: '0.7rem' }}>
-                                            PRESENTA ÚNICAMENTE TU NÚMERO DE IDENTIFICACIÓN DE SERVICIO
-                                        </Typography>
-                                        <Box
-                                            sx={{
-                                                marginTop: 'auto', pt: 1, width: { xs: '50%' },
-                                                height: '5px', backgroundColor: 'secondary.main',
-                                                alignItems: 'flex-end', justifyItems: 'flex-end'
-                                            }} />
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Box>
-                        <Box sx={{ width: { xs: '100%', md: '50%' }, display: 'flex', textAlign: 'center', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'stretch', gap: 3 }}>
-                            <Card
-                                variant="outlined"
-                                onClick={() => setOpenColoniasDialog(true)}
+                            <AccountCircleIcon sx={{ fontSize: { xs: '2.5rem', md: '3rem' }, color: 'secondary.contrastText' }} />
+                            <Typography
                                 sx={{
-                                    width: { xs: '100%', md: '45%' },
-                                    height: { xs: 'auto', md: '50%' },
-                                    justifyContent: 'center',
-                                    alignContent: 'center',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease-in-out',
-                                    '&:hover': {
-                                        transform: 'translateY(-4px)',
-                                        boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
-                                        borderColor: 'primary.main'
-                                    }
+                                    textAlign: "left",
+                                    fontSize: { xs: '0.95rem', md: '1.05rem' },
+                                    color: "primary.contrastText",
+                                    fontWeight: 700,
+                                    lineHeight: 1.3
                                 }}
                             >
-                                <CardContent sx={{ padding: 0 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <MapIcon sx={{ fontSize: '7vh', color: 'primary.contrastText', backgroundColor: 'primary.main', padding: '10px', borderRadius: '50%' }} />
-                                        <Typography
-                                            variant="body2"
-                                            sx={{
-                                                fontWeight: 500, marginTop: '20px',
-                                                color: 'primary.main', textAlign: 'left',
-                                                paddingLeft: '5px',
-                                                fontSize: '0.875rem'
-                                            }}>
-                                            CONSULTA SI TU COLONIA PARTICIPA EN EL PROGRAMA
-                                        </Typography>
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                            <Card variant="outlined" sx={{ width: { xs: '100%', md: '45%' }, height: { xs: 'auto', md: '50%' }, justifyContent: 'center', alignContent: 'center' }} >
-                                <CardContent sx={{ padding: 0 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <CalendarMonthIcon sx={{ fontSize: '7vh', color: 'primary.contrastText', backgroundColor: 'primary.main', padding: '10px', borderRadius: '50%' }} />
-                                        <Box>
-                                            <Typography variant="body2"
-                                                sx={{
-                                                    fontWeight: 500, marginTop: '20px',
-                                                    color: 'primary.main', textAlign: 'left',
-                                                    paddingLeft: '5px',
-                                                }}>
-                                                VIGENCIA:
-
-                                            </Typography>
-                                            <Typography variant="body2"
-                                                sx={{
-                                                    fontWeight: 400, marginTop: '20px',
-                                                    color: 'primary.main', textAlign: 'left',
-                                                    paddingLeft: '5px',
-                                                }}>
-
-                                                Del 4 de mayo al 31 de diciembre de 2026
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </CardContent>
-                            </Card>
-
+                                Para usuarios en situación vulnerable
+                            </Typography>
                         </Box>
-
+                        <Box sx={{
+                            width: { xs: '100%', sm: '80%', md: '90%', lg: '85%' },
+                            backgroundColor: 'secondary.main',
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            borderRadius: '16px',
+                            gap: { xs: 2, md: 3 },
+                            p: { xs: 2, md: 2.5 },
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                            transition: 'transform 0.3s',
+                            '&:hover': { transform: 'translateX(8px)' }
+                        }}>
+                            <ArticleIcon sx={{ fontSize: { xs: '2.5rem', md: '3rem' }, color: 'secondary.contrastText' }} />
+                            <Typography
+                                sx={{
+                                    textAlign: "left",
+                                    fontSize: { xs: '0.95rem', md: '1.05rem' },
+                                    color: "primary.contrastText",
+                                    fontWeight: 700,
+                                    lineHeight: 1.3
+                                }}
+                            >
+                                Contratación de servicios de carácter unifamiliar irregular.
+                            </Typography>
+                        </Box>
+                        <Box sx={{
+                            width: { xs: '100%', sm: '80%', md: '90%', lg: '85%' },
+                            backgroundColor: 'secondary.main',
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            borderRadius: '16px',
+                            gap: { xs: 2, md: 3 },
+                            p: { xs: 2, md: 2.5 },
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                            transition: 'transform 0.3s',
+                            '&:hover': { transform: 'translateX(8px)' }
+                        }}>
+                            <CalendarMonthIcon sx={{ fontSize: { xs: '2.5rem', md: '3rem' }, color: 'secondary.contrastText' }} />
+                            <Typography
+                                sx={{
+                                    textAlign: "left",
+                                    fontSize: { xs: '0.95rem', md: '1.05rem' },
+                                    color: "primary.contrastText",
+                                    fontWeight: 700,
+                                    lineHeight: 1.3
+                                }}
+                            >
+                                Vigencia del 1 de 4 de Mayo al 31 de diciembre del 2026.
+                            </Typography>
+                        </Box>
                     </Box>
                 </Grid>
-                <Grid size={12} sx={{ border: 4, borderColor: 'primary.light' }}></Grid>
+
+                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: { xs: 4, md: 0 }, px: { xs: 2, md: 0 } }}>
+                    <Box component='img' src={img_gota_regularizacion}
+                        sx={{
+                            display: 'block',
+                            width: { xs: '72%', sm: '54%', md: '67%' },
+                            maxWidth: '495px',
+                            height: 'auto',
+                            transform: { xs: 'none', md: 'translateY(20px)', lg: 'translateY(50px)' },
+                            filter: 'drop-shadow(0px 15px 25px rgba(0,0,0,0.15))'
+                        }} />
+                </Grid>
+
+                <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', mt: { xs: 4, md: 4 } }}>
+                    <Card variant="outlined"
+                        onClick={() => setOpenColoniasDialog(true)}
+                        sx={{
+                            width: { xs: '90%', sm: '80%', md: '60%', lg: '50%' },
+                            display: 'flex',
+                            borderRadius: '16px',
+                            borderColor: 'primary.main',
+                            borderWidth: 2,
+                            backgroundColor: 'primary.main',
+                            color: "primary.contrastText",
+                            cursor: 'pointer',
+                            overflow: 'visible',
+                            transition: 'all 0.3s ease-in-out',
+                            boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 12px 24px rgba(0,0,0,0.2)',
+                                backgroundColor: 'primary.dark',
+                                borderColor: 'primary.dark',
+                            }
+                        }}>
+                        <CardContent sx={{ padding: { xs: '12px', md: '16px' }, '&:last-child': { paddingBottom: { xs: '12px', md: '16px' } }, display: 'flex', flexGrow: 1 }}>
+                            <Box sx={{
+                                display: 'flex', flexDirection: { xs: 'row', sm: 'row' },
+                                justifyContent: 'center', alignItems: 'center', flexGrow: 1, gap: { xs: 1.5, md: 2 }
+                            }}>
+                                <Box sx={{
+                                    backgroundColor: 'secondary.main',
+                                    borderRadius: '50%',
+                                    padding: '8px',
+                                    display: 'flex',
+                                    boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                                }}>
+                                    <MapIcon sx={{ fontSize: { xs: '1.8rem', md: '2rem' }, color: 'secondary.contrastText' }} />
+                                </Box>
+
+                                <Typography
+                                    variant="h6"
+                                    sx={{
+                                        fontWeight: 800,
+                                        color: 'primary.contrastText',
+                                        textAlign: { xs: 'center', sm: 'left' },
+                                        fontSize: { xs: '0.9rem', md: '1rem' },
+                                        lineHeight: 1.2,
+                                        flex: 1
+                                    }}>
+                                    CONSULTA SI TU COLONIA PARTICIPA EN EL PROGRAMA
+                                </Typography>
+
+                                <EastIcon sx={{
+                                    fontSize: { xs: '1.5rem', md: '1.8rem' },
+                                    fontWeight: '700',
+                                    color: 'secondary.main',
+
+                                }} />
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                {/* Decorative bottom border */}
+                <Grid size={12} sx={{ mt: { xs: 3, md: 4 }, px: { xs: 2, md: 6 } }}>
+                    <Box sx={{ height: '8px', width: '100%', backgroundColor: 'primary.light', borderRadius: '4px' }} />
+                </Grid>
             </Grid>
-        </>
+        </Box>
     );
 }
