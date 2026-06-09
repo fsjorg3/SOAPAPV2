@@ -3,19 +3,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArticleIcon from '@mui/icons-material/Article';
-import img_regularizacion_domestica from "../../assets/regularizacion_domestica/regularizar.webp";
 import img_gota_regularizacion from "../../assets/mascota/gota.webp";
 import { Card, CardContent } from "@mui/material";
-import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
-import BadgeIcon from '@mui/icons-material/Badge';
-import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import MapIcon from '@mui/icons-material/Map';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EastIcon from '@mui/icons-material/East';
 
 export default function HeroSection({ setOpenColoniasDialog }: { setOpenColoniasDialog: (v: boolean) => void }) {
     return (
-        <Box sx={{ position: 'relative', pb: { xs: 4, md: 8 }, maxHeight: { md: '100vh' } }}>
+        <Box sx={{ position: 'relatisve', pb: { xs: 4, md: 8 }, maxHeight: { md: '100vh' } }}>
             <Grid container spacing={{ xs: 3, md: 4 }} sx={{ alignItems: 'center', mb: { xs: "20px", md: "40px" }, mt: 2 }}>
                 <Grid size={{ xs: 12, md: 6 }}
                     sx={{
