@@ -16,6 +16,10 @@ const PORT = process.env.PORT || 3000;
 // 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
 app.disable('x-powered-by');
 
+// Confiar en los proxies (Cloudflare + Apache) para obtener la IP real del usuario
+// De lo contrario, el rate limiter bloqueará a TODOS los usuarios al mismo tiempo (tomando la IP de Apache/Cloudflare)
+app.set('trust proxy', true);
+
 // 2. Cabeceras de seguridad globales con Helmet
 // Configuramos crossOriginResourcePolicy en 'cross-origin' para permitir que el frontend
 // de origen cruzado (ej. http://localhost:5173) cargue y visualice los archivos estáticos sin problemas.
@@ -24,9 +28,10 @@ app.use(helmet({
 }));
 
 // 3. Configuración de CORS
-//const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+// Si hay múltiples orígenes, se pueden separar por comas en el .env (ej. http://localhost:5173,https://soapap.gob.mx)
+const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : 'http://localhost:5173';
 app.use(cors({
-  origin: "*"//corsOrigin
+  origin: corsOrigin
 }));
 
 // 4. Límites de tamaño en los payloads para mitigar ataques de denegación de servicio (DoS)
