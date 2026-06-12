@@ -1,0 +1,551 @@
+{
+    "año": 2022,
+    "secciones": [
+        {
+            "titulo": "Estados financieros, contables, presupuestales y programáticos",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2022_Q1_estado_de_actividades.pdf"
+                        },
+                        {
+                            "titulo": "Estado de situación financiera",
+                            "link": "2022_Q1_estado_de_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2022_Q1_estado_de_variacin_en_la_hacienda_pblica.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2022_Q1_estado_de_cambios_en_la_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2022_Q1_estado_de_flujos_de_efectivo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2022_Q1_estado_analtico_del_activo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2022_Q1_estado_analtico_de_la_deuda_y_otros_pasivos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2022_Q1_estado_analtico_de_ingresos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2022_Q1_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_econmica.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2022_Q1_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_por_objeto_del_gasto.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2022_Q1_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_administrativa.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2022_Q1_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_funcional.pdf"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2022_Q1_gasto_por_categora_programtica.pdf"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2022_Q1_informe_sobre_pasivos_contingentes.pdf"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2022_Q1_endeudamiento_neto.pdf"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2022_Q1_intereses_de_la_deuda.pdf"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2022_Q1_programas_y_proyectos_de_inversin.pdf"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2022_Q1_disciplina_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2022_Q2_estado_de_actividades.pdf"
+                        },
+                        {
+                            "titulo": "Estado de situación financiera",
+                            "link": "2022_Q2_estado_de_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2022_Q2_estado_de_variacin_en_la_hacienda_pblica.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2022_Q2_estado_de_cambios_en_la_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2022_Q2_estado_de_flujos_de_efectivo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2022_Q2_estado_analtico_del_activo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2022_Q2_estado_analtico_de_la_deuda_y_otros_pasivos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2022_Q2_estado_analtico_de_ingresos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2022_Q2_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_econmica.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2022_Q2_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_por_objeto_del_gasto.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2022_Q2_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_administrativa.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2022_Q2_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_funcional.pdf"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2022_Q2_gasto_por_categora_programtica.pdf"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2022_Q2_informe_sobre_pasivos_contingentes.pdf"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2022_Q2_endeudamiento_neto.pdf"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2022_Q2_intereses_de_la_deuda.pdf"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2022_Q2_programas_y_proyectos_de_inversin.pdf"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2022_Q2_disciplina_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2022_Q3_estado_de_actividades.pdf"
+                        },
+                        {
+                            "titulo": "Estado de situación financiera",
+                            "link": "2022_Q3_estado_de_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2022_Q3_estado_de_variacin_en_la_hacienda_pblica.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2022_Q3_estado_de_cambios_en_la_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2022_Q3_estado_de_flujos_de_efectivo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2022_Q3_estado_analtico_del_activo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2022_Q3_estado_analtico_de_la_deuda_y_otros_pasivos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2022_Q3_estado_analtico_de_ingresos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2022_Q3_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_econmica.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2022_Q3_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_por_objeto_del_gasto.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2022_Q3_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_administrativa.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2022_Q3_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_funcional.pdf"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2022_Q3_gasto_por_categora_programtica.pdf"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2022_Q3_informe_sobre_pasivos_contingentes.pdf"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2022_Q3_endeudamiento_neto.pdf"
+                        },
+                        {
+                            "titulo": "Intereses de la deuda",
+                            "link": "2022_Q3_intereses_de_la_deuda.pdf"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": "2022_Q3_indicadores_de_resultados.pdf"
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": "2022_Q3_programas_y_proyectos_de_inversin.pdf"
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2022_Q3_disciplina_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Estado de Actividades",
+                            "link": "2022_Q4_estado_de_actividades.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Situación Financiera",
+                            "link": "2022_Q4_estado_de_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Variación en la Hacienda Pública",
+                            "link": "2022_Q4_estado_de_variacin_en_la_hacienda_pblica.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Cambios en la Situación Financiera",
+                            "link": "2022_Q4_estado_de_cambios_en_la_situacin_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Estado de Flujos de Efectivo",
+                            "link": "2022_Q4_estado_de_flujos_de_efectivo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Activo",
+                            "link": "2022_Q4_estado_analtico_del_activo.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+                            "link": "2022_Q4_estado_analtico_de_la_deuda_y_otros_pasivos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico de Ingresos",
+                            "link": "2022_Q4_estado_analtico_de_ingresos.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+                            "link": "2022_Q4_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_econmica.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+                            "link": "2022_Q4_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_por_objeto_del_gasto.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+                            "link": "2022_Q4_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_administrativa.pdf"
+                        },
+                        {
+                            "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+                            "link": "2022_Q4_estado_analtico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacin_funcional.pdf"
+                        },
+                        {
+                            "titulo": "Gasto por Categoría Programática",
+                            "link": "2022_Q4_gasto_por_categora_programtica.pdf"
+                        },
+                        {
+                            "titulo": "Informe sobre Pasivos Contingentes",
+                            "link": "2022_Q4_informe_sobre_pasivos_contingentes.pdf"
+                        },
+                        {
+                            "titulo": "Endeudamiento Neto",
+                            "link": "2022_Q4_endeudamiento_neto.pdf"
+                        },
+                        {
+                            "titulo": "Intereses de la Deuda",
+                            "link": "2022_Q4_intereses_de_la_deuda.pdf"
+                        },
+                        {
+                            "titulo": "Indicadores de Resultados",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Programas y Proyectos de Inversión",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Disciplina Financiera",
+                            "link": "2022_Q4_disciplina_financiera.pdf"
+                        },
+                        {
+                            "titulo": "Sistema de Alertas",
+                            "link": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Montos pagados por ayudas y subsidios",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2022_Q1_montos_pagados_por_ayudas_y_subsidios.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2022_Q2_montos_pagados_por_ayudas_y_subsidios.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2022_Q3_montos_pagados_por_ayudas_y_subsidios.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Montos pagados por ayudas y subsidios",
+                            "link": "2022_Q4_montos_pagados_por_ayudas_y_subsidios.pdf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Notas a los Estados Financieros",
+            "periodos": [
+                {
+                    "periodo": "Primer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los estados financieros",
+                            "link": "2022_Q1_notas_a_los_estados_financieros.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los estados financieros",
+                            "link": "2022_Q2_notas_a_los_estados_financieros.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Tercer trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los estados financieros",
+                            "link": "2022_Q3_notas_a_los_estados_financieros.pdf"
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Cuarto trimestre",
+                    "documentos": [
+                        {
+                            "titulo": "Notas a los estados financieros",
+                            "link": "2022_Q4_notas_a_los_estados_financieros.pdf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Relación de bienes que componen el patrimonio",
+            "periodos": [
+                {
+                    "periodo": "Primer semestre",
+                    "documentos": [
+                        {
+                            "titulo": "Inventario SOAPAP",
+                            "link": "2022_S1_inventario_soapap.pdf"
+                        },
+                        {
+                            "titulo": "Inventario en Concesión",
+                            "link": ""
+                        }
+                    ]
+                },
+                {
+                    "periodo": "Segundo semestre",
+                    "documentos": [
+                        {
+                            "titulo": "Inventario SOAPAP",
+                            "link": "2022_S2_inventario_soapap.pdf"
+                        },
+                        {
+                            "titulo": "Inventario en Concesión",
+                            "link": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Información financiera relativa a la evaluación y rendición de cuentas",
+            "periodos": [
+                {
+                    "periodo": "Información financiera relativa a la evaluación y rendición de cuentas",
+                    "documentos": [
+                        {
+                            "titulo": "Información financiera relativa a la evaluación y rendición de cuentas",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Programa Anual de Evaluación 2022",
+                            "link": "2022_programa_anual_de_evaluacin_2022.pdf"
+                        },
+                        {
+                            "titulo": "Programa Presupuestario Inicial 2022",
+                            "link": "2022_programa_presupuestario_inicial_2022.pdf"
+                        },
+                        {
+                            "titulo": "Evaluación al Primer Trimestre 2022",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Evaluación al Segundo Trimestre 2022",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Evaluación al Tercer Trimestre 2022",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Programa Presupuestario Final 2022",
+                            "link": "2022_programa_presupuestario_final_2022.pdf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Presupuesto de Ingresos y Egresos",
+            "periodos": [
+                {
+                    "periodo": "Presupuesto de Ingresos y Egresos",
+                    "documentos": [
+                        {
+                            "titulo": "Presupuesto de Ingresos y Egresos",
+                            "link": ""
+                        },
+                        {
+                            "titulo": "Ingresos 2022",
+                            "link": "2022_ingresos_2022.pdf"
+                        },
+                        {
+                            "titulo": "Egresos 2022",
+                            "link": "2022_egresos_2022.pdf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+            "periodos": [
+                {
+                    "periodo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+                    "documentos": [
+                        {
+                            "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+                            "link": "2022_norma_para_la_difusin_a_la_ciudadana_de_la_ley_de_ingresos_y_del_presupuesto_de_egresos.pdf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+            "periodos": [
+                {
+                    "periodo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+                    "documentos": [
+                        {
+                            "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+                            "link": "2022_norma_para_establecer_la_estructura_de_informacin_del_formato_del_ejercicio_y_destino_de_gasto_federalizado_y_reintegros.pdf"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
