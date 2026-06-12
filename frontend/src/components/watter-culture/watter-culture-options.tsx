@@ -26,28 +26,28 @@ const cards: WaterCultureCard[] = [
     id: 1,
     img: cuidar_agua,
     title: "¿Por qué hay que cuidar el agua?",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "El agua dulce disponible es mínima. Debemos optimizar su uso y reducir el desperdicio urbano mediante acciones diarias, garantizando así este recurso vital del futuro.",
     src: 'https://www.youtube.com/watch?v=4slOW0tgDjs'
   },
   {
     id: 2,
     img: ciclo_agua,
     title: "Ciclo del agua",
-    description: "Pellentesque habitant morbi tristique senectus et netus et malesuada. Próximamente se añadirá información detallada sobre este tema.",
+    description: "Conoce de forma práctica el ciclo continuo del agua (evaporación, condensación, precipitación e infiltración) y sus estados, conocimiento clave para su gestión futura.",
     src: 'https://www.youtube.com/watch?v=9LVXk0sFauM'
   },
   {
     id: 3,
     img: consumo_responsable,
     title: "Consumo responsable del agua",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    description: "Mediante ejemplos prácticos y familiares, conoce estrategias vitales para ahorrar agua hoy, motivándonos a liderar acciones responsables que aseguren un futuro altamente sostenible.",
     src: 'https://www.youtube.com/watch?v=V5jd2oR_qIQ'
   },
   {
     id: 4,
     img: importancia_agua,
     title: "Reflexionar sobre la Importancia del Agua",
-    description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    description: "Conoce estrategias prácticas para evitar el desperdicio diario de agua y adéntrate en el fascinante ciclo hidrológico, impulsando acciones eficientes para garantizar nuestro futuro sostenible.",
     src: 'https://www.youtube.com/watch?v=8QU2F5-GBRk'
   }
 ];

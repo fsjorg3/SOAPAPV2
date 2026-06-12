@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { useRef, useState, useImperativeHandle, forwardRef } from 'react';
+import { Box, CircularProgress, Alert, AlertTitle, Typography } from '@mui/material';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { List, type ListImperativeAPI, type RowComponentProps } from 'react-window';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -16,28 +16,45 @@ interface PdfDocumentProps {
   scale: number;
   onLoadSuccess: (numPages: number) => void;
   onPageVisible: (pageNumber: number) => void;
-  targetPage: number | null;
 }
 
 export interface PdfDocumentRef {
   scrollToPage: (page: number) => void;
 }
 
-// Extraemos los datos (scale) desde rowProps de acuerdo a la firma de react-window v2
-const Row = ({ index, style, scale }: RowComponentProps<{ scale: number }>) => {
-  const basePageHeight = 800;
-  const pageMargin = 20;
+const PAGE_MARGIN = 32;
+
+// Extraemos los datos (scale, pageSize) desde rowProps de acuerdo a la firma de react-window v2
+const Row = ({ index, style, scale, pageSize }: RowComponentProps<any> & { scale: number, pageSize: { width: number, height: number } }) => {
+  const pageWidth = pageSize.width * scale;
 
   return (
-    <div style={{ ...style, display: 'flex', justifyContent: 'center', paddingBottom: pageMargin }}>
+    <div 
+      style={{ 
+        ...style, 
+        display: 'flex', 
+        paddingBottom: PAGE_MARGIN,
+        paddingTop: index === 0 ? PAGE_MARGIN : 0, // Extra top margin for first page
+      }}
+    >
+      {/* Spacer izquierdo: empuja al centro si hay espacio, pero no colapsa a negativo si no lo hay */}
+      <div style={{ flex: '1 0 auto' }} />
+
       <Box
         sx={{
-          boxShadow: 3,
+          boxShadow: 4,
           backgroundColor: 'white',
-          display: 'inline-block',
           userSelect: 'none',
           WebkitUserSelect: 'none',
           pointerEvents: 'none', // Evita arrastre o clic profundo en el contenido renderizado
+          borderRadius: 1, // Bordes redondeados para que luzca mejor
+          width: pageWidth,
+          height: pageSize.height * scale,
+          flexShrink: 0, // ¡CRUCIAL! Evita que el contenedor se encoja y rompa el scroll horizontal
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          overflow: 'hidden'
         }}
       >
         <Page
@@ -45,13 +62,12 @@ const Row = ({ index, style, scale }: RowComponentProps<{ scale: number }>) => {
           scale={scale}
           renderTextLayer={false}
           renderAnnotationLayer={false}
-          loading={
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: basePageHeight * scale, width: (basePageHeight * 0.7) * scale }}>
-              <CircularProgress />
-            </Box>
-          }
+          loading={<CircularProgress />}
         />
       </Box>
+
+      {/* Spacer derecho */}
+      <div style={{ flex: '1 0 auto' }} />
     </div>
   );
 };
@@ -61,21 +77,32 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
   scale,
   onLoadSuccess,
   onPageVisible,
-  targetPage
 }, ref) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [pageSize, setPageSize] = useState<{ width: number, height: number } | null>(null);
 
   // 1. Reemplazo del Componente por la nueva firma
   const listRef = useRef<ListImperativeAPI>(null);
 
-  const basePageHeight = 800;
-  const pageMargin = 20;
-
-  const onDocumentLoadSuccess = (pdf: { numPages: number }) => {
+  const onDocumentLoadSuccess = async (pdf: any) => {
     setNumPages(pdf.numPages);
     onLoadSuccess(pdf.numPages);
     setError(null);
+
+    try {
+      const page = await pdf.getPage(1);
+      const viewport = page.getViewport({ scale: 1 });
+      if (viewport.height && viewport.width) {
+        setPageSize({ width: viewport.width, height: viewport.height });
+      } else {
+        // Fallback robusto en caso de fallo de obtener medidas
+        setPageSize({ width: 600, height: 800 });
+      }
+    } catch (err) {
+      console.error("Error al obtener las medidas de la primera página", err);
+      setPageSize({ width: 600, height: 800 }); // fallback
+    }
   };
 
   const onDocumentLoadError = (err: Error) => {
@@ -83,8 +110,10 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
     setError("No se pudo cargar el documento.");
   };
 
-  const getRowHeight = () => {
-    return (basePageHeight * scale) + pageMargin;
+  const getRowHeight = (index: number) => {
+    if (!pageSize) return 800; // default height before load
+    const height = pageSize.height * scale;
+    return height + PAGE_MARGIN + (index === 0 ? PAGE_MARGIN : 0);
   };
 
   useImperativeHandle(ref, () => ({
@@ -94,14 +123,6 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
       }
     }
   }));
-
-  useEffect(() => {
-    if (targetPage && numPages) {
-      if (listRef.current) {
-        listRef.current.scrollToRow({ index: targetPage - 1, align: "start" });
-      }
-    }
-  }, [targetPage, numPages]);
 
   return (
     <Box 
@@ -127,18 +148,28 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
             </Box>
           }
         >
-          {error && <Typography color="error" sx={{ p: 2 }}>{error}</Typography>}
-          {numPages && (
+          {error && (
+            <Box sx={{ p: 4, display: 'flex', justifyContent: 'center' }}>
+              <Alert severity="error" variant="filled" sx={{ width: '100%', maxWidth: 500 }}>
+                <AlertTitle>Error al abrir el PDF</AlertTitle>
+                {error}
+                <Typography variant="body2" sx={{ mt: 1 }}>
+                  Verifica que la URL del documento sea correcta o inténtalo más tarde.
+                </Typography>
+              </Alert>
+            </Box>
+          )}
+          {numPages && pageSize && (
             <List
               listRef={listRef}
-              style={{ width: '100%', height: 'calc(100vh - 100px)' }}
-            rowCount={numPages}       // 2. Propiedad renombrada
-            rowHeight={getRowHeight}  // 2. Propiedad renombrada
-            onRowsRendered={({ startIndex }) => {
-              onPageVisible(startIndex + 1);
-            }}
-            rowComponent={Row}        // 3. Ya no es children
-            rowProps={{ scale }}      // 3. Datos inyectados a través de rowProps
+              style={{ width: '100%', height: 'calc(100vh - 100px)', overflowX: 'auto' }}
+              rowCount={numPages}
+              rowHeight={getRowHeight}
+              onRowsRendered={({ startIndex }) => {
+                onPageVisible(startIndex + 1);
+              }}
+              rowComponent={Row}
+              rowProps={{ scale, pageSize }}
             />
           )}
         </Document>

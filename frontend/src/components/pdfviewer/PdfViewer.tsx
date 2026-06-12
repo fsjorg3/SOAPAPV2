@@ -16,13 +16,11 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) =
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
-  const [targetPage, setTargetPage] = useState<number | null>(null);
 
   useEffect(() => {
     if (open) {
       setScale(window.innerWidth < 900 ? 0.25 : 1.0);
       setPageNumber(1);
-      setTargetPage(null);
     }
   }, [open]);
 
@@ -32,7 +30,6 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) =
   const handleZoomOut = () => setScale(prev => Math.max(prev - 0.25, 0.25));
 
   const handlePageChange = (page: number) => {
-    setTargetPage(page);
     if (documentRef.current) {
       documentRef.current.scrollToPage(page);
     }
@@ -40,15 +37,12 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) =
 
   const handlePageVisible = useCallback((visiblePage: number) => {
     setPageNumber(visiblePage);
-    // Reset targetPage so scrolling manually afterwards updates correctly
-    setTargetPage(null);
   }, []);
 
   const handleClose = () => {
     // Reset state on close
     setPageNumber(1);
     setScale(1.0);
-    setTargetPage(null);
     onClose();
   };
 
@@ -86,7 +80,6 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) =
             scale={scale}
             onLoadSuccess={setNumPages}
             onPageVisible={handlePageVisible}
-            targetPage={targetPage}
           />
         </Box>
       </Box>
