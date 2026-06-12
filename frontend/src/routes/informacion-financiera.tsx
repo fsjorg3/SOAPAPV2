@@ -92,12 +92,12 @@ export default function InformacionFinanciera() {
                 setSearchParams(newParams);
                 return;
             } else {
-                setCurrentPdfUrl('/pdfs/test.pdf');
-                setSnackbar({ open: true, message: 'El documento original no está disponible, abriendo versión de prueba.', severity: 'warning' });
+                //setCurrentPdfUrl('/pdfs/test.pdf');
+                setSnackbar({ open: true, message: 'El documento original no está disponible.', severity: 'warning' });
             }
         } catch (error) {
-            setCurrentPdfUrl('/pdfs/test.pdf');
-            setSnackbar({ open: true, message: 'El documento original no está disponible, abriendo versión de prueba.', severity: 'warning' });
+            //setCurrentPdfUrl('/pdfs/test.pdf');
+            setSnackbar({ open: true, message: 'El documento original no está disponible', severity: 'warning' });
         }
         setPdfViewerOpen(true);
     };

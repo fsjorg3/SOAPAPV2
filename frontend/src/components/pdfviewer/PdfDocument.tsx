@@ -25,16 +25,18 @@ export interface PdfDocumentRef {
 const PAGE_MARGIN = 32;
 
 // Extraemos los datos (scale, pageSize) desde rowProps de acuerdo a la firma de react-window v2
-const Row = ({ index, style, scale, pageSize }: RowComponentProps<any> & { scale: number, pageSize: { width: number, height: number } }) => {
+const Row = ({ index, style, scale, pageSize, numPages }: RowComponentProps<any> & { scale: number, pageSize: { width: number, height: number }, numPages: number }) => {
   const pageWidth = pageSize.width * scale;
+  const isFirstPage = index === 0;
+  const isLastPage = index === numPages - 1;
 
   return (
     <div 
       style={{ 
         ...style, 
         display: 'flex', 
-        paddingBottom: PAGE_MARGIN,
-        paddingTop: index === 0 ? PAGE_MARGIN : 0, // Extra top margin for first page
+        paddingBottom: PAGE_MARGIN + (isLastPage ? PAGE_MARGIN * 3 : 0),
+        paddingTop: isFirstPage ? PAGE_MARGIN : 0, // Extra top margin for first page
       }}
     >
       {/* Spacer izquierdo: empuja al centro si hay espacio, pero no colapsa a negativo si no lo hay */}
@@ -113,7 +115,9 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
   const getRowHeight = (index: number) => {
     if (!pageSize) return 800; // default height before load
     const height = pageSize.height * scale;
-    return height + PAGE_MARGIN + (index === 0 ? PAGE_MARGIN : 0);
+    const isFirstPage = index === 0;
+    const isLastPage = numPages ? index === numPages - 1 : false;
+    return height + PAGE_MARGIN + (isFirstPage ? PAGE_MARGIN : 0) + (isLastPage ? PAGE_MARGIN * 3 : 0);
   };
 
   useImperativeHandle(ref, () => ({
@@ -169,7 +173,7 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
                 onPageVisible(startIndex + 1);
               }}
               rowComponent={Row}
-              rowProps={{ scale, pageSize }}
+              rowProps={{ scale, pageSize, numPages }}
             />
           )}
         </Document>
