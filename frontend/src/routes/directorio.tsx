@@ -51,7 +51,7 @@ export default function Directorio() {
     {
       name: "Pérez Perucho Luis Fernando",
       position: "Gerencia de Administración y Finanzas",
-      email: "direccion@soapap.gob.mx",
+      email: "l_perez@soapap.gob.mx",
     },
     {
       name: "Ramírez Molinos Tatiana",

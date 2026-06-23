@@ -144,16 +144,16 @@ export default function Contacto() {
                     {isDesktop ? (
                       <>
                         <ListItem>
-                          <ListItemText primary="222 246 0215" />
+                          <ListItemText primary="22 22 46 17 03" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="222 246 1703" />
+                          <ListItemText primary="22 22 46 02 15" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="222 246 0215" />
+                          <ListItemText primary="22 22 46 82 97" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="222 246 0215" />
+                          <ListItemText primary="22 22 42 25 64" />
                         </ListItem>
                       </>
                     ) : (
@@ -164,7 +164,7 @@ export default function Contacto() {
                             href="tel:2222460215"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
-                            <ListItemText primary="222 246 0215" />
+                            <ListItemText primary="22 22 46 17 03" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem>
@@ -173,7 +173,7 @@ export default function Contacto() {
                             href="tel:2222461703"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
-                            <ListItemText primary="222 246 1703" />
+                            <ListItemText primary="22 22 46 02 15" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem>
@@ -182,7 +182,7 @@ export default function Contacto() {
                             href="tel:2222468297"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
-                            <ListItemText primary="222 246 8297" />
+                            <ListItemText primary="22 22 46 82 97" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem>
@@ -192,8 +192,7 @@ export default function Contacto() {
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText
-                              primary="222 958 4597
-"
+                              primary="22 22 42 25 64"
                             />
                           </ListItemButton>
                         </ListItem>
