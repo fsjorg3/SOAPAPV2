@@ -14,6 +14,10 @@ import WatterCultureOptions from "../components/watter-culture/watter-culture-op
 import InterestSlider from "../components/interest-slider";
 
 
+import ZoomableNotice from "../components/media/ZoomableNotice";
+import constanciasImg from "../assets/constanciasNA.webp";
+
+
 export default function Inicio() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -151,6 +155,51 @@ export default function Inicio() {
               slides={isDesktop ? carouselData : carouselDataMobile}
               width={{ xs: "100%", md: "70%" }}
             />
+          </Box>
+        </Box>
+
+
+
+
+        {/* Constancias NA */}
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            sx={{
+              margin: "80px 80px 0px 80px",
+              textAlign: "center",
+              fontSize: "30px",
+              fontWeight: "900",
+              color: "primary.main",
+              borderBottom: "2px solid secondary.main",
+            }}
+          >
+            Constancia de no adeudo y no registro
+          </Typography>
+          <Box sx={{ width: '15%', height: '5px', backgroundColor: 'secondary.main' }} />
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: { xs: "20px", md: "40px" },
+            }}
+          >
+            <ZoomableNotice
+              src={constanciasImg}
+              alt="Requisitos para trámites de constancia de no adeudo y no registro"
+              caption="Toca la imagen para ampliar"
+            />
+
           </Box>
         </Box>
 
