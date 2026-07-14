@@ -113,11 +113,11 @@ export default function Directorio() {
       position: "Depto. de Calidad Técnica en el Servicio de Drenaje",
       email: "jluna@soapap.gob.mx",
     },
-    {
-      name: "Castro Guerrero Roberto Carlos",
-      position: "Depto. de Atención y Supervisión a Contingencias",
-      email: "rcastro@soapap.gob.mx",
-    },
+    //{
+    //  name: "Castro Guerrero Roberto Carlos",
+    //  position: "Depto. de Atención y Supervisión a Contingencias",
+    //  email: "rcastro@soapap.gob.mx",
+    //},
     {
       name: "Martínez Bret Héctor",
       position: "Depto. de Supervisión de Obras e Infraestructura",
