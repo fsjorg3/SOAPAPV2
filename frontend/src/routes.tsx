@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
           { path: "normatividad", element: <Normatividad /> },
           { path: "informacion-financiera", element: <InformacionFinanciera /> },
           { path: "convocatorias", element: <Convocatorias /> },
+          //{ path: "comite_de_etica", element: "Etica"},//<etica/> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
           { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
           { path: "*", element: <Error404 /> },

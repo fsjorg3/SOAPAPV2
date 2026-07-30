@@ -11,6 +11,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url,
 ).toString();
 
+const pdfOptions = {
+  wasmUrl: `${import.meta.env.BASE_URL}wasm/`,
+};
+
 interface PdfDocumentProps {
   url: string;
   scale: number;
@@ -144,6 +148,7 @@ export const PdfDocument = forwardRef<PdfDocumentRef, PdfDocumentProps>(({
       <Box sx={{ flexGrow: 1, height: '100%', width: '100%' }}>
         <Document
           file={url}
+          options={pdfOptions}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={onDocumentLoadError}
           loading={
