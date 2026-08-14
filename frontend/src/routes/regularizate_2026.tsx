@@ -1,6 +1,9 @@
 import { Box, Typography, Grid, Card, Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from "@mui/material";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 export default function Regularizate2026() {
+  useDocumentMeta(seoMetadata.regularizate2026);
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden', bgcolor: '#f8f9fa' }}>
       {/* Hero Section */}

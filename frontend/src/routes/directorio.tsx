@@ -18,6 +18,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 interface employ {
   name: string;
@@ -28,6 +30,7 @@ interface employ {
 }
 
 export default function Directorio() {
+  useDocumentMeta(seoMetadata.directorio);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [page, setPage] = useState(0);

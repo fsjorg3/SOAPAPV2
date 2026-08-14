@@ -7,10 +7,13 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { PdfViewer } from '../components/pdfviewer/PdfViewer';
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function InformacionFinanciera() {
+    useDocumentMeta(seoMetadata.informacionFinanciera);
     const { data: dataAnios, isLoading: isLoadingAnios } = useSWR(`${import.meta.env.VITE_API_URL}soapapv2/api/transparency/anios`, fetcher);
     const [searchParams, setSearchParams] = useSearchParams();
     const [pdfViewerOpen, setPdfViewerOpen] = useState(false);

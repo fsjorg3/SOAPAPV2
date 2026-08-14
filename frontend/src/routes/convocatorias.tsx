@@ -4,6 +4,8 @@ import useSWR from 'swr';
 import { Box, Button, Card, CardActions, CardContent, Container, Typography, Chip } from "@mui/material";
 import LaunchIcon from '@mui/icons-material/Launch';
 import { PdfViewer } from '../components/pdfviewer/PdfViewer';
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 export interface Convocatoria {
     id: string;
@@ -16,6 +18,7 @@ export interface Convocatoria {
 }
 
 export default function Convocatorias() {
+    useDocumentMeta(seoMetadata.convocatorias);
     const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const fileParam = searchParams.get('file');

@@ -11,8 +11,11 @@ import CostoContratacionSection from "../components/regularizacion-domestica/Cos
 import VigenciaSection from "../components/regularizacion-domestica/VigenciaSection";
 import UsuariosExceptuadosSection from "../components/regularizacion-domestica/UsuariosExceptuadosSection";
 import ConsideracionesLegalesSection from "../components/regularizacion-domestica/ConsideracionesLegalesSection";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 export default function RegularizacionDomestica() {
+    useDocumentMeta(seoMetadata.regularizacionDomestica);
     const [openColoniasDialog, setOpenColoniasDialog] = useState(false);
 
     return (

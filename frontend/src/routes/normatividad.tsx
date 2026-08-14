@@ -8,6 +8,8 @@ import FolderIcon from '@mui/icons-material/Folder';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { PdfViewer } from '../components/pdfviewer/PdfViewer';
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 
 export interface DocumentoConcesion {
@@ -21,6 +23,7 @@ export interface SeccionConcesion {
 }
 
 export default function Normatividad() {
+    useDocumentMeta(seoMetadata.normatividad);
     const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const fileParam = searchParams.get('file');

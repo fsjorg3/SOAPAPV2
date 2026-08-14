@@ -10,15 +10,20 @@ import regulariza from "../assets/banners/regulariza16-9.png";
 import regularizaMobile from "../assets/banners/regulariza9-16.png";
 import regularizaDomestica from "../assets/banners/regularizacion-domestica1.webp";
 import regularizaDomesticaMobile from "../assets/banners/regularizacion-domestica2.webp";
+import regularizacion2026 from "../assets/banners/regularizacion_2026_16-9.webp";
+import regularizacion2026Mobile from "../assets/banners/regularizacion_2026_9-16.webp";
 import WatterCultureOptions from "../components/watter-culture/watter-culture-options";
 import InterestSlider from "../components/interest-slider";
 
 
 import ZoomableNotice from "../components/media/ZoomableNotice";
 import constanciasImg from "../assets/constanciasNA.webp";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 
 export default function Inicio() {
+  useDocumentMeta(seoMetadata.inicio);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -34,6 +39,11 @@ export default function Inicio() {
       alt: "regularizaDomestica",
       url: "/regularizacion_domestica",
     },
+    {
+      src: regularizacion2026,
+      alt: "regularizacion2026",
+      url: "/regularizacion_2026",
+    },
 
   ];
 
@@ -46,6 +56,11 @@ export default function Inicio() {
       src: regularizaDomesticaMobile,
       alt: "regularizaDomestica",
       url: "/regularizacion_domestica",
+    },
+    {
+      src: regularizacion2026Mobile,
+      alt: "regularizacion2026",
+      url: "/regularizacion_2026",
     },
 
   ];

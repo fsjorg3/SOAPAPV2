@@ -1,17 +1,23 @@
+/* eslint-disable react-refresh/only-export-components -- este archivo define el router, no un componente; no aplica a Fast Refresh */
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import App from "./App";
 import LayoutPublico from "./layouts/LayoutPublico";
-import Inicio from "./routes/inicio";
-import Contacto from "./routes/contacto";
-import Directorio from "./routes/directorio";
-import QuienesSomos from "./routes/quienes-somos";
-import Normatividad from "./routes/normatividad";
-import InformacionFinanciera from "./routes/informacion-financiera";
-import Convocatorias from "./routes/convocatorias";
-import Regularizate2026 from "./routes/regularizate_2026";
-import RegularizacionDomestica from "./routes/regularizacion-domestica";
 
-import Error404 from "./routes/error-404";
+const Inicio = lazy(() => import("./routes/inicio"));
+const Contacto = lazy(() => import("./routes/contacto"));
+const Directorio = lazy(() => import("./routes/directorio"));
+const QuienesSomos = lazy(() => import("./routes/quienes-somos"));
+const Normatividad = lazy(() => import("./routes/normatividad"));
+const InformacionFinanciera = lazy(() => import("./routes/informacion-financiera"));
+const Convocatorias = lazy(() => import("./routes/convocatorias"));
+const Regularizate2026 = lazy(() => import("./routes/regularizate_2026"));
+const RegularizacionDomestica = lazy(() => import("./routes/regularizacion-domestica"));
+const Regularizacion2026 = lazy(() => import("./routes/regularizacion_2026"));
+// Pendiente de autorización para publicar — reactivar cuando se autorice.
+// const Etica = lazy(() => import("./routes/etica"));
+
+const Error404 = lazy(() => import("./routes/error-404"));
 
 export const router = createBrowserRouter([
   {
@@ -29,9 +35,11 @@ export const router = createBrowserRouter([
           { path: "normatividad", element: <Normatividad /> },
           { path: "informacion-financiera", element: <InformacionFinanciera /> },
           { path: "convocatorias", element: <Convocatorias /> },
-          //{ path: "comite_de_etica", element: "Etica"},//<etica/> },
+          // Pendiente de autorización para publicar — reactivar cuando se autorice (ver import comentado arriba).
+          // { path: "comite_de_etica", element: <Etica/> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
           { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
+          { path: "regularizacion_2026", element: <Regularizacion2026 /> },
           { path: "*", element: <Error404 /> },
         ],
       },

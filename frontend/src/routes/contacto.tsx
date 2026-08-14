@@ -11,6 +11,8 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
 import MapIcon from "@mui/icons-material/Map";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 // 1. Definición estricta de la interfaz de datos
 interface IFormInput {
@@ -24,6 +26,7 @@ interface IFormInput {
 
 
 export default function Contacto() {
+  useDocumentMeta(seoMetadata.contacto);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 

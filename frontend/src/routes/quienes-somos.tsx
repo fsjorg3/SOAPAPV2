@@ -20,8 +20,11 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import GavelIcon from "@mui/icons-material/Gavel";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { seoMetadata } from "../config/seo-metadata";
 
 export default function QuienesSomos() {
+    useDocumentMeta(seoMetadata.quienesSomos);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 

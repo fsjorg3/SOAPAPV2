@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { Box } from '@mui/material';
 import { useOutlet, useLocation } from 'react-router';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer';
+import RouteLoadingFallback from '../components/RouteLoadingFallback';
 import { motion, AnimatePresence } from "motion/react";
 
 export default function LayoutPublico() {
@@ -36,7 +37,9 @@ export default function LayoutPublico() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {outlet}
+            <Suspense fallback={<RouteLoadingFallback />}>
+              {outlet}
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       </Box>

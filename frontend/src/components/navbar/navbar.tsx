@@ -20,7 +20,6 @@ import { NavLink } from "react-router";
 import { useLocation, useNavigate } from 'react-router';
 
 import dropMinimalist from "../../assets/drop-minimalist.svg";
-
 const drawerWidth = 250;
 
 export const navbarItems = [
@@ -31,10 +30,12 @@ export const navbarItems = [
   {
     texto: "Transparencia",
     subItems: [
+      // Pendiente de autorización para publicar — reactivar cuando se autorice (ver ruta comentada en routes.tsx).
+      // { texto: "Comité de ética", ruta: "/comite_de_etica" },
+      { texto: "Convocatorias", ruta: "/convocatorias" },
       { texto: "Normatividad", ruta: "/normatividad" },
       { texto: "Información Financiera", ruta: "/informacion-financiera" },
-      { texto: "Convocatorias", ruta: "/convocatorias" },
-      //{ texto: "Comité de ética", ruta: "/comite_de_etica" }
+      
     ]
   }
 ];
@@ -43,7 +44,6 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileTransparencia, setOpenMobileTransparencia] = useState(false);
   const [anchorElTransparencia, setAnchorElTransparencia] = useState<null | HTMLElement>(null);
-  
   const openTransparencia = Boolean(anchorElTransparencia);
 
   const location = useLocation();
