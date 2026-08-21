@@ -32,7 +32,7 @@ export default function Footer() {
 
                         <Box sx={{ width: { xs: '80%', md: '60%' } }}>
                             <Typography variant='body2' sx={{ color: 'primary.contrastText', textTransform: 'uppercase' }}>
-                                Sistema Operador de los Serivicios de Agua Potable y Alcantarillado del Municipio de Puebla
+                                Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla
                             </Typography>
                         </Box>
 
