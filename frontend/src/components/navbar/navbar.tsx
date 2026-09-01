@@ -7,6 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -15,136 +16,169 @@ import MenuItem from "@mui/material/MenuItem";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import PeopleIcon from "@mui/icons-material/People";
+import GavelIcon from "@mui/icons-material/Gavel";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import ArticleIcon from "@mui/icons-material/Article";
+import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import HomeIcon from "@mui/icons-material/Home";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+import { alpha } from "@mui/material/styles";
 import { useState } from "react";
 import { NavLink } from "react-router";
 import { useLocation, useNavigate } from 'react-router';
 
 import dropMinimalist from "../../assets/drop-minimalist.svg";
-const drawerWidth = 250;
 
-export const navbarItems = [
+// URL final confirmada para el CTA de pago; el botón permanece oculto (display: none)
+// hasta que se confirme si es requerido mostrarlo en el navbar.
+const CTA_PAGAR_HREF = "https://pagofacil.aguapuebla.mx/";
+
+interface NavSubItem {
+  texto: string;
+  ruta: string;
+  Icono?: React.ElementType;
+}
+
+type NavItem =
+  | { texto: string; ruta: string; subItems?: undefined }
+  | { texto: string; ruta?: undefined; subItems: NavSubItem[] };
+
+export const navbarItems: NavItem[] = [
   { texto: "Inicio", ruta: "/" },
-  { texto: "Contacto", ruta: "/contacto" },
-  { texto: "Directorio", ruta: "/directorio" },
-  { texto: "Quienes somos", ruta: "/quienes-somos" },
   {
-    texto: "Transparencia",
+    texto: "La institución",
     subItems: [
+      { texto: "Quienes somos", ruta: "/quienes-somos", Icono: InfoOutlinedIcon },
+      { texto: "Directorio", ruta: "/directorio", Icono: PeopleIcon },
+      { texto: "Normatividad", ruta: "/normatividad", Icono: GavelIcon },
+      { texto: "Información Financiera", ruta: "/informacion-financiera", Icono: AccountBalanceIcon },
+      { texto: "Convocatorias", ruta: "/convocatorias", Icono: ArticleIcon },
       // Pendiente de autorización para publicar — reactivar cuando se autorice (ver ruta comentada en routes.tsx).
       // { texto: "Comité de ética", ruta: "/comite_de_etica" },
-      { texto: "Convocatorias", ruta: "/convocatorias" },
-      { texto: "Normatividad", ruta: "/normatividad" },
-      { texto: "Información Financiera", ruta: "/informacion-financiera" },
-      
     ]
-  }
+  },
+  {
+    texto: "Programas y campañas",
+    subItems: [
+      { texto: "Regularízate 2026", ruta: "/regularizate_2026", Icono: WaterDropIcon },
+      { texto: "Regularización doméstica", ruta: "/regularizacion_domestica", Icono: HomeIcon },
+      { texto: "Regularización 2026", ruta: "/regularizacion_2026", Icono: EngineeringIcon },
+    ]
+  },
+  { texto: "Contacto", ruta: "/contacto" },
 ];
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMobileTransparencia, setOpenMobileTransparencia] = useState(false);
-  const [anchorElTransparencia, setAnchorElTransparencia] = useState<null | HTMLElement>(null);
-  const openTransparencia = Boolean(anchorElTransparencia);
+  const [openMobileGroups, setOpenMobileGroups] = useState<Record<string, boolean>>({});
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [openGroupKey, setOpenGroupKey] = useState<string | null>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     if (mobileOpen) {
-      setOpenMobileTransparencia(false);
-      setAnchorElTransparencia(null);
+      setOpenMobileGroups({});
     }
     setMobileOpen(!mobileOpen);
   };
 
-  const handleToggleMobileTransparencia = () => {
-    setOpenMobileTransparencia(!openMobileTransparencia);
+  const handleToggleMobileGroup = (groupTexto: string) => {
+    setOpenMobileGroups((prev) => ({ ...prev, [groupTexto]: !prev[groupTexto] }));
   };
 
-  const handleClickTransparencia = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorElTransparencia(event.currentTarget);
+  const handleOpenGroupMenu = (groupTexto: string) => (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpenGroupKey(groupTexto);
   };
-  
-  const handleCloseTransparencia = () => {
-    setAnchorElTransparencia(null);
+
+  const handleCloseGroupMenu = () => {
+    setAnchorEl(null);
+    setOpenGroupKey(null);
   };
 
   const drawerContent = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'background.paper' }}>
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
-          gap: 1.5,
-          py: 4,
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%)',
+          justifyContent: 'space-between',
+          gap: 1,
+          px: 2,
+          py: 1.5,
+          backgroundColor: 'primary.main',
         }}
       >
-        <Box component="img" src={dropMinimalist} sx={{ display: "block", height: 48, filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.3))' }} />
-        <Typography variant="h6" sx={{ fontWeight: 600, letterSpacing: 1.2 }}>
-          SOAPAP
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box component="img" src={dropMinimalist} sx={{ display: "block", height: 32 }} />
+          <Typography variant="h6" sx={{ fontWeight: 600, color: 'primary.contrastText' }}>
+            SOAPAP
+          </Typography>
+        </Box>
+        <IconButton
+          aria-label="cerrar menú"
+          onClick={handleDrawerToggle}
+          sx={{ color: 'primary.contrastText' }}
+        >
+          <CloseIcon />
+        </IconButton>
       </Box>
 
-      <Box sx={{ px: 3 }}>
-        <Box sx={{ width: '100%', height: '1px', backgroundColor: 'rgba(255,255,255,0.15)', mb: 2 }} />
-      </Box>
-
-      <List sx={{ px: 2 }}>
+      <List sx={{ px: 2, py: 0 }}>
         {navbarItems.map((item) => {
           if (item.subItems) {
-            const isTransparenciaActive = item.subItems.some(sub => sub.ruta === location.pathname);
+            const isGroupActive = item.subItems.some(sub => sub.ruta === location.pathname);
+            const isGroupOpen = Boolean(openMobileGroups[item.texto]);
             return (
               <Box key={item.texto + "DrawerGroup"}>
-                <ListItem disablePadding sx={{ mb: 1 }}>
+                <ListItem disablePadding>
                   <ListItemButton
-                    onClick={handleToggleMobileTransparencia}
+                    onClick={() => handleToggleMobileGroup(item.texto)}
                     sx={{
-                      textAlign: "center",
-                      borderRadius: '12px',
-                      color: isTransparenciaActive ? 'secondary.light' : 'primary.contrastText',
-                      backgroundColor: isTransparenciaActive ? 'rgba(255,255,255,0.1)' : 'transparent',
-                      transition: 'all 0.3s ease',
-                      ":hover": {
-                        backgroundColor: "rgba(255,255,255,0.15)",
-                        color: "secondary.light",
-                        transform: "translateX(6px)",
-                      },
+                      justifyContent: 'space-between',
+                      px: 0,
+                      py: 1.5,
+                      borderBottom: '1px solid',
+                      borderColor: 'divider',
+                      color: isGroupActive ? 'primary.main' : 'text.primary',
                     }}
                   >
                     <ListItemText
-                      primary={<Typography sx={{ fontWeight: isTransparenciaActive ? 600 : 400 }}>{item.texto}</Typography>}
+                      primary={<Typography sx={{ fontWeight: isGroupActive ? 600 : 400 }}>{item.texto}</Typography>}
                     />
-                    {openMobileTransparencia ? <ExpandLess /> : <ExpandMore />}
+                    {isGroupOpen ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
                 </ListItem>
-                <Collapse in={openMobileTransparencia} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding sx={{ pl: 4, pr: 2 }}>
+                <Collapse in={isGroupOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
                     {item.subItems.map((subItem) => {
                       const esSubRutaActiva = location.pathname === subItem.ruta;
+                      const Icono = subItem.Icono;
                       return (
-                        <ListItem key={subItem.ruta + "DrawerSub"} disablePadding sx={{ mb: 1 }}>
+                        <ListItem key={subItem.ruta + "DrawerSub"} disablePadding>
                           <ListItemButton
                             onClick={() => {
                                navigate(subItem.ruta);
                                setMobileOpen(false);
-                               setAnchorElTransparencia(null);
+                               setOpenMobileGroups({});
                             }}
                             sx={{
-                              textAlign: "center",
-                              borderRadius: '12px',
-                              color: esSubRutaActiva ? 'secondary.light' : 'primary.contrastText',
-                              backgroundColor: esSubRutaActiva ? 'rgba(255,255,255,0.1)' : 'transparent',
-                              transition: 'all 0.3s ease',
-                              ":hover": {
-                                backgroundColor: "rgba(255,255,255,0.15)",
-                                color: "secondary.light",
-                                transform: "translateX(6px)",
-                              },
+                              justifyContent: 'flex-start',
+                              gap: 1,
+                              pl: 3,
+                              pr: 0,
+                              py: 1.25,
+                              borderBottom: '1px solid',
+                              borderColor: 'divider',
+                              color: esSubRutaActiva ? 'primary.main' : 'text.secondary',
                             }}
                           >
+                            {Icono && <Icono fontSize="small" />}
                             <ListItemText
                               primary={<Typography sx={{ fontWeight: esSubRutaActiva ? 600 : 400, fontSize: '0.9rem' }}>{subItem.texto}</Typography>}
                             />
@@ -160,25 +194,20 @@ function Navbar() {
 
           const esRutaActiva = location.pathname === item.ruta;
           return (
-            <ListItem key={(item.ruta || item.texto) + "Drawer"} disablePadding sx={{ mb: 1 }}>
+            <ListItem key={(item.ruta || item.texto) + "Drawer"} disablePadding>
               <ListItemButton
                 onClick={() => {
                    navigate(item.ruta!);
                    setMobileOpen(false);
-                   setAnchorElTransparencia(null);
-                   setOpenMobileTransparencia(false);
+                   setOpenMobileGroups({});
                 }}
                 sx={{
-                  textAlign: "center",
-                  borderRadius: '12px',
-                  color: esRutaActiva ? 'secondary.light' : 'primary.contrastText',
-                  backgroundColor: esRutaActiva ? 'rgba(255,255,255,0.1)' : 'transparent',
-                  transition: 'all 0.3s ease',
-                  ":hover": {
-                    backgroundColor: "rgba(255,255,255,0.15)",
-                    color: "secondary.light",
-                    transform: "translateX(6px)",
-                  },
+                  justifyContent: 'flex-start',
+                  px: 0,
+                  py: 1.5,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  color: esRutaActiva ? 'primary.main' : 'text.primary',
                 }}
               >
                 <ListItemText
@@ -190,6 +219,21 @@ function Navbar() {
         })}
       </List>
       <Box sx={{ flexGrow: 1 }} />
+      <Box sx={{ p: 2 }}>
+        <Button
+          component="a"
+          href={CTA_PAGAR_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="contained"
+          color="secondary"
+          fullWidth
+          startIcon={<PaymentsOutlinedIcon />}
+          sx={{ display: "none" }}
+        >
+          Pagar mi recibo
+        </Button>
+      </Box>
     </Box>
   );
 
@@ -246,20 +290,21 @@ function Navbar() {
         >
           {navbarItems.map((item) => {
             if (item.subItems) {
-              const isTransparenciaActive = item.subItems.some(sub => sub.ruta === location.pathname);
+              const isGroupActive = item.subItems.some(sub => sub.ruta === location.pathname);
+              const isGroupOpen = openGroupKey === item.texto && Boolean(anchorEl);
               return (
                 <Box key={item.texto}>
                   <Button
-                    onClick={handleClickTransparencia}
+                    onClick={handleOpenGroupMenu(item.texto)}
                     sx={{
-                      color: isTransparenciaActive ? "secondary.light" : "primary.contrastText",
+                      color: isGroupActive ? "secondary.light" : "primary.contrastText",
                       whiteSpace: "nowrap",
                       fontSize: { md: "0.8rem", lg: "0.875rem" },
                       px: { md: 1, lg: 2 },
                       py: 1,
                       minWidth: "auto",
                       flexShrink: 1,
-                      borderBottom: isTransparenciaActive ? "2px solid" : "2px solid transparent",
+                      borderBottom: isGroupActive ? "2px solid" : "2px solid transparent",
                       borderRadius: 0,
                       transition: "all 0.2s ease",
                       ":hover": {
@@ -271,9 +316,9 @@ function Navbar() {
                     {item.texto}
                   </Button>
                   <Menu
-                    anchorEl={anchorElTransparencia}
-                    open={openTransparencia}
-                    onClose={handleCloseTransparencia}
+                    anchorEl={isGroupOpen ? anchorEl : null}
+                    open={isGroupOpen}
+                    onClose={handleCloseGroupMenu}
                     slotProps={{
                       list: {
                         'aria-labelledby': 'basic-button',
@@ -281,32 +326,38 @@ function Navbar() {
                     }}
                     sx={{
                       "& .MuiPaper-root": {
-                        backgroundColor: "primary.main",
+                        backgroundColor: (theme) => alpha(theme.palette.primary.light, 0.95),
+                        backdropFilter: "blur(10px)",
                         color: "primary.contrastText",
                         mt: 1,
                         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
                       }
                     }}
                   >
-                    {item.subItems.map((subItem) => (
-                      <MenuItem 
-                        key={subItem.texto}
-                        onClick={() => {
-                          handleCloseTransparencia();
-                          navigate(subItem.ruta);
-                        }}
-                        sx={{
-                          color: location.pathname === subItem.ruta ? "secondary.light" : "primary.contrastText",
-                          fontWeight: location.pathname === subItem.ruta ? 600 : 400,
-                          ":hover": {
-                            backgroundColor: "rgba(255,255,255,0.1)",
-                            color: "secondary.light",
-                          }
-                        }}
-                      >
-                        {subItem.texto}
-                      </MenuItem>
-                    ))}
+                    {item.subItems.map((subItem) => {
+                      const Icono = subItem.Icono;
+                      return (
+                        <MenuItem
+                          key={subItem.texto}
+                          onClick={() => {
+                            handleCloseGroupMenu();
+                            navigate(subItem.ruta);
+                          }}
+                          sx={{
+                            gap: 1,
+                            color: location.pathname === subItem.ruta ? "secondary.light" : "primary.contrastText",
+                            fontWeight: location.pathname === subItem.ruta ? 600 : 400,
+                            ":hover": {
+                              backgroundColor: "rgba(255,255,255,0.1)",
+                              color: "secondary.light",
+                            }
+                          }}
+                        >
+                          {Icono && <Icono fontSize="small" />}
+                          {subItem.texto}
+                        </MenuItem>
+                      );
+                    })}
                   </Menu>
                 </Box>
               );
@@ -344,6 +395,19 @@ function Navbar() {
               </Button>
             );
           })}
+
+          <Button
+            component="a"
+            href={CTA_PAGAR_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="contained"
+            color="secondary"
+            startIcon={<PaymentsOutlinedIcon />}
+            sx={{ display: "none", ml: 1, whiteSpace: "nowrap" }}
+          >
+            Pagar mi recibo
+          </Button>
         </Box>
 
         {/*LINKS*/}
@@ -361,13 +425,8 @@ function Navbar() {
             display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth,
-              backgroundColor: "primary.main",
-              color: "primary.contrastText",
-              borderTopRightRadius: '24px',
-              borderBottomRightRadius: '24px',
-              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.15))',
-              boxShadow: '4px 0 24px rgba(0, 0, 0, 0.4)',
+              width: "100%",
+              backgroundColor: "background.paper",
             },
             "& .MuiBackdrop-root": {
               backdropFilter: "blur(5px)",
