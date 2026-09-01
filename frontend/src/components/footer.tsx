@@ -4,7 +4,7 @@ import { Link } from "react-router"
 import { PdfViewer } from "./pdfviewer/PdfViewer"
 
 import drop from '../assets/drop-minimalist.svg'
-import { navbarItems } from "../components/navbar/navbar"
+import { navbarItems } from "../components/navbar/navItems"
 
 
 export default function Footer() {
@@ -49,7 +49,10 @@ export default function Footer() {
                                 width: { xs: '100%', md: 'auto' }
                             }}
                         >
-                            {navbarItems.flatMap(item => item.subItems ? item.subItems : [item]).map((link) => (
+                            {navbarItems
+                                .flatMap(item => item.columnas ? item.columnas.flatMap(columna => columna.items) : [item])
+                                .filter(link => link.ruta)
+                                .map((link) => (
                                 <Button
                                     key={link.texto}
                                     component={Link}

@@ -14,8 +14,7 @@ const Convocatorias = lazy(() => import("./routes/convocatorias"));
 const Regularizate2026 = lazy(() => import("./routes/regularizate_2026"));
 const RegularizacionDomestica = lazy(() => import("./routes/regularizacion-domestica"));
 const Regularizacion2026 = lazy(() => import("./routes/regularizacion_2026"));
-// Pendiente de autorización para publicar — reactivar cuando se autorice.
-// const Etica = lazy(() => import("./routes/etica"));
+const Etica = lazy(() => import("./routes/etica"));
 
 const Error404 = lazy(() => import("./routes/error-404"));
 
@@ -35,8 +34,7 @@ export const router = createBrowserRouter([
           { path: "normatividad", element: <Normatividad /> },
           { path: "informacion-financiera", element: <InformacionFinanciera /> },
           { path: "convocatorias", element: <Convocatorias /> },
-          // Pendiente de autorización para publicar — reactivar cuando se autorice (ver import comentado arriba).
-          // { path: "comite_de_etica", element: <Etica/> },
+          { path: "comite_de_etica", element: <Etica /> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
           { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
           { path: "regularizacion_2026", element: <Regularizacion2026 /> },
