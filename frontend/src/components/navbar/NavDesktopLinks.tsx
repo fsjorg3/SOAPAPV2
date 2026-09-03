@@ -52,7 +52,8 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
                 py: 1,
                 minWidth: "auto",
                 flexShrink: 1,
-                borderBottom: isGroupActive || isGroupOpen ? "2px solid" : "2px solid transparent",
+                //dibuja borde inferior para ambos grupos, aun sin que este activado o este abierto 
+                //borderBottom: isGroupActive || isGroupOpen ? "2px solid" : "2px solid transparent",
                 borderColor: "secondary.light",
                 borderRadius: 0,
                 transition: "all 0.2s ease",
@@ -110,7 +111,10 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
         variant="contained"
         color="secondary"
         startIcon={<PaymentsOutlinedIcon />}
-        sx={{ display: "none", ml: 1, whiteSpace: "nowrap" }}
+        sx={{ 
+          display: "none", 
+          ml: 1, 
+          whiteSpace: "nowrap" }}
       >
         Pagar mi recibo
       </Button>

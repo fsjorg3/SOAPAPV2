@@ -43,4 +43,8 @@ export const seoMetadata = {
     title: 'Regularización 2026 | SOAPAP',
     description: 'Programa de Regularización 2026 del SOAPAP: información, requisitos y beneficios para regularizar tu servicio de agua.',
   },
+  verificarConstancia: {
+    title: 'Verificación pública de constancias | SOAPAP',
+    description: 'Valida la autenticidad y vigencia de las constancias de no adeudo o no registro emitidas por el SOAPAP mediante folio y código de verificación.',
+  },
 } as const;

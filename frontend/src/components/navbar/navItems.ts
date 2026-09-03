@@ -78,7 +78,7 @@ export const navbarItems: NavItem[] = [
       {
         titulo: "Verificación",
         items: [
-          { texto: "Validar documento", Icono: VerifiedIcon },
+          { texto: "Validar documento", ruta: "/verificar-constancia", Icono: VerifiedIcon },
         ],
       },
     ],
