@@ -52,11 +52,6 @@ export function FinancialCardView({ seccion, periodosCatalogo, documentos, onSel
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                   {documento.titulo}
                 </Typography>
-                {documento.descripcion ? (
-                  <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }}>
-                    {documento.descripcion}
-                  </Typography>
-                ) : null}
               </Box>
               {esMatriz ? <ChevronRightIcon sx={{ color: 'action.active', flexShrink: 0 }} /> : null}
             </Stack>
@@ -82,7 +77,7 @@ export function FinancialCardView({ seccion, periodosCatalogo, documentos, onSel
                       </Button>
                     ) : (
                       <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-                        Pendiente
+                        <>{/*Estado pendiente si conteniodo, visualmente mas actractivo*/}</>
                       </Typography>
                     )}
                   </Stack>
@@ -101,7 +96,7 @@ export function FinancialCardView({ seccion, periodosCatalogo, documentos, onSel
                   </Button>
                 ) : (
                   <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-                    Pendiente
+                    <>{/*Estado pendiente si conteniodo, visualmente mas actractivo*/}</>
                   </Typography>
                 )}
               </Box>

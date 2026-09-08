@@ -42,7 +42,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
           <TableHead>
             <TableRow>
               <TableCell>Documento</TableCell>
-              <TableCell>Descripción</TableCell>
+              
               {esMatriz ? (
                 columnasPeriodo.map((periodo) => <TableCell key={periodo.clave}>{periodo.nombreCorto}</TableCell>)
               ) : (
@@ -54,7 +54,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
             {documentosOrdenados.map((documento) => (
               <TableRow key={documento.id}>
                 <TableCell>{documento.titulo}</TableCell>
-                <TableCell>{documento.descripcion}</TableCell>
+                
                 {esMatriz ? (
                   columnasPeriodo.map((periodo) => {
                     const publicacion = documento.periodos.find((p) => p.clave === periodo.clave);
@@ -66,7 +66,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
                           </Button>
                         ) : (
                           <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-                            
+                            <>{/*Estado pendiente si conteniodo, visualmente mas actractivo*/}</>
                           </Typography>
                         )}
                       </TableCell>
@@ -85,7 +85,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
                       </Button>
                     ) : (
                       <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-                        
+                        <>{/*Estado pendiente si conteniodo, visualmente mas actractivo*/}</>
                       </Typography>
                     )}
                   </TableCell>
