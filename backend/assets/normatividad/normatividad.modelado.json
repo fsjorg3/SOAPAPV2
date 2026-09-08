@@ -110,7 +110,7 @@
     },
     {
       "id": "programas_anuales_pada",
-      "titulo": "Programas anuales (PADA)",
+      "titulo": "Programa Anual de Desarrollo Archivístico (PADA)",
       "descripcion": "Programas Anuales de Desarrollo Archivístico del SOAPAP.",
       "orden": 4,
       "documentos": [
@@ -130,7 +130,7 @@
         },
         {
           "id": "programa_anual_de_desarrollo_archivistico",
-          "titulo": "Programa Anual de Desarrollo Archivístico",
+          "titulo": "PADA 2026",
           "orden": 3,
           "link": "programa_anual_desarrollo_archivistico_2026.pdf",
           "estado": "publicado"

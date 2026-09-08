@@ -98,7 +98,7 @@ export function AccordionGrupoDocumentos({
               <TableHead>
                 <TableRow>
                   <TableCell>Documento</TableCell>
-                  <TableCell align="right">Acción</TableCell>
+                  <TableCell align="right"> </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
