@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "migrar:financiera": "ts-node --transpile-only scripts/migrar-informacion-financiera.ts",
+    "test": "node --import tsx --test \"src/v1/**/*.test.ts\" \"scripts/**/*.test.ts\""
   },
   "keywords": [],
   "author": "",
@@ -24,8 +26,14 @@
     "@types/express": "^5.0.6",
     "@types/hpp": "^0.2.7",
     "@types/node": "^25.9.2",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

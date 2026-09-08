@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://soapap.gob.mx/schemas/modelado_financiero.schema.json",
+  "title": "Modelado de información financiera por ejercicio fiscal",
+  "description": "Estructura fuente (sección -> documento -> periodos) que alimenta el contrato de la API de transparencia financiera. Genérico por año (campo 'año' entre 2000 y 2100), reutilizable para validar el modelado de cualquier ejercicio fiscal. Ver contrato-api-transparencia-openapi.json para la forma que expone la API.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["año", "secciones"],
+  "properties": {
+    "año": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "secciones": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Seccion" }
+    }
+  },
+  "$defs": {
+    "Identificador": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "ClavePeriodo": {
+      "type": "string",
+      "enum": ["Q1", "Q2", "Q3", "Q4", "S1", "S2", "ANUAL"]
+    },
+    "EstadoPublicacion": {
+      "type": "string",
+      "enum": ["pendiente", "publicado", "retirado"]
+    },
+    "Periodicidad": {
+      "type": "string",
+      "enum": ["trimestral", "semestral", "anual"]
+    },
+    "RutaArchivo": {
+      "type": "string",
+      "pattern": "^([A-Za-z0-9_]+/)?[A-Za-z0-9_]+\\.pdf$"
+    },
+    "Seccion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "orden", "documentos"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identificador" },
+        "titulo": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "orden": { "type": "integer", "minimum": 1 },
+        "documentos": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Documento" }
+        }
+      }
+    },
+    "Documento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "periodicidad", "orden", "periodos"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identificador" },
+        "titulo": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "periodicidad": { "$ref": "#/$defs/Periodicidad" },
+        "orden": { "type": "integer", "minimum": 1 },
+        "periodos": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Periodo" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "periodicidad": { "const": "trimestral" } },
+            "required": ["periodicidad"]
+          },
+          "then": {
+            "properties": {
+              "periodos": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "properties": { "clave": { "enum": ["Q1", "Q2", "Q3", "Q4"] } }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "periodicidad": { "const": "semestral" } },
+            "required": ["periodicidad"]
+          },
+          "then": {
+            "properties": {
+              "periodos": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "object",
+                  "properties": { "clave": { "enum": ["S1", "S2"] } }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "periodicidad": { "const": "anual" } },
+            "required": ["periodicidad"]
+          },
+          "then": {
+            "properties": {
+              "periodos": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": { "clave": { "const": "ANUAL" } }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Periodo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clave", "nombre", "link", "estado"],
+      "properties": {
+        "clave": { "$ref": "#/$defs/ClavePeriodo" },
+        "nombre": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "link": {
+          "oneOf": [{ "$ref": "#/$defs/RutaArchivo" }, { "type": "null" }]
+        },
+        "estado": { "$ref": "#/$defs/EstadoPublicacion" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "estado": { "const": "publicado" } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "$ref": "#/$defs/RutaArchivo" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "estado": { "enum": ["pendiente", "retirado"] } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "type": "null" } }
+          }
+        }
+      ]
+    }
+  }
+}

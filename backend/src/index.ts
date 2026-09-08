@@ -7,6 +7,8 @@ import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import { validateContactForm } from './middlewares/contact.middleware';
 import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
+import { transparenciaRouter, archivosRouter } from './v1/routes';
+import { inicializarCatalogos } from './v1/services/catalogo.service';
 
 dotenv.config();
 
@@ -29,9 +31,18 @@ app.use(helmet({
 
 // 3. Configuración de CORS
 // Si hay múltiples orígenes, se pueden separar por comas en el .env (ej. http://localhost:5173,https://soapap.gob.mx)
-const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : 'http://localhost:5173';
+const isProduction = process.env.NODE_ENV === 'production';
+if (isProduction && !process.env.CORS_ORIGIN) {
+  throw new Error('CORS_ORIGIN debe estar definida en producción.');
+}
+
+const corsOrigin = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim()).filter(Boolean)
+  : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'];
+
 app.use(cors({
-  origin: corsOrigin
+  origin: corsOrigin,
+  methods: ['GET', 'POST'],
 }));
 
 // 4. Límites de tamaño en los payloads para mitigar ataques de denegación de servicio (DoS)
@@ -75,8 +86,16 @@ const assetsLimiter = rateLimit({
 const pdfPath = path.resolve(process.env.PDF_STORAGE_PATH || './assets');
 app.use('/assets', assetsLimiter, express.static(pdfPath));
 
+// API v1 de transparencia (en paralelo a /soapapv2/api/, sin reemplazarla todavía).
+// /archivos usa el limiter permisivo de assets (igual que /assets: una vista con range
+// requests genera múltiples peticiones parciales); /transparencia hereda el limiter general
+// de abajo por estar montado después.
+app.use('/api/v1/archivos', assetsLimiter, archivosRouter);
+
 // Aplicar Rate Limiter general a todas las demás rutas
 app.use(apiLimiter);
+
+app.use('/api/v1/transparencia', transparenciaRouter);
 
 // Routes
 app.get('/', (req, res) => {
@@ -107,6 +126,9 @@ app.get('/soapapv2/api/transparency/anios', getFinancialYears);
 app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, res) => {
   // La lógica fue delegada al middleware validatePdfRequest
 });
+
+// Cargar catálogos de la API v1 (transparencia financiera) antes de aceptar tráfico
+inicializarCatalogos();
 
 // Start server
 app.listen(PORT, () => {
