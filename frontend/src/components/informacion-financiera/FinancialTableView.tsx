@@ -42,7 +42,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
           <TableHead>
             <TableRow>
               <TableCell>Documento</TableCell>
-              
+
               {esMatriz ? (
                 columnasPeriodo.map((periodo) => <TableCell key={periodo.clave}>{periodo.nombreCorto}</TableCell>)
               ) : (
@@ -54,14 +54,14 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
             {documentosOrdenados.map((documento) => (
               <TableRow key={documento.id}>
                 <TableCell>{documento.titulo}</TableCell>
-                
+
                 {esMatriz ? (
                   columnasPeriodo.map((periodo) => {
                     const publicacion = documento.periodos.find((p) => p.clave === periodo.clave);
                     return (
                       <TableCell key={periodo.clave}>
                         {publicacion?.archivo ? (
-                          <Button size="small" color="secondary" variant="contained" onClick={() => onSeleccionarArchivo(documento, publicacion)}>
+                          <Button size="small" color="secondary" variant="contained" sx={{ padding: '5px 8px' }} onClick={() => onSeleccionarArchivo(documento, publicacion)}>
                             {textoAccion(documento)}
                           </Button>
                         ) : (
@@ -79,6 +79,7 @@ export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSe
                         size="small"
                         color="secondary"
                         variant="contained"
+                        sx={{ padding: '5px 8px' }}
                         onClick={() => onSeleccionarArchivo(documento, documento.periodos[0])}
                       >
                         {textoAccion(documento)}
