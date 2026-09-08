@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import * as indiceArchivos from '../services/indiceArchivos.service';
+import * as indiceArchivosNormatividad from '../services/indiceArchivosNormatividad.service';
 import { servirPdf } from '../services/rangoArchivo.service';
 import { problemaArchivoNoEncontrado, problemaArchivoRetirado } from '../utils/problema';
 
@@ -11,7 +12,7 @@ function resolverYServir(
   disposicion: 'inline' | 'attachment'
 ): void {
   const { archivoId } = req.params;
-  const entrada = indiceArchivos.resolverPorArchivoId(archivoId);
+  const entrada = indiceArchivos.resolverPorArchivoId(archivoId) ?? indiceArchivosNormatividad.resolverPorArchivoId(archivoId);
 
   if (!entrada) {
     next(problemaArchivoNoEncontrado());

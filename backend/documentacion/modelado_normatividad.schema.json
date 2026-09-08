@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://soapap.gob.mx/schemas/modelado_normatividad.schema.json",
+  "title": "Modelado del catálogo de Normatividad",
+  "description": "Estructura fuente (sección -> documento) que alimenta el contrato de la API de normatividad. Sin dimensión de ejercicio fiscal ni periodo: cada documento tiene a lo sumo un archivo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["secciones"],
+  "properties": {
+    "secciones": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Seccion" }
+    }
+  },
+  "$defs": {
+    "Identificador": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "EstadoPublicacion": {
+      "type": "string",
+      "enum": ["pendiente", "publicado", "retirado"]
+    },
+    "RutaArchivo": {
+      "type": "string",
+      "pattern": "^([A-Za-z0-9_-]+/)?[A-Za-z0-9_-]+\\.pdf$"
+    },
+    "Seccion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "descripcion", "orden", "documentos"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identificador" },
+        "titulo": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "descripcion": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 500 },
+            { "type": "null" }
+          ]
+        },
+        "orden": { "type": "integer", "minimum": 1 },
+        "documentos": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Documento" }
+        }
+      }
+    },
+    "Documento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "orden", "link", "estado"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identificador" },
+        "titulo": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "orden": { "type": "integer", "minimum": 1 },
+        "link": {
+          "oneOf": [{ "$ref": "#/$defs/RutaArchivo" }, { "type": "null" }]
+        },
+        "estado": { "$ref": "#/$defs/EstadoPublicacion" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "estado": { "const": "publicado" } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "$ref": "#/$defs/RutaArchivo" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "estado": { "enum": ["pendiente", "retirado"] } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "type": "null" } }
+          }
+        }
+      ]
+    }
+  }
+}

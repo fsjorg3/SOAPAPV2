@@ -10,7 +10,7 @@ interface FinancialTableViewProps {
 }
 
 function textoAccion(documento: Documento): string {
-  return documento.accionPreferida === 'descargar' ? 'Descargar PDF' : 'Ver PDF';
+  return documento.accionPreferida === 'descargar' ? 'Descargar documento' : 'Ver documento';
 }
 
 export function FinancialTableView({ seccion, periodosCatalogo, documentos, onSeleccionarArchivo }: FinancialTableViewProps) {

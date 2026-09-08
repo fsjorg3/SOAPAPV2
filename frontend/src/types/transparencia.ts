@@ -1,3 +1,5 @@
+import type { Archivo } from './api';
+
 export type EstadoEjercicio = 'borrador' | 'publicado' | 'archivado';
 
 export interface Ejercicio {
@@ -40,16 +42,6 @@ export interface PeriodoCatalogo {
 
 export type EstadoPublicacion = 'pendiente' | 'publicado' | 'retirado';
 
-export interface Archivo {
-  id: string;
-  nombre: string;
-  tipo: 'application/pdf';
-  tamanoBytes?: number;
-  fechaPublicacion?: string;
-  urlVisualizacion: string;
-  urlDescarga: string;
-}
-
 export interface PublicacionPeriodo {
   clave: ClavePeriodo;
   nombre: string;
@@ -76,20 +68,3 @@ export interface DatosDetalleSeccion {
   documentos: Documento[];
 }
 
-export interface Problema {
-  type: string;
-  title: string;
-  status: number;
-  detail?: string;
-  instance?: string;
-  codigo?: string;
-}
-
-export interface Meta {
-  generadoEn: string;
-}
-
-export interface Respuesta<T> {
-  data: T;
-  meta: Meta;
-}

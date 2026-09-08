@@ -12,7 +12,7 @@ interface FinancialCardViewProps {
 }
 
 function textoAccion(documento: Documento): string {
-  return documento.accionPreferida === 'descargar' ? 'Descargar PDF' : 'Ver PDF';
+  return documento.accionPreferida === 'descargar' ? 'Descargar documento' : 'Ver documento';
 }
 
 export function FinancialCardView({ seccion, periodosCatalogo, documentos, onSeleccionarArchivo }: FinancialCardViewProps) {

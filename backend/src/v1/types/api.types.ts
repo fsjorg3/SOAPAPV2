@@ -114,3 +114,41 @@ export interface FiltrosSeccion {
   periodo?: ClavePeriodo;
   estado?: EstadoPublicacion;
 }
+
+export interface DocumentoPublico {
+  id: string;
+  titulo: string;
+  orden: number;
+  estado: EstadoPublicacion;
+  archivo: Archivo | null;
+}
+
+export interface SeccionNormativaPublica {
+  id: string;
+  titulo: string;
+  descripcion: string | null;
+  orden: number;
+  totalDocumentos: number;
+  totalPublicados: number;
+  documentos: DocumentoPublico[];
+}
+
+export interface DatosNormatividad {
+  secciones: SeccionNormativaPublica[];
+}
+
+export interface GrupoConcesionPublica {
+  id: string;
+  titulo: string;
+  orden: number;
+  documentoPrincipal: DocumentoPublico;
+  anexos: DocumentoPublico[];
+  totalAnexos: number;
+}
+
+export interface DatosTitulo {
+  grupos: GrupoConcesionPublica[];
+}
+
+export type RespuestaNormatividad = Respuesta<DatosNormatividad>;
+export type RespuestaTitulo = Respuesta<DatosTitulo>;

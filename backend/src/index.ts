@@ -7,8 +7,9 @@ import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import { validateContactForm } from './middlewares/contact.middleware';
 import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
-import { transparenciaRouter, archivosRouter } from './v1/routes';
+import { transparenciaRouter, archivosRouter, normatividadRouter } from './v1/routes';
 import { inicializarCatalogos } from './v1/services/catalogo.service';
+import { inicializarCatalogoNormatividad } from './v1/services/catalogoNormatividad.service';
 
 dotenv.config();
 
@@ -96,6 +97,7 @@ app.use('/api/v1/archivos', assetsLimiter, archivosRouter);
 app.use(apiLimiter);
 
 app.use('/api/v1/transparencia', transparenciaRouter);
+app.use('/api/v1/normatividad', normatividadRouter);
 
 // Routes
 app.get('/', (req, res) => {
@@ -127,8 +129,9 @@ app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, r
   // La lógica fue delegada al middleware validatePdfRequest
 });
 
-// Cargar catálogos de la API v1 (transparencia financiera) antes de aceptar tráfico
+// Cargar catálogos de la API v1 (transparencia financiera y normatividad) antes de aceptar tráfico
 inicializarCatalogos();
+inicializarCatalogoNormatividad();
 
 // Start server
 app.listen(PORT, () => {

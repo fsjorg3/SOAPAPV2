@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { fetcherV1 } from '../lib/api';
-import type { Respuesta, Ejercicio, DatosSecciones, DatosDetalleSeccion } from '../types/transparencia';
+import type { Respuesta } from '../types/api';
+import type { Ejercicio, DatosSecciones, DatosDetalleSeccion } from '../types/transparencia';
 
 export function useEjercicios() {
   const { data, error, isLoading } = useSWR<Respuesta<Ejercicio[]>>(

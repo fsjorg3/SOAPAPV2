@@ -1,0 +1,141 @@
+{
+  "secciones": [
+    {
+      "id": "marco_juridico_institucional",
+      "titulo": "Marco jurídico institucional",
+      "descripcion": "Documentos base que establecen la creación, operación y regulación del Organismo.",
+      "orden": 1,
+      "documentos": [
+        {
+          "id": "decreto_de_creacion",
+          "titulo": "Decreto de Creación",
+          "orden": 1,
+          "link": "decreto_creacion_soapap.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "ley_del_agua_para_el_estado_de_puebla",
+          "titulo": "Ley del Agua para el Estado de Puebla",
+          "orden": 2,
+          "link": "ley_del_agua_puebla.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "reglamento_interno",
+          "titulo": "Reglamento Interno",
+          "orden": 3,
+          "link": "reglamento_interior_soapap.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "reformas_al_reglamento_interno",
+          "titulo": "Reformas al Reglamento Interno",
+          "orden": 4,
+          "link": "reformas_reglamento_interior_soapap.pdf",
+          "estado": "publicado"
+        }
+      ]
+    },
+    {
+      "id": "normatividad_institucional",
+      "titulo": "Normatividad institucional",
+      "descripcion": "Normas, códigos y acuerdos que rigen la conducta y administración del Organismo.",
+      "orden": 2,
+      "documentos": [
+        {
+          "id": "codigo_de_conducta",
+          "titulo": "Código de Conducta",
+          "orden": 1,
+          "link": "codigo_conducta_soapap.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "codigo_de_etica",
+          "titulo": "Código de Ética",
+          "orden": 2,
+          "link": "codigo_etica_soapap.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "acuerdo_general",
+          "titulo": "Acuerdo General",
+          "orden": 3,
+          "link": "acuerdo_general.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "disposiciones_para_el_archivo_contable_gubernamental",
+          "titulo": "Disposiciones para el Archivo Contable Gubernamental",
+          "orden": 4,
+          "link": "disposiciones_para_archivo_contable_gubernamental.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "decreto_honorable_congreso_del_estado",
+          "titulo": "Decreto Honorable Congreso del Estado",
+          "orden": 5,
+          "link": "decreto_honorable_congreso_estado.pdf",
+          "estado": "publicado"
+        }
+      ]
+    },
+    {
+      "id": "lineamientos_y_disposiciones",
+      "titulo": "Lineamientos y disposiciones",
+      "descripcion": "Lineamientos, manuales y disposiciones emitidas por el Organismo.",
+      "orden": 3,
+      "documentos": [
+        {
+          "id": "lineamientos_de_apoyos_sociales",
+          "titulo": "Lineamientos de Apoyos Sociales",
+          "orden": 1,
+          "link": "lineamientos_apoyos_sociales.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "padron_de_permisos_de_descargas",
+          "titulo": "Padrón de Permisos de Descargas",
+          "orden": 2,
+          "link": "padron_permisos_descargas.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "registro_y_valuacion_de_patrimonio",
+          "titulo": "Registro y Valuación de Patrimonio",
+          "orden": 3,
+          "link": "registro_valuacion_patrimonio.pdf",
+          "estado": "publicado"
+        }
+      ]
+    },
+    {
+      "id": "programas_anuales_pada",
+      "titulo": "Programas anuales (PADA)",
+      "descripcion": "Programas Anuales de Desarrollo Archivístico del SOAPAP.",
+      "orden": 4,
+      "documentos": [
+        {
+          "id": "pada_2024",
+          "titulo": "PADA 2024",
+          "orden": 1,
+          "link": "pada2024.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "pada_2025",
+          "titulo": "PADA 2025",
+          "orden": 2,
+          "link": "pada2025.pdf",
+          "estado": "publicado"
+        },
+        {
+          "id": "programa_anual_de_desarrollo_archivistico",
+          "titulo": "Programa Anual de Desarrollo Archivístico",
+          "orden": 3,
+          "link": "programa_anual_desarrollo_archivistico_2026.pdf",
+          "estado": "publicado"
+        }
+      ]
+    }
+  ]
+}

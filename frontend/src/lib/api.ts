@@ -1,4 +1,4 @@
-import type { Problema } from '../types/transparencia';
+import type { Problema } from '../types/api';
 
 const RAIZ_API = import.meta.env.VITE_API_URL;
 
