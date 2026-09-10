@@ -75,6 +75,22 @@ const assetsLimiter = rateLimit({
 const pdfPath = path.resolve(process.env.PDF_STORAGE_PATH || './assets');
 app.use('/assets', assetsLimiter, express.static(pdfPath));
 
+// Rate Limiter específico para el formulario de contacto (más estricto que el general, ya que
+// dispara un envío real de correo y es más costoso/sensible a abuso que un simple GET de catálogo).
+// Usa su propia ventana, independiente de rateLimitWindowMs (15 min, compartida por apiLimiter/assetsLimiter).
+const contactLimiterWindowMs = parseInt(process.env.RATE_LIMIT_CONTACT_WINDOW_MS || '300000', 10); // 5 minutos
+const contactLimiterMax = parseInt(process.env.RATE_LIMIT_CONTACT_MAX || '2', 10);
+const contactLimiter = rateLimit({
+  windowMs: contactLimiterWindowMs,
+  max: contactLimiterMax,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    status: 429,
+    message: 'Demasiados intentos de envío del formulario de contacto. Intenta de nuevo en unos minutos.'
+  }
+});
+
 // Aplicar Rate Limiter general a todas las demás rutas
 app.use(apiLimiter);
 
@@ -84,9 +100,8 @@ app.get('/', (req, res) => {
 });
 
 // Endpoint 1: Recibir el contenido del formulario de contacto
-app.post('/soapapv2/api/contact', validateContactForm, (req, res) => {
-  // TODO: Implementar lógica para procesar los datos del formulario (ej. envío de email)
-  res.status(200).json({ message: 'Formulario recibido correctamente (En construcción)' });
+app.post('/soapapv2/api/contact', contactLimiter, validateContactForm, (req, res) => {
+  // La lógica fue delegada al middleware validateContactForm
 });
 
 // Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad, información financiera, título de concesión o convocatorias)
