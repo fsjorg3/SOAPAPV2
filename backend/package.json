@@ -9,6 +9,7 @@
     "build": "tsc",
     "migrar:financiera": "ts-node --transpile-only scripts/migrar-informacion-financiera.ts",
     "migrar:normatividad": "ts-node --transpile-only scripts/migrar-normatividad.ts",
+    "migrar:convocatorias": "ts-node --transpile-only scripts/migrar-convocatorias.ts",
     "test": "node --import tsx --test \"src/v1/**/*.test.ts\" \"scripts/**/*.test.ts\""
   },
   "keywords": [],

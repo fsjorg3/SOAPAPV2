@@ -34,36 +34,6 @@ export const validateTransparencyList = (req: Request, res: Response, next: Next
     const pdfPath = path.resolve(process.env.PDF_STORAGE_PATH || './assets');
 
 
-    if (category === 'convocatorias') {
-      const convocatoriasDir = path.join(pdfPath, 'convocatorias');
-      const jsonPath = path.join(convocatoriasDir, 'convocatorias.json');
-
-      if (fs.existsSync(jsonPath)) {
-        try {
-          const fileContent = fs.readFileSync(jsonPath, 'utf8');
-          res.status(200).json(JSON.parse(fileContent));
-          return;
-        } catch (err) {
-          // Fallback a lectura dinámica si el JSON tiene un error de sintaxis
-        }
-      }
-
-      if (fs.existsSync(convocatoriasDir)) {
-        const files = fs.readdirSync(convocatoriasDir)
-          .filter(f => f.toLowerCase().endsWith('.pdf'))
-          .map(f => {
-            return {
-              titulo: f.replace(/\.pdf$/i, '').replace(/_/g, ' ').toUpperCase(),
-              filename: f
-            };
-          });
-        res.status(200).json(files);
-        return;
-      }
-      res.status(200).json([]);
-      return;
-    }
-
     if (category === 'informacion_financiera') {
       if (!yearParam) {
         res.status(400).json({ success: false, message: 'Año no proporcionado' });

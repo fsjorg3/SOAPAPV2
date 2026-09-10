@@ -1,4 +1,5 @@
 import { ClavePeriodo, EstadoPublicacion, Periodicidad } from './modelado.types';
+import { CategoriaConvocatoria } from './modeladoConvocatorias.types';
 
 export type TipoPresentacion = 'matriz_periodos' | 'documentos_simples';
 export type AccionArchivo = 'ver' | 'descargar';
@@ -152,3 +153,19 @@ export interface DatosTitulo {
 
 export type RespuestaNormatividad = Respuesta<DatosNormatividad>;
 export type RespuestaTitulo = Respuesta<DatosTitulo>;
+
+export interface ConvocatoriaPublica {
+  id: string;
+  expediente: string;
+  anio: number;
+  categoria: CategoriaConvocatoria;
+  descripcion: string;
+  estado: EstadoPublicacion;
+  archivo: Archivo | null;
+}
+
+export interface DatosConvocatorias {
+  convocatorias: ConvocatoriaPublica[];
+}
+
+export type RespuestaConvocatorias = Respuesta<DatosConvocatorias>;

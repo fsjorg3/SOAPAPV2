@@ -7,9 +7,10 @@ import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import { validateContactForm } from './middlewares/contact.middleware';
 import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
-import { transparenciaRouter, archivosRouter, normatividadRouter } from './v1/routes';
+import { transparenciaRouter, archivosRouter, normatividadRouter, convocatoriasRouter } from './v1/routes';
 import { inicializarCatalogos } from './v1/services/catalogo.service';
 import { inicializarCatalogoNormatividad } from './v1/services/catalogoNormatividad.service';
+import { inicializarCatalogoConvocatorias } from './v1/services/catalogoConvocatorias.service';
 
 dotenv.config();
 
@@ -19,9 +20,13 @@ const PORT = process.env.PORT || 3000;
 // 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
 app.disable('x-powered-by');
 
-// Confiar en los proxies (Cloudflare + Apache) para obtener la IP real del usuario
-// De lo contrario, el rate limiter bloqueará a TODOS los usuarios al mismo tiempo (tomando la IP de Apache/Cloudflare)
-app.set('trust proxy', true);
+// Confiar en los proxies (Cloudflare + Apache = 2 saltos) para obtener la IP real del usuario.
+// De lo contrario, el rate limiter bloqueará a TODOS los usuarios al mismo tiempo (tomando la IP de Apache/Cloudflare).
+// Usar `true` en vez de un número de saltos exacto confía en TODA la cadena de X-Forwarded-For,
+// permitiendo que cualquier cliente falsifique su IP y evada el rate limiting — express-rate-limit
+// ya lo rechaza en boot (ERR_ERL_PERMISSIVE_TRUST_PROXY). Con 2 solo se confía en los 2 proxies
+// conocidos y reales frente a la app.
+app.set('trust proxy', 2);
 
 // 2. Cabeceras de seguridad globales con Helmet
 // Configuramos crossOriginResourcePolicy en 'cross-origin' para permitir que el frontend
@@ -98,6 +103,7 @@ app.use(apiLimiter);
 
 app.use('/api/v1/transparencia', transparenciaRouter);
 app.use('/api/v1/normatividad', normatividadRouter);
+app.use('/api/v1/convocatorias', convocatoriasRouter);
 
 // Routes
 app.get('/', (req, res) => {
@@ -110,7 +116,7 @@ app.post('/soapapv2/api/contact', validateContactForm, (req, res) => {
   res.status(200).json({ message: 'Formulario recibido correctamente (En construcción)' });
 });
 
-// Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad, información financiera, título de concesión o convocatorias)
+// Endpoint 2: Generar un JSON con los archivos de transparencia (información financiera)
 app.get('/soapapv2/api/transparency/files', validateTransparencyList, (req, res) => {
   // La lógica fue delegada al middleware validateTransparencyList
 });
@@ -129,9 +135,10 @@ app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, r
   // La lógica fue delegada al middleware validatePdfRequest
 });
 
-// Cargar catálogos de la API v1 (transparencia financiera y normatividad) antes de aceptar tráfico
+// Cargar catálogos de la API v1 (transparencia financiera, normatividad y convocatorias) antes de aceptar tráfico
 inicializarCatalogos();
 inicializarCatalogoNormatividad();
+inicializarCatalogoConvocatorias();
 
 // Start server
 app.listen(PORT, () => {
