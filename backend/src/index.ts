@@ -5,9 +5,8 @@ import path from 'path';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
-import { validateContactForm } from './middlewares/contact.middleware';
 import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
-import { transparenciaRouter, archivosRouter, normatividadRouter, convocatoriasRouter } from './v1/routes';
+import { transparenciaRouter, archivosRouter, normatividadRouter, convocatoriasRouter, contactoRouter } from './v1/routes';
 import { inicializarCatalogos } from './v1/services/catalogo.service';
 import { inicializarCatalogoNormatividad } from './v1/services/catalogoNormatividad.service';
 import { inicializarCatalogoConvocatorias } from './v1/services/catalogoConvocatorias.service';
@@ -98,22 +97,33 @@ app.use('/assets', assetsLimiter, express.static(pdfPath));
 // de abajo por estar montado después.
 app.use('/api/v1/archivos', assetsLimiter, archivosRouter);
 
+// Rate Limiter específico para el formulario de contacto (más estricto que el general, ya que
+// dispara un envío real de correo y es más costoso/sensible a abuso que un simple GET de catálogo).
+// Usa su propia ventana, independiente de rateLimitWindowMs (15 min, compartida por apiLimiter/assetsLimiter).
+const contactLimiterWindowMs = parseInt(process.env.RATE_LIMIT_CONTACT_WINDOW_MS || '300000', 10); // 5 minutos
+const contactLimiterMax = parseInt(process.env.RATE_LIMIT_CONTACT_MAX || '2', 10);
+const contactLimiter = rateLimit({
+  windowMs: contactLimiterWindowMs,
+  max: contactLimiterMax,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    status: 429,
+    message: 'Demasiados intentos de envío del formulario de contacto. Intenta de nuevo en unos minutos.'
+  }
+});
+
 // Aplicar Rate Limiter general a todas las demás rutas
 app.use(apiLimiter);
 
 app.use('/api/v1/transparencia', transparenciaRouter);
 app.use('/api/v1/normatividad', normatividadRouter);
 app.use('/api/v1/convocatorias', convocatoriasRouter);
+app.use('/api/v1/contacto', contactLimiter, contactoRouter);
 
 // Routes
 app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de SOAPAPV2' });
-});
-
-// Endpoint 1: Recibir el contenido del formulario de contacto
-app.post('/soapapv2/api/contact', validateContactForm, (req, res) => {
-  // TODO: Implementar lógica para procesar los datos del formulario (ej. envío de email)
-  res.status(200).json({ message: 'Formulario recibido correctamente (En construcción)' });
 });
 
 // Endpoint 2: Generar un JSON con los archivos de transparencia (información financiera)

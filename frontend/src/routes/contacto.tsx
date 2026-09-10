@@ -1,4 +1,4 @@
-import { Container, Box, Paper, Typography, Card, Button } from "@mui/material";
+import { Container, Box, Paper, Typography, Card, Button, Snackbar, Alert } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallIcon from "@mui/icons-material/Call";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -7,12 +7,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import EmailIcon from "@mui/icons-material/Email";
 import ListItemText from "@mui/material/ListItemText";
+import { useState } from "react";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
 import MapIcon from "@mui/icons-material/Map";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
+import { postV1, ErrorApi } from "../lib/api";
+import type { Respuesta, DatosContactoEnviado } from "../types/api";
 
 // 1. Definición estricta de la interfaz de datos
 interface IFormInput {
@@ -51,8 +54,8 @@ export default function Contacto() {
               fontSize: "40px",
               fontWeight: "900",
               color: "primary.main",
-              borderBottom: "2px solid",
-              borderColor: "secondary.main",
+              //borderBottom: "2px solid",
+              //borderColor: "secondary.main",
             }}
           >
             Contacto
@@ -251,7 +254,8 @@ export function EmailContact() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<IFormInput>({
     defaultValues: {
       name: "",
@@ -263,8 +267,28 @@ export function EmailContact() {
     },
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log("Datos del contacto validados:", data);
+  const [snackbar, setSnackbar] = useState<{
+    abierto: boolean;
+    severidad: "success" | "error";
+    mensaje: string;
+  }>({ abierto: false, severidad: "success", mensaje: "" });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      await postV1<Respuesta<DatosContactoEnviado>>("api/v1/contacto", data);
+      setSnackbar({
+        abierto: true,
+        severidad: "success",
+        mensaje: "Tu mensaje fue enviado correctamente. Te contactaremos pronto.",
+      });
+      reset();
+    } catch (error) {
+      const mensaje =
+        error instanceof ErrorApi
+          ? error.message
+          : "Ocurrió un error inesperado al enviar tu mensaje. Intenta de nuevo.";
+      setSnackbar({ abierto: true, severidad: "error", mensaje });
+    }
   };
 
   return (
@@ -308,23 +332,20 @@ export function EmailContact() {
           />
         </Grid>
 
-        {/* ------------- Nis ------------- */}
+        {/* ------------- Nis (opcional: el contacto puede no estar registrado en el padrón de suministro) ------------- */}
         <Grid size={{ xs: 12, md: 6 }}>
           <Controller
             name="nis"
             control={control}
-            rules={{
-              required: "El Número de identificación de servicio es requerido",
-            }}
             render={({ field }) => (
               <TextField
                 {...field}
                 fullWidth
                 error={!!errors.nis}
                 id="input_nis"
-                label="NIS*"
+                label="Numero de suministro (NIS)"
                 placeholder="935839246"
-                helperText={errors.nis?.message || ""}
+                helperText={errors.nis?.message || "Si no cuentas con uno, puedes dejarlo en blanco"}
               />
             )}
           />
@@ -436,14 +457,33 @@ export function EmailContact() {
           type="submit"
           variant="contained"
           color="secondary"
+          disabled={isSubmitting}
           sx={{
             width: { xs: "100%", sm: "80%", md: "30%" },
             fontWeight: "bold",
           }}
         >
-          Enviar mensaje
+          {isSubmitting ? "Enviando…" : "Enviar mensaje"}
         </Button>
       </Box>
+
+      <Snackbar
+        open={snackbar.abierto}
+        autoHideDuration={5000}
+        onClose={(_event, reason) => {
+          if (reason === "clickaway") return;
+          setSnackbar((prev) => ({ ...prev, abierto: false }));
+        }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          severity={snackbar.severidad}
+          sx={{ width: "100%" }}
+          onClose={() => setSnackbar((prev) => ({ ...prev, abierto: false }))}
+        >
+          {snackbar.mensaje}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

@@ -70,6 +70,15 @@ export function problemaInterno(): ErrorProblema {
   return new ErrorProblema(500, 'Error interno', 'ERROR_INTERNO', 'Ocurrió un error inesperado.');
 }
 
+export function problemaCorreoNoEnviado(): ErrorProblema {
+  return new ErrorProblema(
+    502,
+    'No se pudo enviar el mensaje',
+    'CORREO_NO_ENVIADO',
+    'Ocurrió un problema al enviar tu mensaje. Intenta de nuevo más tarde o escribe directamente a transparencia@soapap.gob.mx.'
+  );
+}
+
 /**
  * Envía directamente una respuesta application/problem+json sin pasar por next(err). Se usa en
  * rangoArchivo.service para el caso 416, que ocurre dentro de un flujo de streaming en vez del

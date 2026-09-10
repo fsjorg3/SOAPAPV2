@@ -25,3 +25,7 @@ export interface Respuesta<T> {
   data: T;
   meta: Meta;
 }
+
+export interface DatosContactoEnviado {
+  enviado: boolean;
+}
