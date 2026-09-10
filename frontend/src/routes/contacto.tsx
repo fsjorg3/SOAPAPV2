@@ -51,7 +51,8 @@ export default function Contacto() {
               fontSize: "40px",
               fontWeight: "900",
               color: "primary.main",
-              borderBottom: "2px solid secondary.main",
+              borderBottom: "2px solid",
+              borderColor: "secondary.main",
             }}
           >
             Contacto
@@ -89,13 +90,10 @@ export default function Contacto() {
           {/*canales de contacto */}
           <Box
             sx={{
-              width: {
-                xs: "100%",
-                md: "30%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-              },
+              width: { xs: "100%", md: "30%" },
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
             {/* Maps */}
@@ -164,7 +162,7 @@ export default function Contacto() {
                         <ListItem>
                           <ListItemButton
                             component="a"
-                            href="tel:2222460215"
+                            href="tel:2222461703"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText primary="22 22 46 17 03" />
@@ -173,7 +171,7 @@ export default function Contacto() {
                         <ListItem>
                           <ListItemButton
                             component="a"
-                            href="tel:2222461703"
+                            href="tel:2222460215"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText primary="22 22 46 02 15" />
@@ -191,7 +189,7 @@ export default function Contacto() {
                         <ListItem>
                           <ListItemButton
                             component="a"
-                            href="tel:2229584597"
+                            href="tel:2222422564"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText
