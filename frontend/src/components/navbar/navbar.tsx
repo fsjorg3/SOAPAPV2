@@ -30,14 +30,14 @@ export const navbarItems = [
   {
     texto: "Transparencia",
     subItems: [
-      // Pendiente de autorización para publicar — reactivar cuando se autorice (ver ruta comentada en routes.tsx).
-      // { texto: "Comité de ética", ruta: "/comite_de_etica" },
+      
       { texto: "Convocatorias", ruta: "/convocatorias" },
       { texto: "Normatividad", ruta: "/normatividad" },
       { texto: "Información Financiera", ruta: "/informacion-financiera" },
       
     ]
-  }
+  },
+  { texto: "Comité de ética", ruta: "/comite_de_etica" },
 ];
 
 function Navbar() {

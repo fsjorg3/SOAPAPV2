@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Dialog, Box, useMediaQuery, useTheme } from '@mui/material';
 import { PdfControls } from './PdfControls';
 import { PdfDocument, type PdfDocumentRef } from './PdfDocument';
@@ -9,20 +9,15 @@ interface PdfViewerProps {
   pdfUrl: string;
 }
 
-export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) => {
+const PdfViewerSession: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [scale, setScale] = useState<number>(1.0);
-
-  useEffect(() => {
-    if (open) {
-      setScale(window.innerWidth < 900 ? 0.25 : 1.0);
-      setPageNumber(1);
-    }
-  }, [open]);
+  const [scale, setScale] = useState<number>(() => (
+    typeof window !== 'undefined' && window.innerWidth < 900 ? 0.25 : 1.0
+  ));
 
   const documentRef = useRef<PdfDocumentRef>(null);
 
@@ -86,3 +81,7 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({ open, onClose, pdfUrl }) =
     </Dialog>
   );
 };
+
+export const PdfViewer: React.FC<PdfViewerProps> = (props) => (
+  <PdfViewerSession key={`${props.pdfUrl}:${props.open}`} {...props} />
+);

@@ -76,7 +76,7 @@ export default function EticaTabs({ value, onChange, sectionRef }: EticaTabsProp
                         {...a11yProps(1)}
                         icon={<DescriptionIcon />}
                         iconPosition="start"
-                        label="Lineamientos generales"
+                        label="Lineamientos"
                     />
                 </Tabs>
             </Box>

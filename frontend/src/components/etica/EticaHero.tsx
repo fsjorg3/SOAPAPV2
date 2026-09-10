@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
-import logoEtica from '/eticaGalery/logo.png';
+import logoEtica from '/eticaGalery/logo.svg';
 
 interface EticaHeroProps {
     onCommitteeClick: () => void;

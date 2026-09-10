@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Container } from '@mui/material';
+import EticaContact from '../components/etica/EticaContact';
 import EticaGallery from '../components/etica/EticaGallery';
 import EticaHero from '../components/etica/EticaHero';
 import EticaTabs from '../components/etica/EticaTabs';
@@ -35,6 +36,7 @@ export default function Etica() {
                 sectionRef={tabsSectionRef}
             />
             <EticaGallery />
+            <EticaContact />
         </Container>
     );
 }
