@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import EticaContact from '../components/etica/EticaContact';
 import EticaGallery from '../components/etica/EticaGallery';
 import EticaHero from '../components/etica/EticaHero';
+import EticaResources from '../components/etica/EticaResources';
 import EticaTabs from '../components/etica/EticaTabs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { seoMetadata } from '../config/seo-metadata';
@@ -35,6 +36,7 @@ export default function Etica() {
                 onChange={handleChange}
                 sectionRef={tabsSectionRef}
             />
+            <EticaResources />
             <EticaGallery />
             <EticaContact />
         </Container>

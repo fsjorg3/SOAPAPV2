@@ -7,3 +7,4 @@ dist/
 assets/titulo/
 assets/informacion_financiera/**/*.pdf
 documentacion
+package-lock.json

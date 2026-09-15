@@ -27,6 +27,14 @@ export interface GalleryItem {
     alt: string;
 }
 
+export interface ResourceItem {
+    image: string;
+    label: string;
+    title: string;
+    description: string;
+    alt: string;
+}
+
 export const committeeMembers: CommitteeMember[] = [
     {
         Icon: FaceIcon,
@@ -127,6 +135,23 @@ export const normativeDocuments: NormativeDocument[] = [
         description: 'Tarjeta de ejemplo para documento',
         pdfUrl: '/eticaPDF/ejemplo.pdf',
     },*/
+];
+
+export const resourceItems: ResourceItem[] = [
+    {
+        image: '/eticaGalery/PEAPUEBLA.webp',
+        label: 'MATERIAL INFORMATIVO',
+        title: 'Política Estatal Anticorrupción',
+        description: 'Conoce cómo desde la PEAPUEBLA se coordinan esfuerzos para prevenir y frenar la corrupción en Puebla.',
+        alt: 'Infografía: Política Estatal Anticorrupción',
+    },
+    {
+        image: '/eticaGalery/PEAPUEBLA_QR.webp',
+        label: 'MATERIAL INFORMATIVO',
+        title: '¿Cómo combatimos la corrupción en Puebla?',
+        description: 'Conoce los 3 ejes de la PEAPUEBLA para un Puebla más íntegro y transparente.',
+        alt: 'Infografía: ejes de la PEAPUEBLA contra la corrupción',
+    },
 ];
 
 export const galleryItems: GalleryItem[] = [
