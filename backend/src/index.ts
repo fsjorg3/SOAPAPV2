@@ -14,7 +14,7 @@ import { inicializarCatalogoConvocatorias } from './v1/services/catalogoConvocat
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 
 // 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
 app.disable('x-powered-by');
@@ -43,7 +43,7 @@ if (isProduction && !process.env.CORS_ORIGIN) {
 
 const corsOrigin = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim()).filter(Boolean)
-  : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'];
+  : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://127.0.0.1:5175'];
 
 app.use(cors({
   origin: corsOrigin,
