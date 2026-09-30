@@ -138,20 +138,14 @@ export const normativeDocuments: NormativeDocument[] = [
 ];
 
 export const resourceItems: ResourceItem[] = [
-    {
+    /*{
         image: '/eticaGalery/PEAPUEBLA.webp',
         label: 'MATERIAL INFORMATIVO',
         title: 'Política Estatal Anticorrupción',
         description: 'Conoce cómo desde la PEAPUEBLA se coordinan esfuerzos para prevenir y frenar la corrupción en Puebla.',
         alt: 'Infografía: Política Estatal Anticorrupción',
-    },
-    {
-        image: '/eticaGalery/PEAPUEBLA_QR.webp',
-        label: 'MATERIAL INFORMATIVO',
-        title: '¿Cómo combatimos la corrupción en Puebla?',
-        description: 'Conoce los 3 ejes de la PEAPUEBLA para un Puebla más íntegro y transparente.',
-        alt: 'Infografía: ejes de la PEAPUEBLA contra la corrupción',
-    },
+    },*/
+    /// Ejemplo de llenado
 ];
 
 export const galleryItems: GalleryItem[] = [
