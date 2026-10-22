@@ -7,78 +7,71 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { useLocation } from "react-router";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { Link, useLocation } from "react-router";
 
-import type { NavItem, NavLeafItem, NavMenuColumn } from "./navItems";
+import { columnasVisibles, esGrupoActivo, itemsVisibles, type NavGroupItem, type NavLeafItem } from "./navItems";
 
 interface NavMobileGroupItemProps {
-  item: Extract<NavItem, { columnas: NavMenuColumn[] }>;
+  item: NavGroupItem;
   isOpen: boolean;
   onToggle: () => void;
-  onNavigate: (ruta: string) => void;
+  onItemClick: () => void;
 }
 
-function NavMobileLeafItem({ leafItem, active, onNavigate }: { leafItem: NavLeafItem; active: boolean; onNavigate: (ruta: string) => void }) {
-  const Icono = leafItem.Icono;
+const leafButtonSx = (active: boolean) => ({
+  justifyContent: 'flex-start',
+  gap: 1,
+  pl: 3,
+  pr: 0,
+  py: 1.25,
+  borderBottom: '1px solid',
+  borderColor: 'divider',
+  color: active ? 'primary.main' : 'text.secondary',
+});
 
-  if (!leafItem.ruta) {
+function NavMobileLeafItem({ leafItem, active, onItemClick }: { leafItem: NavLeafItem; active: boolean; onItemClick: () => void }) {
+  const Icono = leafItem.Icono;
+  const texto = <Typography sx={{ fontWeight: active ? 600 : 400, fontSize: '0.9rem' }}>{leafItem.texto}</Typography>;
+
+  // Sistema externo: se abre en otra pestaña, con indicador de enlace externo (y candado si pide sesión).
+  if (leafItem.href) {
     return (
       <ListItem disablePadding>
-        <Box
-          aria-disabled="true"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-            width: '100%',
-            pl: 3,
-            pr: 0,
-            py: 1.25,
-            borderBottom: '1px solid',
-            borderColor: 'divider',
-            color: 'text.disabled',
-            cursor: 'not-allowed',
-          }}
+        <ListItemButton
+          component="a"
+          href={leafItem.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onItemClick}
+          sx={leafButtonSx(false)}
         >
           {Icono && <Icono fontSize="small" />}
-          <Typography sx={{ fontSize: '0.9rem' }}>{leafItem.texto}</Typography>
-        </Box>
+          <ListItemText primary={texto} />
+          {leafItem.requiereAcceso && <LockOutlinedIcon sx={{ fontSize: '1rem' }} aria-label="requiere iniciar sesión" />}
+          <OpenInNewIcon sx={{ fontSize: '1rem', mr: 1 }} aria-label="se abre en otra pestaña" />
+        </ListItemButton>
       </ListItem>
     );
   }
 
   return (
     <ListItem disablePadding>
-      <ListItemButton
-        onClick={() => onNavigate(leafItem.ruta!)}
-        sx={{
-          justifyContent: 'flex-start',
-          gap: 1,
-          pl: 3,
-          pr: 0,
-          py: 1.25,
-          borderBottom: '1px solid',
-          borderColor: 'divider',
-          color: active ? 'primary.main' : 'text.secondary',
-        }}
-      >
+      <ListItemButton component={Link} to={leafItem.ruta!} onClick={onItemClick} sx={leafButtonSx(active)}>
         {Icono && <Icono fontSize="small" />}
-        <ListItemText
-          primary={<Typography sx={{ fontWeight: active ? 600 : 400, fontSize: '0.9rem' }}>{leafItem.texto}</Typography>}
-        />
+        <ListItemText primary={texto} />
       </ListItemButton>
     </ListItem>
   );
 }
 
-export default function NavMobileGroupItem({ item, isOpen, onToggle, onNavigate }: NavMobileGroupItemProps) {
+export default function NavMobileGroupItem({ item, isOpen, onToggle, onItemClick }: NavMobileGroupItemProps) {
   const location = useLocation();
-  const isGroupActive = item.columnas.some((columna) =>
-    columna.items.some((leafItem) => leafItem.ruta === location.pathname)
-  );
+  const isGroupActive = esGrupoActivo(item, location.pathname);
 
   return (
-    <Box key={item.texto + "DrawerGroup"}>
+    <Box>
       <ListItem disablePadding>
         <ListItemButton
           onClick={onToggle}
@@ -98,7 +91,7 @@ export default function NavMobileGroupItem({ item, isOpen, onToggle, onNavigate 
         </ListItemButton>
       </ListItem>
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
-        {item.columnas.map((columna) => (
+        {columnasVisibles(item).map((columna) => (
           <Box key={columna.titulo}>
             <Typography
               sx={{
@@ -115,14 +108,28 @@ export default function NavMobileGroupItem({ item, isOpen, onToggle, onNavigate 
               {columna.titulo}
             </Typography>
             <List component="div" disablePadding>
-              {columna.items.map((leafItem) => (
+              {itemsVisibles(columna).map((leafItem) => (
                 <NavMobileLeafItem
                   key={leafItem.texto}
                   leafItem={leafItem}
                   active={location.pathname === leafItem.ruta}
-                  onNavigate={onNavigate}
+                  onItemClick={onItemClick}
                 />
               ))}
+              {columna.verTodo && (
+                <ListItem disablePadding>
+                  <ListItemButton
+                    component={Link}
+                    to={columna.verTodo.ruta}
+                    onClick={onItemClick}
+                    sx={{ ...leafButtonSx(false), color: 'secondary.dark' }}
+                  >
+                    <ListItemText
+                      primary={<Typography sx={{ fontWeight: 600, fontSize: '0.85rem' }}>{columna.verTodo.texto} →</Typography>}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              )}
             </List>
           </Box>
         ))}

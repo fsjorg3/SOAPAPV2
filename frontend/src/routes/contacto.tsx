@@ -1,4 +1,4 @@
-import { Container, Box, Paper, Typography, Card, Button, Snackbar, Alert } from "@mui/material";
+import { Box, Paper, Typography, Card, Button, Snackbar, Alert } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallIcon from "@mui/icons-material/Call";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -35,7 +35,7 @@ export default function Contacto() {
 
   return (
     <>
-      <Container maxWidth="lg">
+      <Box>
         {/* Title */}
         <Box
           sx={{
@@ -51,7 +51,7 @@ export default function Contacto() {
             sx={{
               //margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "40px",
+              fontSize: "2.5rem",
               fontWeight: "900",
               color: "primary.main",
               //borderBottom: "2px solid",
@@ -148,16 +148,16 @@ export default function Contacto() {
                     {isDesktop ? (
                       <>
                         <ListItem>
-                          <ListItemText primary="22 22 46 17 03" />
+                          <ListItemText primary="222 246 17 03" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="22 22 46 02 15" />
+                          <ListItemText primary="222 958 45 96" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="22 22 46 82 97" />
+                          <ListItemText primary="222 246 82 97" />
                         </ListItem>
                         <ListItem>
-                          <ListItemText primary="22 22 42 25 64" />
+                          <ListItemText primary="222 958 45 97" />
                         </ListItem>
                       </>
                     ) : (
@@ -174,10 +174,10 @@ export default function Contacto() {
                         <ListItem>
                           <ListItemButton
                             component="a"
-                            href="tel:2222460215"
+                            href="tel:2229584596"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
-                            <ListItemText primary="22 22 46 02 15" />
+                            <ListItemText primary="222 958 45 96" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem>
@@ -186,7 +186,7 @@ export default function Contacto() {
                             href="tel:2222468297"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
-                            <ListItemText primary="22 22 46 82 97" />
+                            <ListItemText primary="222 246 82 97" />
                           </ListItemButton>
                         </ListItem>
                         <ListItem>
@@ -196,7 +196,7 @@ export default function Contacto() {
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText
-                              primary="22 22 42 25 64"
+                              primary="222 958 45 97"
                             />
                           </ListItemButton>
                         </ListItem>
@@ -244,7 +244,7 @@ export default function Contacto() {
         <InteractiveOSMMap></InteractiveOSMMap>
 
 
-      </Container>
+      </Box>
     </>
   );
 }
@@ -343,7 +343,7 @@ export function EmailContact() {
                 fullWidth
                 error={!!errors.nis}
                 id="input_nis"
-                label="Numero de suministro (NIS)"
+                label="NIS (opcional)"
                 placeholder="935839246"
                 helperText={errors.nis?.message || "Si no cuentas con uno, puedes dejarlo en blanco"}
               />

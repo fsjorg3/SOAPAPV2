@@ -25,7 +25,6 @@ function CustomTabPanel({ children, value, index }: TabPanelProps) {
             id={`etica-tabpanel-${index}`}
             aria-labelledby={`etica-tab-${index}`}
             tabIndex={0}
-            sx={{ outline: 'none' }}
         >
             {value === index && <Box sx={{ p: { xs: 2, md: 4 } }}>{children}</Box>}
         </Box>
@@ -76,7 +75,7 @@ export default function EticaTabs({ value, onChange, sectionRef }: EticaTabsProp
                         {...a11yProps(1)}
                         icon={<DescriptionIcon />}
                         iconPosition="start"
-                        label="Lineamientos generales"
+                        label="Documentos y lineamientos"
                     />
                 </Tabs>
             </Box>

@@ -147,7 +147,7 @@ export default function Inicio() {
             sx={{
               margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "40px",
+              fontSize: "2.5rem",
               fontWeight: "900",
               color: "primary.main",
               borderBottom: "2px solid secondary.main",
@@ -190,7 +190,7 @@ export default function Inicio() {
             sx={{
               margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "30px",
+              fontSize: "1.875rem",
               fontWeight: "900",
               color: "primary.main",
               borderBottom: "2px solid secondary.main",
@@ -233,7 +233,7 @@ export default function Inicio() {
             sx={{
               margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "40px",
+              fontSize: "2.5rem",
               fontWeight: "900",
               color: "primary.main",
               borderBottom: "2px solid secondary.main",

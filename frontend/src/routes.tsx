@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- este archivo define el router, no un componente; no aplica a Fast Refresh */
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import App from "./App";
 import LayoutPublico from "./layouts/LayoutPublico";
 
@@ -14,8 +14,8 @@ const Convocatorias = lazy(() => import("./routes/convocatorias"));
 const Regularizate2026 = lazy(() => import("./routes/regularizate_2026"));
 const RegularizacionDomestica = lazy(() => import("./routes/regularizacion-domestica"));
 const Regularizacion2026 = lazy(() => import("./routes/regularizacion_2026"));
+const Comites = lazy(() => import("./routes/comites"));
 const Etica = lazy(() => import("./routes/etica"));
-const VerificarConstancia = lazy(() => import("./routes/verificar-constancia"));
 
 const Error404 = lazy(() => import("./routes/error-404"));
 
@@ -35,8 +35,10 @@ export const router = createBrowserRouter([
           { path: "normatividad", element: <Normatividad /> },
           { path: "informacion-financiera", element: <InformacionFinanciera /> },
           { path: "convocatorias", element: <Convocatorias /> },
-          { path: "comite_de_etica", element: <Etica /> },
-          { path: "verificar-constancia", element: <VerificarConstancia /> },
+          { path: "comites", element: <Comites /> },
+          { path: "comites/etica", element: <Etica /> },
+          // URL anterior del Comité de ética: se conserva como redirección para no romper enlaces existentes.
+          { path: "comite_de_etica", element: <Navigate to="/comites/etica" replace /> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
           { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
           { path: "regularizacion_2026", element: <Regularizacion2026 /> },

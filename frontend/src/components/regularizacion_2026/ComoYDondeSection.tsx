@@ -138,7 +138,7 @@ export default function ComoYDondeSection() {
                     <Typography
                         sx={{
                             textAlign: "center",
-                            fontSize: { xs: "24px", md: "40px" },
+                            fontSize: { xs: "1.5rem", md: "2.5rem" },
                             fontWeight: "900",
                             color: "primary.main",
                             textTransform: "uppercase",

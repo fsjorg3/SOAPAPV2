@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
 import { ConvocatoriasPortal } from "../components/convocatorias/ConvocatoriasPortal";
@@ -7,7 +7,7 @@ export default function Convocatorias() {
     useDocumentMeta(seoMetadata.convocatorias);
 
     return (
-        <Container sx={{ py: 4, minHeight: '80vh' }}>
+        <Box sx={{ py: 4, minHeight: '80vh' }}>
 
             {/* Title */}
             <Box
@@ -22,7 +22,9 @@ export default function Convocatorias() {
                 <Typography
                     sx={{
                         textAlign: "left",
-                        fontSize: "40px",
+                        // En móvil, "CONVOCATORIAS" en mayúsculas a 40px no cabía y desbordaba la página.
+                        fontSize: { xs: "1.75rem", md: "2.5rem" },
+                        overflowWrap: "break-word",
                         fontWeight: "900",
                         color: "primary.main",
                         borderBottom: "2px solid secondary.main",
@@ -42,6 +44,6 @@ export default function Convocatorias() {
 
             <ConvocatoriasPortal />
 
-        </Container>
+        </Box>
     );
 }

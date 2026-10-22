@@ -68,7 +68,7 @@ export default function SituacionSection() {
                 <Typography
                     sx={{
                         textAlign: "center",
-                        fontSize: { xs: "28px", md: "40px" },
+                        fontSize: { xs: "1.75rem", md: "2.5rem" },
                         fontWeight: "900",
                         color: "primary.main",
                         textTransform: "uppercase",

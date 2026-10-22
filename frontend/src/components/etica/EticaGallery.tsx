@@ -1,14 +1,24 @@
-import { Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
+import { Box, ImageList, ImageListItem, ImageListItemBar, Tab, Tabs, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { PhotoProvider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import EticaGalleryImage from './EticaGalleryImage';
-import { galleryItems } from './eticaData';
+import { galleryItems, sesiones } from './eticaData';
+import type { SesionId } from './eticaData';
+
+// Solo las sesiones con fotos tienen pestaña; la primera (más reciente) es la activa por defecto.
+const sesionesConFotos = sesiones
+    .map((sesion) => ({ ...sesion, fotos: galleryItems.filter((item) => item.sesion === sesion.id) }))
+    .filter((sesion) => sesion.fotos.length > 0);
 
 export default function EticaGallery() {
     const theme = useTheme();
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
     const isMediumScreen = useMediaQuery(theme.breakpoints.up('sm'));
     const galleryColumns = isLargeScreen ? 3 : isMediumScreen ? 2 : 1;
+    const [sesionActiva, setSesionActiva] = useState<SesionId | undefined>(sesionesConFotos[0]?.id);
+
+    const activa = sesionesConFotos.find((sesion) => sesion.id === sesionActiva);
 
     return (
         <Box component="section" aria-labelledby="gallery-title" sx={{ mb: 2 }}>
@@ -36,21 +46,53 @@ export default function EticaGallery() {
                     backgroundColor: 'secondary.main',
                 }}
             />
-            <PhotoProvider maskOpacity={0.9}>
-                <ImageList
-                    cols={galleryColumns}
-                    gap={8}
-                    rowHeight={220}
-                    sx={{ width: '100%', m: 0 }}
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
+                <Tabs
+                    value={sesionActiva}
+                    onChange={(_, valor: SesionId) => setSesionActiva(valor)}
+                    variant="scrollable"
+                    scrollButtons={true}
+                    allowScrollButtonsMobile
+                    textColor="secondary"
+                    indicatorColor="secondary"
+                    aria-label="Galería por sesión"
                 >
-                    {galleryItems.map((item) => (
-                        <ImageListItem key={item.src} sx={{ overflow: 'hidden' }}>
-                            <EticaGalleryImage {...item} />
-                            <ImageListItemBar title="Toca la imagen para ampliar" />
-                        </ImageListItem>
+                    {sesionesConFotos.map((sesion) => (
+                        <Tab
+                            key={sesion.id}
+                            value={sesion.id}
+                            id={`galeria-tab-${sesion.id}`}
+                            aria-controls={`galeria-tabpanel-${sesion.id}`}
+                            label={`${sesion.etiqueta} (${sesion.fotos.length})`}
+                        />
                     ))}
-                </ImageList>
-            </PhotoProvider>
+                </Tabs>
+            </Box>
+            {/* Solo se monta la sesión activa: las fotos de las demás no se descargan hasta abrir su pestaña.
+                Cada sesión tiene su propio PhotoProvider, así el visor ampliado recorre solo esa sesión. */}
+            {activa && (
+                <Box
+                    role="tabpanel"
+                    id={`galeria-tabpanel-${activa.id}`}
+                    aria-labelledby={`galeria-tab-${activa.id}`}
+                >
+                    <PhotoProvider key={activa.id} maskOpacity={0.9}>
+                        <ImageList
+                            cols={galleryColumns}
+                            gap={8}
+                            rowHeight={220}
+                            sx={{ width: '100%', m: 0 }}
+                        >
+                            {activa.fotos.map((item) => (
+                                <ImageListItem key={item.src} sx={{ overflow: 'hidden' }}>
+                                    <EticaGalleryImage {...item} />
+                                    <ImageListItemBar title="Toca la imagen para ampliar" />
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
+                    </PhotoProvider>
+                </Box>
+            )}
         </Box>
     );
 }

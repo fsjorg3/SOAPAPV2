@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
 import { NormatividadPortal } from "../components/normatividad/NormatividadPortal";
@@ -7,7 +7,7 @@ export default function Normatividad() {
     useDocumentMeta(seoMetadata.normatividad);
 
     return (
-        <Container sx={{ py: 4, minHeight: '80vh' }}>
+        <Box sx={{ py: 4, minHeight: '80vh' }}>
 
             {/* Title */}
             <Box
@@ -22,7 +22,7 @@ export default function Normatividad() {
                 <Typography
                     sx={{
                         textAlign: "left",
-                        fontSize: "40px",
+                        fontSize: "2.5rem",
                         fontWeight: "900",
                         color: "primary.main",
                         borderBottom: "2px solid secondary.main",
@@ -52,6 +52,6 @@ export default function Normatividad() {
 
             <NormatividadPortal />
 
-        </Container>
+        </Box>
     );
 }

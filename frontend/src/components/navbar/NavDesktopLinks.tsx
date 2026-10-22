@@ -3,17 +3,19 @@ import Button from "@mui/material/Button";
 import ButtonBase from "@mui/material/ButtonBase";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+import LoginIcon from "@mui/icons-material/Login";
 import { NavLink, useLocation } from "react-router";
 
-import { CTA_PAGAR_HREF, navbarItems } from "./navItems";
+import { VENTANILLA_DIGITAL_HREF, esGrupoActivo, megaMenuPanelId, navbarItems } from "./navItems";
+import { MEGA_MENU_TRIGGER_ATTR } from "./useNavbarMenus";
 
 interface NavDesktopLinksProps {
   openGroupKey: string | null;
   onToggleGroup: (texto: string) => void;
+  onCloseMenu: () => void;
 }
 
-export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesktopLinksProps) {
+export default function NavDesktopLinks({ openGroupKey, onToggleGroup, onCloseMenu }: NavDesktopLinksProps) {
   const location = useLocation();
 
   return (
@@ -29,9 +31,7 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
       {navbarItems.map((item) => {
         if (item.columnas) {
           const isGroupOpen = openGroupKey === item.texto;
-          const isGroupActive = item.columnas.some((columna) =>
-            columna.items.some((leafItem) => leafItem.ruta === location.pathname)
-          );
+          const isGroupActive = esGrupoActivo(item, location.pathname);
           return (
             <ButtonBase
               key={item.texto}
@@ -39,6 +39,8 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
               disableRipple
               aria-expanded={isGroupOpen}
               aria-haspopup="true"
+              aria-controls={megaMenuPanelId(item.texto)}
+              {...{ [MEGA_MENU_TRIGGER_ATTR]: item.texto }}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -70,11 +72,15 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
           );
         }
 
+        if (item.soloMovil) return null;
+
         return (
           <Button
             key={item.texto}
             component={NavLink}
             to={item.ruta!}
+            // Cierra también cuando el link apunta a la ruta actual (ahí no hay cambio de pathname).
+            onClick={onCloseMenu}
             sx={{
               color: (theme) => theme.palette.primary.contrastText,
               whiteSpace: "nowrap",
@@ -103,21 +109,22 @@ export default function NavDesktopLinks({ openGroupKey, onToggleGroup }: NavDesk
         );
       })}
 
-      <Button
-        component="a"
-        href={CTA_PAGAR_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-        variant="contained"
-        color="secondary"
-        startIcon={<PaymentsOutlinedIcon />}
-        sx={{ 
-          display: "none", 
-          ml: 1, 
-          whiteSpace: "nowrap" }}
-      >
-        Pagar mi recibo
-      </Button>
+      {/* Botón destacado: solo existe cuando la Ventanilla digital tiene URL publicada. */}
+      {VENTANILLA_DIGITAL_HREF && (
+        <Button
+          component="a"
+          href={VENTANILLA_DIGITAL_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="contained"
+          color="secondary"
+          startIcon={<LoginIcon />}
+          onClick={onCloseMenu}
+          sx={{ ml: 1, whiteSpace: "nowrap" }}
+        >
+          Ventanilla digital
+        </Button>
+      )}
     </Box>
   );
 }

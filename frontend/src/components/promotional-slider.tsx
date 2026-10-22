@@ -4,8 +4,11 @@ import { type EmblaCarouselType } from 'embla-carousel';
 import { Box, IconButton, Stack, Typography, ButtonBase } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useNavigate } from 'react-router';
 import Autoplay from 'embla-carousel-autoplay';
+import { useCarruselAutoplay } from '../hooks/useCarruselAutoplay';
 
 
 export interface SlideData {
@@ -31,6 +34,7 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const navigate = useNavigate();
+  const { reproduciendo, disponible: autoplayDisponible, alternar: alternarAutoplay } = useCarruselAutoplay(emblaApi);
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
@@ -61,7 +65,12 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
   };
 
   return (
-    <Box sx={{ width: width, margin: 'auto', position: 'relative' }}>
+    <Box
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Avisos destacados"
+      sx={{ width: width, margin: 'auto', position: 'relative' }}
+    >
 
       <Box ref={emblaRef} sx={{ overflow: 'hidden', borderRadius: 2, boxShadow: 3 }}>
         <Box sx={{ display: 'flex' }}>
@@ -71,27 +80,37 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
             return (
               <Box
                 key={index}
+                role="group"
+                aria-roledescription="diapositiva"
+                aria-label={`${index + 1} de ${slides.length}`}
                 sx={{
                   flex: '0 0 100%',
                   minWidth: 0,
                   position: 'relative',
                 }}
               >
+                {/* Si la diapositiva tiene enlace, la imagen va dentro de un ButtonBase para que sea alcanzable con teclado */}
                 <Box
-                  component="img"
-                  src={slide.src}
-                  alt={slide.alt || `Slide ${index + 1}`}
-                  onClick={() => handleSlideClick(slide.url)}
-                  sx={{
-                    width: '100%',
-                    // Eliminamos height y aplicamos aspectRatio
-                    aspectRatio: aspectRatio,
-                    objectFit: 'cover',
-                    cursor: isClickable ? 'pointer' : 'default',
-                    transition: 'transform 0.3s ease',
-                    '&:hover': isClickable ? { transform: 'scale(1.02)' } : {}
-                  }}
-                />
+                  component={isClickable ? ButtonBase : 'div'}
+                  {...(isClickable && { onClick: () => handleSlideClick(slide.url) })}
+                  sx={{ display: 'block', width: '100%', overflow: 'hidden' }}
+                >
+                  <Box
+                    component="img"
+                    src={slide.src}
+                    alt={slide.alt || `Diapositiva ${index + 1}`}
+                    sx={{
+                      display: 'block',
+                      width: '100%',
+                      // Eliminamos height y aplicamos aspectRatio
+                      aspectRatio: aspectRatio,
+                      objectFit: 'cover',
+                      cursor: isClickable ? 'pointer' : 'default',
+                      transition: 'transform 0.3s ease',
+                      '&:hover': isClickable ? { transform: 'scale(1.02)' } : {}
+                    }}
+                  />
+                </Box>
               </Box>
             );
           })}
@@ -99,6 +118,7 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
       </Box>
 
       <IconButton
+        aria-label="Diapositiva anterior"
         onClick={scrollPrev}
         disabled={selectedIndex === 0}
         sx={{
@@ -111,6 +131,7 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
       </IconButton>
 
       <IconButton
+        aria-label="Diapositiva siguiente"
         onClick={scrollNext}
         disabled={selectedIndex === scrollSnaps.length - 1}
         sx={{
@@ -123,15 +144,28 @@ const PromotionalSlider: React.FC<EmblaCarouselProps> = ({
       </IconButton>
 
       <Stack direction="row" sx={{ mt: 2, px: 1, alignItems: "center", justifyContent: "space-between" }}>
-        <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: "bold" }}>
-          {selectedIndex + 1} / {scrollSnaps.length}
-        </Typography>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          {autoplayDisponible && (
+            <IconButton
+              size="small"
+              onClick={alternarAutoplay}
+              aria-label={reproduciendo ? "Pausar carrusel" : "Reanudar carrusel"}
+            >
+              {reproduciendo ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
+            </IconButton>
+          )}
+          <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: "bold" }}>
+            {selectedIndex + 1} / {scrollSnaps.length}
+          </Typography>
+        </Stack>
 
         <Stack direction="row" spacing={1}>
           {scrollSnaps.map((_, index) => (
             <ButtonBase
               key={index}
               onClick={() => scrollTo(index)}
+              aria-label={`Ir a diapositiva ${index + 1}`}
+              aria-current={index === selectedIndex}
               sx={{
                 width: 10, height: 10, borderRadius: '50%',
                 bgcolor: index === selectedIndex ? 'primary.main' : 'grey.400',

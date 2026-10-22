@@ -1,4 +1,4 @@
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import { useState } from "react";
 import ColoniasDialog from "../components/colonias-dialog";
 import HeroSection from "../components/regularizacion-domestica/HeroSection";
@@ -19,7 +19,7 @@ export default function RegularizacionDomestica() {
     const [openColoniasDialog, setOpenColoniasDialog] = useState(false);
 
     return (
-        <Container maxWidth='lg'>
+        <Box>
             <HeroSection setOpenColoniasDialog={setOpenColoniasDialog} />
             <SobreProgramaSection />
             <ComoAccederSection />
@@ -32,6 +32,6 @@ export default function RegularizacionDomestica() {
             <ConsideracionesLegalesSection />
             
             <ColoniasDialog open={openColoniasDialog} onClose={() => setOpenColoniasDialog(false)} />
-        </Container>
+        </Box>
     );
 }

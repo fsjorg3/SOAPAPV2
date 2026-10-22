@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
 import { FinancialPortal } from "../components/informacion-financiera/FinancialPortal";
@@ -7,7 +7,7 @@ export default function InformacionFinanciera() {
     useDocumentMeta(seoMetadata.informacionFinanciera);
 
     return (
-        <Container maxWidth='lg'>
+        <Box>
 
             {/* Title */}
             <Box
@@ -22,7 +22,7 @@ export default function InformacionFinanciera() {
                 <Typography
                     sx={{
                         textAlign: "left",
-                        fontSize: "40px",
+                        fontSize: "2.5rem",
                         fontWeight: "900",
                         color: "primary.main",
                         borderBottom: "2px solid secondary.main",
@@ -52,6 +52,6 @@ export default function InformacionFinanciera() {
 
             <FinancialPortal />
 
-        </Container>
+        </Box>
     );
 }

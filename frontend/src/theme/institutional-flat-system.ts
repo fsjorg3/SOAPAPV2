@@ -1,5 +1,23 @@
 // theme.ts
 import { createTheme,alpha } from "@mui/material/styles";
+import type { CSSObject, Theme, ThemeOptions } from "@mui/material/styles";
+import { ESCALA_TEXTO, PREFERENCIAS_DEFECTO } from "../components/accesibilidad/preferencias";
+import type { PreferenciasAccesibilidad } from "../components/accesibilidad/preferencias";
+
+// 0. Extendemos el tema con la geometría del sitio (ancho máximo y márgenes laterales)
+declare module '@mui/material/styles' {
+  interface Theme {
+    layout: {
+      // Ancho máximo del sitio en px (navbar, contenido y footer).
+      anchoMaximo: number;
+      // Margen lateral en px por breakpoint, entre el borde de la ventana (o del ancho máximo) y el contenido.
+      margenLateral: { xs: number; sm: number; md: number };
+    };
+  }
+  interface ThemeOptions {
+    layout?: Partial<Theme['layout']>;
+  }
+}
 
 // 1. Extendemos Paper porque es el padre mecánico de la propiedad variant
 declare module '@mui/material/Paper' {
@@ -18,7 +36,8 @@ declare module '@mui/material/Card' {
 }
 
 
-const InstitutionalFlatSystem = createTheme({
+// Tema base (sin opciones de accesibilidad). crearTemaInstitucional le aplica encima las preferencias.
+const opcionesBase: ThemeOptions = {
   palette: {
     mode: "light",
 
@@ -84,42 +103,43 @@ const InstitutionalFlatSystem = createTheme({
     },
   },
 
+  // Tamaños en rem (base 16px) para que escalen con el font-size del <html> (opción "Tamaño de texto").
   typography: {
     fontFamily: `"Montserrat", sans-serif`,
 
     h1: {
-      fontSize: "40px",
+      fontSize: "2.5rem",
       fontWeight: 700,
       lineHeight: 1.2,
       letterSpacing: "-0.02em",
     },
 
     h2: {
-      fontSize: "32px",
+      fontSize: "2rem",
       fontWeight: 700,
       lineHeight: 1.25,
     },
 
     h3: {
-      fontSize: "24px",
+      fontSize: "1.5rem",
       fontWeight: 700,
       lineHeight: 1.3,
     },
 
     h4: {
-      fontSize: "20px",
+      fontSize: "1.25rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
 
     body1: {
-      fontSize: "16px",
+      fontSize: "1rem",
       lineHeight: 1.6,
       fontWeight: 400,
     },
 
     body2: {
-      fontSize: "14px",
+      fontSize: "0.875rem",
       lineHeight: 1.6,
       fontWeight: 400,
     },
@@ -131,7 +151,7 @@ const InstitutionalFlatSystem = createTheme({
     },
 
     caption: {
-      fontSize: "12px",
+      fontSize: "0.75rem",
       fontWeight: 600,
       lineHeight: 1.2,
     },
@@ -142,6 +162,13 @@ const InstitutionalFlatSystem = createTheme({
   },
 
   spacing: 8,
+
+  // Fuente única del ancho del sitio: la consumen LayoutPublico, la navbar y el footer
+  // (ver contenedorSitioSx y anchoContenidoSx al final del archivo). Las rutas no definen su propio ancho.
+  layout: {
+    anchoMaximo: 1440,
+    margenLateral: { xs: 16, sm: 24, md: 32 },
+  },
 
   shadows: [
     "none",
@@ -189,6 +216,26 @@ const InstitutionalFlatSystem = createTheme({
         "::selection": {
           backgroundColor: "#5B132B",
           color: "#FFFFFF",
+        },
+
+        // Foco visible al navegar con teclado (enlaces y elementos nativos). Dorado secundario:
+        // contrasta con el guinda de la navbar y con fondos claros.
+        ":focus-visible": {
+          outline: "3px solid #B8822A",
+          outlineOffset: "2px",
+        },
+      },
+    },
+
+    // ButtonBase (base de Button, IconButton, Tab, ToggleButton…) pone outline: 0;
+    // se restaura el mismo contorno cuando el foco viene del teclado.
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focusVisible": {
+            outline: "3px solid #B8822A",
+            outlineOffset: "2px",
+          },
         },
       },
     },
@@ -607,13 +654,107 @@ const InstitutionalFlatSystem = createTheme({
         tooltip: {
           backgroundColor: "#191C1E",
           borderRadius: 4,
-          fontSize: "12px",
+          fontSize: "0.75rem",
         },
       },
     },
 
   },
-});
+};
 
+// Contenedor del sitio: ocupa hasta layout.anchoMaximo y deja layout.margenLateral a cada lado.
+// Lo usan el <main> de LayoutPublico y el contenido del footer.
+export const contenedorSitioSx = (theme: Theme): CSSObject => {
+  const { anchoMaximo, margenLateral } = theme.layout;
+  return {
+    width: '100%',
+    maxWidth: `${anchoMaximo}px`,
+    marginInline: 'auto',
+    // En sx, un número en padding se multiplica por theme.spacing: se pasan px explícitos.
+    paddingInline: `${margenLateral.xs}px`,
+    [theme.breakpoints.up('sm')]: { paddingInline: `${margenLateral.sm}px` },
+    [theme.breakpoints.up('md')]: { paddingInline: `${margenLateral.md}px` },
+  };
+};
+
+// Ancho exacto del contenido útil (contenedor sin sus márgenes laterales), para elementos que no viven
+// dentro del contenedor pero deben alinear sus bordes con él, como la isla de la navbar.
+export const anchoContenidoSx = (theme: Theme): CSSObject => {
+  const { anchoMaximo, margenLateral } = theme.layout;
+  const ancho = (margen: number) => ({ width: `calc(100% - ${2 * margen}px)`, maxWidth: `${anchoMaximo - 2 * margen}px` });
+  return {
+    ...ancho(margenLateral.xs),
+    [theme.breakpoints.up('sm')]: ancho(margenLateral.sm),
+    [theme.breakpoints.up('md')]: ancho(margenLateral.md),
+  };
+};
+
+export type OpcionesTema = PreferenciasAccesibilidad;
+
+const FILTRO_INVERTIR = "invert(1) hue-rotate(180deg)";
+const GRIS_CONTRASTE = "#4A4A4A";
+
+// Capa de accesibilidad que se fusiona (deep merge) sobre el tema base.
+function opcionesAccesibilidad({
+  tamanoTexto,
+  altoContraste,
+  subrayarEnlaces,
+  escalaGrises,
+  invertirColores,
+}: OpcionesTema): ThemeOptions {
+  const filtros = [escalaGrises && "grayscale(1)", invertirColores && FILTRO_INVERTIR].filter(Boolean).join(" ");
+
+  return {
+    ...(altoContraste && {
+      palette: {
+        // El dorado base (#B8822A) no llega a 4.5:1 sobre blanco; se oscurece.
+        secondary: { main: "#7A5310", light: "#8F6418", dark: "#5E3F0A", contrastText: "#FFFFFF" },
+        background: { default: "#FFFFFF", paper: "#FFFFFF" },
+        text: { primary: "#000000", secondary: "#1A1A1A", disabled: "#5C5C5C" },
+        divider: GRIS_CONTRASTE,
+      },
+    }),
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          html: {
+            fontSize: ESCALA_TEXTO[tamanoTexto],
+            // En el elemento raíz el filtro no crea bloque contenedor: no afecta a elementos position: fixed.
+            ...(filtros && { filter: filtros }),
+          },
+          // Con colores invertidos, fotos, videos y el visor PDF se re-invierten para verse normales.
+          ...(invertirColores && {
+            "img, video, canvas, picture": { filter: FILTRO_INVERTIR },
+          }),
+          ...(altoContraste && {
+            body: { backgroundColor: "#FFFFFF", color: "#000000" },
+          }),
+          // Excluye ButtonBase: botones con forma de enlace y ítems de la navbar no se subrayan.
+          ...(subrayarEnlaces && {
+            "a:not(.MuiButtonBase-root)": { textDecoration: "underline" },
+          }),
+        },
+      },
+      ...(subrayarEnlaces && {
+        MuiLink: { styleOverrides: { root: { textDecoration: "underline" } } },
+      }),
+      ...(altoContraste && {
+        MuiPaper: { styleOverrides: { root: { border: `1px solid ${GRIS_CONTRASTE}` } } },
+        MuiCard: { styleOverrides: { root: { border: `1px solid ${GRIS_CONTRASTE}` } } },
+        MuiDivider: { styleOverrides: { root: { borderColor: GRIS_CONTRASTE } } },
+        MuiTab: { styleOverrides: { root: { color: "#1A1A1A", "&.Mui-selected": { color: "#000000" } } } },
+        MuiOutlinedInput: { styleOverrides: { root: { "& fieldset": { borderColor: GRIS_CONTRASTE } } } },
+      }),
+    },
+  };
+}
+
+// Tema del sitio con las preferencias de accesibilidad aplicadas (App.tsx lo recrea cuando cambian).
+export function crearTemaInstitucional(opciones: OpcionesTema = PREFERENCIAS_DEFECTO) {
+  // createTheme fusiona en profundidad los argumentos extra sobre el tema ya creado.
+  return createTheme(opcionesBase, opcionesAccesibilidad(opciones));
+}
+
+const InstitutionalFlatSystem = crearTemaInstitucional();
 
 export default InstitutionalFlatSystem;

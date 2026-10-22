@@ -31,7 +31,7 @@ export default function Modalidad2Section() {
                     }}>
                         Modalidad 2
                     </Box>
-                    <Typography sx={{ color: 'info.main', fontWeight: '900', fontSize: { xs: "28px", md: "40px" }, textTransform: 'uppercase', mb: 1, lineHeight: 1.15 }}>
+                    <Typography sx={{ color: 'info.main', fontWeight: '900', fontSize: { xs: "1.75rem", md: "2.5rem" }, textTransform: 'uppercase', mb: 1, lineHeight: 1.15 }}>
                         Contratación de Servicios de Carácter Unifamiliar Irregular
                     </Typography>
                     <Box sx={{ width: '60px', height: '4px', backgroundColor: 'primary.main', mb: 3 }} />

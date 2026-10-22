@@ -7,23 +7,24 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+import LoginIcon from "@mui/icons-material/Login";
 import Typography from "@mui/material/Typography";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 
 import dropMinimalist from "../../assets/drop-minimalist.svg";
 import NavMobileGroupItem from "./NavMobileGroupItem";
-import { CTA_PAGAR_HREF, navbarItems } from "./navItems";
+import { VENTANILLA_DIGITAL_HREF, navbarItems } from "./navItems";
 
 interface NavMobileDrawerProps {
   open: boolean;
   onClose: () => void;
   openMobileGroups: Record<string, boolean>;
   onToggleGroup: (texto: string) => void;
-  onNavigate: (ruta: string) => void;
+  // Cierra el drawer al elegir un destino (la navegación la hace el propio link).
+  onItemClick: () => void;
 }
 
-export default function NavMobileDrawer({ open, onClose, openMobileGroups, onToggleGroup, onNavigate }: NavMobileDrawerProps) {
+export default function NavMobileDrawer({ open, onClose, openMobileGroups, onToggleGroup, onItemClick }: NavMobileDrawerProps) {
   const location = useLocation();
 
   const drawerContent = (
@@ -40,7 +41,7 @@ export default function NavMobileDrawer({ open, onClose, openMobileGroups, onTog
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Box component="img" src={dropMinimalist} sx={{ display: "block", height: 32 }} />
+          <Box component="img" src={dropMinimalist} alt="" sx={{ display: "block", height: 32 }} />
           <Typography variant="h6" sx={{ fontWeight: 600, color: 'primary.contrastText' }}>
             SOAPAP
           </Typography>
@@ -63,7 +64,7 @@ export default function NavMobileDrawer({ open, onClose, openMobileGroups, onTog
                 item={item}
                 isOpen={Boolean(openMobileGroups[item.texto])}
                 onToggle={() => onToggleGroup(item.texto)}
-                onNavigate={onNavigate}
+                onItemClick={onItemClick}
               />
             );
           }
@@ -72,7 +73,9 @@ export default function NavMobileDrawer({ open, onClose, openMobileGroups, onTog
           return (
             <ListItem key={(item.ruta || item.texto) + "Drawer"} disablePadding>
               <ListItemButton
-                onClick={() => onNavigate(item.ruta!)}
+                component={Link}
+                to={item.ruta}
+                onClick={onItemClick}
                 sx={{
                   justifyContent: 'flex-start',
                   px: 0,
@@ -91,21 +94,24 @@ export default function NavMobileDrawer({ open, onClose, openMobileGroups, onTog
         })}
       </List>
       <Box sx={{ flexGrow: 1 }} />
-      <Box sx={{ p: 2 }}>
-        <Button
-          component="a"
-          href={CTA_PAGAR_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="contained"
-          color="secondary"
-          fullWidth
-          startIcon={<PaymentsOutlinedIcon />}
-          sx={{ display: "none" }}
-        >
-          Pagar mi recibo
-        </Button>
-      </Box>
+      {/* Botón destacado: solo existe cuando la Ventanilla digital tiene URL publicada. */}
+      {VENTANILLA_DIGITAL_HREF && (
+        <Box sx={{ p: 2 }}>
+          <Button
+            component="a"
+            href={VENTANILLA_DIGITAL_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="contained"
+            color="secondary"
+            fullWidth
+            startIcon={<LoginIcon />}
+            onClick={onItemClick}
+          >
+            Ventanilla digital
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 

@@ -5,7 +5,7 @@ import babel from '@rolldown/plugin-babel'
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    port: 5175,
+    port: 5177,
     strictPort: true,
   },
   plugins: [

@@ -24,7 +24,7 @@ export default function SobreProgramaSection() {
                         <Typography
                             sx={{
                                 textAlign: "center",
-                                fontSize: { xs: "28px", md: "40px" },
+                                fontSize: { xs: "1.75rem", md: "2.5rem" },
                                 fontWeight: "900",
                                 color: "primary.main",
                                 textTransform: "uppercase"
@@ -176,7 +176,7 @@ export default function SobreProgramaSection() {
                             <Typography sx={{ color: 'primary.main', fontWeight: 'bold', fontSize: '1.1rem', mb: 1, letterSpacing: '0.5px' }}>
                                 CONSIDERACIONES IMPORTANTES
                             </Typography>
-                            <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.5 }}>
+                            <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.5, maxWidth: '80ch' }}>
                                 Los usuarios que gocen de cualquier otro beneficio, cualquiera que sea su denominación, no podrán acceder a los beneficios del presente Programa.
                             </Typography>
                         </Box>

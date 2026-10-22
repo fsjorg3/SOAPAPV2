@@ -19,7 +19,7 @@ export default function ComoAccederSection() {
                     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 2 }}>
                         <PersonIcon sx={{ color: 'primary.main', fontSize: '2.5rem', mt: 0.5 }} />
                         <Box>
-                            <Typography sx={{ color: 'primary.main', fontWeight: '900', fontSize: { xs: "28px", md: "40px" }, textTransform: 'uppercase', lineHeight: 1.1 }}>
+                            <Typography sx={{ color: 'primary.main', fontWeight: '900', fontSize: { xs: "1.75rem", md: "2.5rem" }, textTransform: 'uppercase', lineHeight: 1.1 }}>
                                 ¿CÓMO ACCEDER AL BENEFICIO?
                             </Typography>
                             <Typography variant="body1" sx={{ color: 'text.secondary', mt: 1, fontSize: '1.05rem' }}>
