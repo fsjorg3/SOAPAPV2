@@ -81,7 +81,7 @@
                         },
                         {
                             "titulo": "Disciplina Financiera",
-                            "link": ""
+                            "link": "Q1/2026_Q1_Disciplina_Financiera.pdf"
                         },
                         {
                             "titulo": "Sistema de Alertas",
@@ -89,7 +89,7 @@
                         },
                         {
                             "titulo": "Manual de contabilidad",
-                            "link": "Q1/2026_Q1_Manual_Contabilidad"
+                            "link": "Q1/2026_Q1_Manual_Contabilidad.pdf"
                         }
                     ]
                 },
@@ -178,7 +178,7 @@
                         },
                         {
                             "titulo": "Manual de contabilidad",
-                            "link": ""
+                            "link": "Q1/2026_Q1_Manual_Contabilidad.pdf"
                         }
                     ]
                 },
@@ -483,7 +483,7 @@
                     "documentos": [
                         {
                             "titulo": "Programa Anual de Evaluación 2026",
-                            "link": ""
+                            "link": "2026_Programa_Anual_Evaluacion.pdf"
                         },
                         {
                             "titulo": "Ficha Tecnica Programa Presupuestario Primer Trimestre",
@@ -491,7 +491,7 @@
                         },
                         {
                             "titulo": "Ficha Tecnica Programa Presupuestario Segundo Trimestre",
-                            "link": ""
+                            "link": "Q2/2026_Q2_Ficha_Tecnica_Programa_Presupuestario.pdf"
                         },
                         {
                             "titulo": "Ficha Tecnica Programa Presupuestario Tercer Trimestre",
@@ -513,11 +513,11 @@
                     "documentos": [
                         {
                             "titulo": "Ingresos 2026",
-                            "link": ""
+                            "link": "Q1/2026_ingresos.pdf"
                         },
                         {
                             "titulo": "Egresos  2026",
-                            "link": ""
+                            "link": "Q1/2026_egresos.pdf"
                         }
                     ]
                 }
