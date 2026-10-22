@@ -1,6 +1,9 @@
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { useCarruselAutoplay } from '../hooks/useCarruselAutoplay';
 
 import aneas from '../assets/sitios/aneas.png';
 import conagua from '../assets/sitios/conagua.png';
@@ -13,14 +16,12 @@ export default function InterestSlider() {
         { src: agua_puebla, alt: "Logotipo Agua de Puebla", url: "https://www.aguapuebla.mx/" },
     ];
 
-    // Se configura el carrusel para auto-deslizarse en bucle sin detenerse por completo
-    const [emblaRef] = useEmblaCarousel({ loop: true }, [
-        Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+    // Carrusel en bucle con autoplay. Se detiene al pasar el ratón, arrastrar o enfocar un logo
+    // (stopOnInteraction por defecto) y se reanuda con el botón Pausar/Reanudar.
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+        Autoplay({ delay: 3000, stopOnMouseEnter: true })
     ]);
-
-    const handleLogoClick = (url: string) => {
-        window.open(url, '_blank', 'noopener,noreferrer');
-    };
+    const { reproduciendo, disponible, alternar } = useCarruselAutoplay(emblaApi);
 
     return (
         <Box
@@ -41,10 +42,27 @@ export default function InterestSlider() {
                     borderRadius: 2,
                     bgcolor: "background.paper",
                     p: { xs: 3, md: 4 },
+                    position: "relative",
                 }}
             >
+                {disponible && (
+                    <IconButton
+                        size="small"
+                        onClick={alternar}
+                        aria-label={reproduciendo ? "Pausar carrusel de sitios de interés" : "Reanudar carrusel de sitios de interés"}
+                        sx={{ position: "absolute", top: 4, right: 4 }}
+                    >
+                        {reproduciendo ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
+                    </IconButton>
+                )}
                 {/* Contenedor Viewport del carrusel */}
-                <Box ref={emblaRef} sx={{ overflow: 'hidden' }}>
+                <Box
+                    ref={emblaRef}
+                    role="region"
+                    aria-roledescription="carrusel"
+                    aria-label="Sitios de interés"
+                    sx={{ overflow: 'hidden' }}
+                >
                     {/* Contenedor de las diapositivas (slides) */}
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         {institutionalLogos.map((logo, index) => (
@@ -59,25 +77,34 @@ export default function InterestSlider() {
                                     alignItems: 'center',
                                 }}
                             >
+                                {/* Enlace real (no onClick en <img>) para que sea alcanzable con teclado */}
                                 <Box
-                                    component="img"
-                                    src={logo.src}
-                                    alt={logo.alt}
-                                    onClick={() => handleLogoClick(logo.url)}
-                                    sx={{
-                                        height: { xs: 45, sm: 55, md: 70 },
-                                        width: "auto",
-                                        objectFit: "contain",
-                                        // Efecto institucional con hover
-                                        filter: "grayscale(100%) opacity(70%)",
-                                        transition: "all 0.3s ease-in-out",
-                                        cursor: "pointer",
-                                        "&:hover": {
-                                            filter: "grayscale(0%) opacity(100%)",
-                                            transform: "scale(1.05)",
-                                        },
-                                    }}
-                                />
+                                    component="a"
+                                    href={logo.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${logo.alt} (abre en una pestaña nueva)`}
+                                    sx={{ display: "block", borderRadius: 1 }}
+                                >
+                                    <Box
+                                        component="img"
+                                        src={logo.src}
+                                        alt=""
+                                        sx={{
+                                            display: "block",
+                                            height: { xs: 45, sm: 55, md: 70 },
+                                            width: "auto",
+                                            objectFit: "contain",
+                                            // Efecto institucional con hover
+                                            filter: "grayscale(100%) opacity(70%)",
+                                            transition: "all 0.3s ease-in-out",
+                                            "&:hover": {
+                                                filter: "grayscale(0%) opacity(100%)",
+                                                transform: "scale(1.05)",
+                                            },
+                                        }}
+                                    />
+                                </Box>
                             </Box>
                         ))}
                     </Box>

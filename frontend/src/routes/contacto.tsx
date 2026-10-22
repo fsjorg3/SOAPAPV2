@@ -1,4 +1,4 @@
-import { Container, Box, Paper, Typography, Card, Button, Snackbar, Alert } from "@mui/material";
+import { Box, Paper, Typography, Card, Button, Snackbar, Alert } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallIcon from "@mui/icons-material/Call";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -14,6 +14,8 @@ import { Grid } from "@mui/material";
 import MapIcon from "@mui/icons-material/Map";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
+import { postV1, ErrorApi } from "../lib/api";
+import type { Respuesta, DatosContactoEnviado } from "../types/api";
 
 // 1. Definición estricta de la interfaz de datos
 interface IFormInput {
@@ -33,7 +35,7 @@ export default function Contacto() {
 
   return (
     <>
-      <Container maxWidth="lg">
+      <Box>
         {/* Title */}
         <Box
           sx={{
@@ -49,10 +51,11 @@ export default function Contacto() {
             sx={{
               //margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "40px",
+              fontSize: "2.5rem",
               fontWeight: "900",
               color: "primary.main",
-              borderBottom: "2px solid secondary.main",
+              //borderBottom: "2px solid",
+              //borderColor: "secondary.main",
             }}
           >
             Contacto
@@ -90,13 +93,10 @@ export default function Contacto() {
           {/*canales de contacto */}
           <Box
             sx={{
-              width: {
-                xs: "100%",
-                md: "30%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-              },
+              width: { xs: "100%", md: "30%" },
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
             {/* Maps */}
@@ -192,7 +192,7 @@ export default function Contacto() {
                         <ListItem>
                           <ListItemButton
                             component="a"
-                            href="tel:2229584597"
+                            href="tel:2222422564"
                             sx={{ color: "primary.main", fontStyle: "italic" }}
                           >
                             <ListItemText
@@ -244,7 +244,7 @@ export default function Contacto() {
         <InteractiveOSMMap></InteractiveOSMMap>
 
 
-      </Container>
+      </Box>
     </>
   );
 }
@@ -275,20 +275,16 @@ export function EmailContact() {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}soapapv2/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      await postV1<Respuesta<DatosContactoEnviado>>("api/v1/contacto", data);
+      setSnackbar({
+        abierto: true,
+        severidad: "success",
+        mensaje: "Tu mensaje fue enviado correctamente. Te contactaremos pronto.",
       });
-      const resultado = await response.json();
-      if (!response.ok || !resultado.success) {
-        throw new Error(resultado.message || "No se pudo enviar tu mensaje.");
-      }
-      setSnackbar({ abierto: true, severidad: "success", mensaje: resultado.message });
       reset();
     } catch (error) {
       const mensaje =
-        error instanceof Error
+        error instanceof ErrorApi
           ? error.message
           : "Ocurrió un error inesperado al enviar tu mensaje. Intenta de nuevo.";
       setSnackbar({ abierto: true, severidad: "error", mensaje });

@@ -5,8 +5,11 @@ import path from 'path';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
-import { validateContactForm } from './middlewares/contact.middleware';
 import { validateTransparencyList, validatePdfRequest, getFinancialYears } from './middlewares/transparency.middleware';
+import { transparenciaRouter, archivosRouter, normatividadRouter, convocatoriasRouter, contactoRouter } from './v1/routes';
+import { inicializarCatalogos } from './v1/services/catalogo.service';
+import { inicializarCatalogoNormatividad } from './v1/services/catalogoNormatividad.service';
+import { inicializarCatalogoConvocatorias } from './v1/services/catalogoConvocatorias.service';
 
 dotenv.config();
 
@@ -16,9 +19,13 @@ const PORT = process.env.PORT || 3000;
 // 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
 app.disable('x-powered-by');
 
-// Confiar en los proxies (Cloudflare + Apache) para obtener la IP real del usuario
-// De lo contrario, el rate limiter bloqueará a TODOS los usuarios al mismo tiempo (tomando la IP de Apache/Cloudflare)
-app.set('trust proxy', true);
+// Confiar en los proxies (Cloudflare + Apache = 2 saltos) para obtener la IP real del usuario.
+// De lo contrario, el rate limiter bloqueará a TODOS los usuarios al mismo tiempo (tomando la IP de Apache/Cloudflare).
+// Usar `true` en vez de un número de saltos exacto confía en TODA la cadena de X-Forwarded-For,
+// permitiendo que cualquier cliente falsifique su IP y evada el rate limiting — express-rate-limit
+// ya lo rechaza en boot (ERR_ERL_PERMISSIVE_TRUST_PROXY). Con 2 solo se confía en los 2 proxies
+// conocidos y reales frente a la app.
+app.set('trust proxy', 2);
 
 // 2. Cabeceras de seguridad globales con Helmet
 // Configuramos crossOriginResourcePolicy en 'cross-origin' para permitir que el frontend
@@ -29,9 +36,18 @@ app.use(helmet({
 
 // 3. Configuración de CORS
 // Si hay múltiples orígenes, se pueden separar por comas en el .env (ej. http://localhost:5173,https://soapap.gob.mx)
-const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : 'http://localhost:5173';
+const isProduction = process.env.NODE_ENV === 'production';
+if (isProduction && !process.env.CORS_ORIGIN) {
+  throw new Error('CORS_ORIGIN debe estar definida en producción.');
+}
+
+const corsOrigin = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim()).filter(Boolean)
+  : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://172.16.1.102:5173'];
+
 app.use(cors({
-  origin: corsOrigin
+  origin: corsOrigin,
+  methods: ['GET', 'POST'],
 }));
 
 // 4. Límites de tamaño en los payloads para mitigar ataques de denegación de servicio (DoS)
@@ -75,6 +91,12 @@ const assetsLimiter = rateLimit({
 const pdfPath = path.resolve(process.env.PDF_STORAGE_PATH || './assets');
 app.use('/assets', assetsLimiter, express.static(pdfPath));
 
+// API v1 de transparencia (en paralelo a /soapapv2/api/, sin reemplazarla todavía).
+// /archivos usa el limiter permisivo de assets (igual que /assets: una vista con range
+// requests genera múltiples peticiones parciales); /transparencia hereda el limiter general
+// de abajo por estar montado después.
+app.use('/api/v1/archivos', assetsLimiter, archivosRouter);
+
 // Rate Limiter específico para el formulario de contacto (más estricto que el general, ya que
 // dispara un envío real de correo y es más costoso/sensible a abuso que un simple GET de catálogo).
 // Usa su propia ventana, independiente de rateLimitWindowMs (15 min, compartida por apiLimiter/assetsLimiter).
@@ -94,17 +116,17 @@ const contactLimiter = rateLimit({
 // Aplicar Rate Limiter general a todas las demás rutas
 app.use(apiLimiter);
 
+app.use('/api/v1/transparencia', transparenciaRouter);
+app.use('/api/v1/normatividad', normatividadRouter);
+app.use('/api/v1/convocatorias', convocatoriasRouter);
+app.use('/api/v1/contacto', contactLimiter, contactoRouter);
+
 // Routes
 app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de SOAPAPV2' });
 });
 
-// Endpoint 1: Recibir el contenido del formulario de contacto
-app.post('/soapapv2/api/contact', contactLimiter, validateContactForm, (req, res) => {
-  // La lógica fue delegada al middleware validateContactForm
-});
-
-// Endpoint 2: Generar un JSON con los archivos de transparencia (normatividad, información financiera, título de concesión o convocatorias)
+// Endpoint 2: Generar un JSON con los archivos de transparencia (información financiera)
 app.get('/soapapv2/api/transparency/files', validateTransparencyList, (req, res) => {
   // La lógica fue delegada al middleware validateTransparencyList
 });
@@ -122,6 +144,11 @@ app.get('/soapapv2/api/transparency/anios', getFinancialYears);
 app.get('/soapapv2/api/transparency/file/:filename', validatePdfRequest, (req, res) => {
   // La lógica fue delegada al middleware validatePdfRequest
 });
+
+// Cargar catálogos de la API v1 (transparencia financiera, normatividad y convocatorias) antes de aceptar tráfico
+inicializarCatalogos();
+inicializarCatalogoNormatividad();
+inicializarCatalogoConvocatorias();
 
 // Start server
 app.listen(PORT, () => {

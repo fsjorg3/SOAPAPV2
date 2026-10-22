@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { Box, Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, Chip, Typography } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 import { PdfViewer } from '../pdfviewer/PdfViewer';
-import { normativeDocuments } from './eticaData';
+import { normativeDocuments, sesiones } from './eticaData';
+import type { SesionId } from './eticaData';
+
+// Etiqueta del origen del documento: la sesión que lo generó o, si no tiene, normativa externa.
+const etiquetaOrigen = (sesion?: SesionId) =>
+    sesiones.find((s) => s.id === sesion)?.etiqueta ?? 'Normativa estatal';
 
 export default function NormativeDocumentsPanel() {
     const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
@@ -26,7 +32,7 @@ export default function NormativeDocumentsPanel() {
                     gap: 2,
                 }}
             >
-                {normativeDocuments.map(({ Icon, title, description, pdfUrl }) => (
+                {normativeDocuments.map(({ Icon, title, description, pdfUrl, descargable, sesion }) => (
                     <Card
                         key={title}
                         variant="outlined"
@@ -43,9 +49,11 @@ export default function NormativeDocumentsPanel() {
                             },
                         }}
                     >
+                        {/* Los documentos descargables (formatos para llenar) se descargan directamente sin pasar por el visor */}
                         <CardActionArea
-                            onClick={() => handleOpenPdf(pdfUrl)}
-                            aria-label={`Abrir documento: ${title}`}
+                            {...(descargable
+                                ? { component: 'a', href: pdfUrl, download: true, 'aria-label': `Descargar documento: ${title} (${etiquetaOrigen(sesion)})` }
+                                : { onClick: () => handleOpenPdf(pdfUrl), 'aria-label': `Abrir documento: ${title} (${etiquetaOrigen(sesion)})` })}
                             sx={{
                                 height: '100%',
                                 cursor: 'pointer',
@@ -57,6 +65,13 @@ export default function NormativeDocumentsPanel() {
                             }}
                         >
                             <CardContent sx={{ height: '100%' }}>
+                                <Chip
+                                    label={etiquetaOrigen(sesion)}
+                                    size="small"
+                                    variant="outlined"
+                                    color={sesion ? 'secondary' : 'default'}
+                                    sx={{ display: 'flex', width: 'fit-content', mb: 1.5 }}
+                                />
                                 <Icon sx={{ color: 'secondary.main', fontSize: 38, mb: 1 }} />
                                 <Typography component="h3" variant="h4" sx={{ color: 'primary.main', mb: 1 }}>
                                     {title}
@@ -64,6 +79,16 @@ export default function NormativeDocumentsPanel() {
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                     {description}
                                 </Typography>
+                                {descargable && (
+                                    <Typography
+                                        component="span"
+                                        variant="button"
+                                        sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, mt: 2, color: 'primary.main' }}
+                                    >
+                                        <DownloadIcon fontSize="small" aria-hidden="true" />
+                                        Descargar PDF
+                                    </Typography>
+                                )}
                             </CardContent>
                         </CardActionArea>
                     </Card>

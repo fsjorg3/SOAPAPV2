@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
-import { Container } from '@mui/material';
+import { Box } from '@mui/material';
 import EticaContact from '../components/etica/EticaContact';
 import EticaGallery from '../components/etica/EticaGallery';
 import EticaHero from '../components/etica/EticaHero';
@@ -26,7 +26,7 @@ export default function Etica() {
     };
 
     return (
-        <Container component="main" maxWidth="lg" sx={{ py: { xs: 3, md: 6 } }}>
+        <Box sx={{ py: { xs: 3, md: 6 } }}>
             <EticaHero
                 onCommitteeClick={() => scrollToTab(0)}
                 onNormativeClick={() => scrollToTab(1)}
@@ -39,6 +39,6 @@ export default function Etica() {
             <EticaResources />
             <EticaGallery />
             <EticaContact />
-        </Container>
+        </Box>
     );
 }

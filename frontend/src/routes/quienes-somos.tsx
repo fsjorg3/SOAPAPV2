@@ -1,5 +1,5 @@
 import { } from "react";
-import { Container, Box, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardContent } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
@@ -87,7 +87,7 @@ export default function QuienesSomos() {
     ];
 
     return (
-        <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Box sx={{ py: 4 }}>
             {/* Title */}
             <Box
                 sx={{
@@ -100,7 +100,7 @@ export default function QuienesSomos() {
             >
                 <Typography
                     sx={{
-                        fontSize: "40px",
+                        fontSize: "2.5rem",
                         fontWeight: "900",
                         color: "primary.main",
                     }}
@@ -208,6 +208,6 @@ export default function QuienesSomos() {
                     );
                 })}
             </Timeline>
-        </Container>
+        </Box>
     );
 }

@@ -4,7 +4,8 @@ import { Link } from "react-router"
 import { PdfViewer } from "./pdfviewer/PdfViewer"
 
 import drop from '../assets/drop-minimalist.svg'
-import { navbarItems } from "../components/navbar/navbar"
+import { contenedorSitioSx } from '../theme/institutional-flat-system'
+import { PLATAFORMA_NACIONAL_TRANSPARENCIA_HREF, itemsVisibles, navbarItems } from "../components/navbar/navItems"
 
 
 export default function Footer() {
@@ -13,15 +14,12 @@ export default function Footer() {
 
         <Box sx={{ width: '100%', minHeight: '250px', backgroundColor: 'primary.main', borderRadius: '8px' }}>
 
+            {/* Mismo ancho y márgenes que el contenido del sitio (fuente única en el tema). */}
             <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    width: '100%',
-                    maxWidth: 'lg',
-                    marginInline: 'auto',
-                    px: 3, pt: 4, pb: 8
-                }}
+                sx={(theme) => ({
+                    ...contenedorSitioSx(theme),
+                    pt: 4, pb: 8
+                })}
             >
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
 
@@ -49,7 +47,11 @@ export default function Footer() {
                                 width: { xs: '100%', md: 'auto' }
                             }}
                         >
-                            {navbarItems.flatMap(item => item.subItems ? item.subItems : [item]).map((link) => (
+                            {navbarItems
+                                .flatMap(item => item.columnas ? item.columnas.flatMap(itemsVisibles) : [item])
+                                // Solo destinos internos: los externos (PNT) tienen su propio enlace al pie.
+                                .filter(link => link.ruta)
+                                .map((link) => (
                                 <Button
                                     key={link.texto}
                                     component={Link}
@@ -89,7 +91,7 @@ export default function Footer() {
                     </Typography>
                     <Typography
                         component='a'
-                        href="https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml?idEntidad=MjE=&idSujetoObligado=NDIzNg==#inicio"
+                        href={PLATAFORMA_NACIONAL_TRANSPARENCIA_HREF}
                         sx={{
                             color: 'primary.contrastText',
                             textDecoration: 'none',

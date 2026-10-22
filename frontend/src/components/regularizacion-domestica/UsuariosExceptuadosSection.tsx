@@ -75,7 +75,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -125,7 +125,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -174,7 +174,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -224,7 +224,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -274,7 +274,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -323,7 +323,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -372,7 +372,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -422,7 +422,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>
@@ -472,7 +472,7 @@ export default function UsuariosExceptuadosSection() {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '10px',
+                                fontSize: '0.625rem',
                                 fontWeight: 'bold',
                                 border: 1.5, borderColor: 'background.paper'
                             }}>

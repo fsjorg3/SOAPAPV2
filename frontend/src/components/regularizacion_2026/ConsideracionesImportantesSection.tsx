@@ -91,7 +91,7 @@ export default function ConsideracionesImportantesSection() {
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mb: { xs: 4, md: 5 } }}>
                     <Typography
                         sx={{
-                            fontSize: { xs: "28px", md: "40px" },
+                            fontSize: { xs: "1.75rem", md: "2.5rem" },
                             fontWeight: "900",
                             color: "primary.main",
                             textTransform: "uppercase",

@@ -1,0 +1,1308 @@
+{
+  "openapi": "3.1.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "API de Transparencia Financiera SOAPAP",
+    "version": "1.0.0",
+    "description": "Contrato público para consultar documentos de transparencia por ejercicio fiscal y sección.\n\nEl mismo detalle de sección alimenta la matriz de escritorio y las tarjetas móviles.\n`presentacion.tipo` indica si la sección se representa como matriz de periodos o como\ndocumentos anuales simples.\n",
+    "contact": {
+      "name": "SOAPAP"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://soapap.gob.mx/api/v1",
+      "description": "Producción"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Catálogo",
+      "description": "Ejercicios fiscales y secciones disponibles."
+    },
+    {
+      "name": "Documentos",
+      "description": "Documentos financieros y sus publicaciones por periodo."
+    },
+    {
+      "name": "Archivos",
+      "description": "Visualización y descarga de archivos PDF."
+    }
+  ],
+  "paths": {
+    "/transparencia/ejercicios": {
+      "get": {
+        "tags": [
+          "Catálogo"
+        ],
+        "operationId": "listarEjercicios",
+        "summary": "Lista los ejercicios fiscales disponibles",
+        "responses": {
+          "200": {
+            "description": "Ejercicios recuperados correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaEjercicios"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "ejercicio": 2026,
+                      "estado": "publicado"
+                    },
+                    {
+                      "ejercicio": 2025,
+                      "estado": "publicado"
+                    },
+                    {
+                      "ejercicio": 2024,
+                      "estado": "publicado"
+                    }
+                  ],
+                  "meta": {
+                    "generadoEn": "2026-09-03T18:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/transparencia/ejercicios/{ejercicio}/secciones": {
+      "get": {
+        "tags": [
+          "Catálogo"
+        ],
+        "operationId": "listarSecciones",
+        "summary": "Lista las secciones de un ejercicio fiscal",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Ejercicio"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Secciones recuperadas correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaSecciones"
+                },
+                "example": {
+                  "data": {
+                    "ejercicio": 2026,
+                    "secciones": [
+                      {
+                        "id": "estados_financieros",
+                        "titulo": "Estados financieros, contables, presupuestales y programáticos",
+                        "orden": 1,
+                        "periodicidad": "trimestral",
+                        "presentacion": {
+                          "tipo": "matriz_periodos",
+                          "mostrarFiltroPeriodo": true
+                        },
+                        "totalDocumentos": 21,
+                        "totalArchivosPublicados": 38
+                      },
+                      {
+                        "id": "notas_estados_financieros",
+                        "titulo": "Notas a los Estados Financieros",
+                        "orden": 3,
+                        "periodicidad": "anual",
+                        "presentacion": {
+                          "tipo": "documentos_simples",
+                          "mostrarFiltroPeriodo": false
+                        },
+                        "totalDocumentos": 6,
+                        "totalArchivosPublicados": 6
+                      }
+                    ]
+                  },
+                  "meta": {
+                    "generadoEn": "2026-09-03T18:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/transparencia/ejercicios/{ejercicio}/secciones/{seccionId}": {
+      "get": {
+        "tags": [
+          "Documentos"
+        ],
+        "operationId": "obtenerSeccion",
+        "summary": "Obtiene una sección con sus documentos y periodos",
+        "description": "Devuelve la información semántica necesaria para construir la interfaz.\nLa misma respuesta se utiliza en escritorio y móvil.\n\nLos filtros son opcionales. Para secciones pequeñas puede resultar preferible\nrecuperar la sección completa y filtrar en el navegador.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Ejercicio"
+          },
+          {
+            "$ref": "#/components/parameters/SeccionId"
+          },
+          {
+            "$ref": "#/components/parameters/Buscar"
+          },
+          {
+            "$ref": "#/components/parameters/Periodo"
+          },
+          {
+            "$ref": "#/components/parameters/EstadoPublicacion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sección recuperada correctamente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaDetalleSeccion"
+                },
+                "examples": {
+                  "matrizTrimestral": {
+                    "summary": "Matriz trimestral en escritorio o tarjetas en móvil",
+                    "value": {
+                      "data": {
+                        "ejercicio": 2026,
+                        "seccion": {
+                          "id": "estados_financieros",
+                          "titulo": "Estados financieros, contables, presupuestales y programáticos",
+                          "orden": 1,
+                          "periodicidad": "trimestral",
+                          "presentacion": {
+                            "tipo": "matriz_periodos",
+                            "mostrarFiltroPeriodo": true
+                          },
+                          "totalDocumentos": 21,
+                          "totalArchivosPublicados": 38
+                        },
+                        "periodos": [
+                          {
+                            "clave": "Q1",
+                            "nombre": "Primer trimestre",
+                            "nombreCorto": "1er Trimestre",
+                            "orden": 1
+                          },
+                          {
+                            "clave": "Q2",
+                            "nombre": "Segundo trimestre",
+                            "nombreCorto": "2do Trimestre",
+                            "orden": 2
+                          },
+                          {
+                            "clave": "Q3",
+                            "nombre": "Tercer trimestre",
+                            "nombreCorto": "3er Trimestre",
+                            "orden": 3
+                          },
+                          {
+                            "clave": "Q4",
+                            "nombre": "Cuarto trimestre",
+                            "nombreCorto": "4to Trimestre",
+                            "orden": 4
+                          }
+                        ],
+                        "documentos": [
+                          {
+                            "id": "estado_actividades",
+                            "titulo": "Estado de Actividades",
+                            "descripcion": "Muestra los ingresos y gastos para determinar el resultado del ejercicio.",
+                            "periodicidad": "trimestral",
+                            "orden": 1,
+                            "accionPreferida": "ver",
+                            "periodos": [
+                              {
+                                "clave": "Q1",
+                                "nombre": "Primer trimestre",
+                                "estado": "publicado",
+                                "archivo": {
+                                  "id": "archivo_7f6b3d",
+                                  "nombre": "2026_Q1_Estado_de_Actividades.pdf",
+                                  "tipo": "application/pdf",
+                                  "tamanoBytes": 842315,
+                                  "fechaPublicacion": "2026-04-20T18:30:00Z",
+                                  "urlVisualizacion": "/api/v1/archivos/archivo_7f6b3d/ver",
+                                  "urlDescarga": "/api/v1/archivos/archivo_7f6b3d/descargar"
+                                }
+                              },
+                              {
+                                "clave": "Q2",
+                                "nombre": "Segundo trimestre",
+                                "estado": "publicado",
+                                "archivo": {
+                                  "id": "archivo_92ad11",
+                                  "nombre": "2026_Q2_Estado_de_Actividades.pdf",
+                                  "tipo": "application/pdf",
+                                  "tamanoBytes": 901204,
+                                  "fechaPublicacion": "2026-07-22T16:00:00Z",
+                                  "urlVisualizacion": "/api/v1/archivos/archivo_92ad11/ver",
+                                  "urlDescarga": "/api/v1/archivos/archivo_92ad11/descargar"
+                                }
+                              },
+                              {
+                                "clave": "Q3",
+                                "nombre": "Tercer trimestre",
+                                "estado": "pendiente",
+                                "archivo": null
+                              },
+                              {
+                                "clave": "Q4",
+                                "nombre": "Cuarto trimestre",
+                                "estado": "pendiente",
+                                "archivo": null
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "meta": {
+                        "generadoEn": "2026-09-03T18:00:00Z"
+                      }
+                    }
+                  },
+                  "documentosAnuales": {
+                    "summary": "Documentos independientes con periodicidad anual",
+                    "value": {
+                      "data": {
+                        "ejercicio": 2026,
+                        "seccion": {
+                          "id": "notas_estados_financieros",
+                          "titulo": "Notas a los Estados Financieros",
+                          "orden": 3,
+                          "periodicidad": "anual",
+                          "presentacion": {
+                            "tipo": "documentos_simples",
+                            "mostrarFiltroPeriodo": false
+                          },
+                          "totalDocumentos": 2,
+                          "totalArchivosPublicados": 2
+                        },
+                        "periodos": [
+                          {
+                            "clave": "ANUAL",
+                            "nombre": "Ejercicio fiscal 2026",
+                            "nombreCorto": "Anual",
+                            "orden": 1
+                          }
+                        ],
+                        "documentos": [
+                          {
+                            "id": "nota_estados_financieros_enero",
+                            "titulo": "Nota a los Estados Financieros — Enero",
+                            "descripcion": "Información relevante correspondiente al mes de enero de 2026.",
+                            "periodicidad": "anual",
+                            "orden": 1,
+                            "accionPreferida": "ver",
+                            "periodos": [
+                              {
+                                "clave": "ANUAL",
+                                "nombre": "Ejercicio fiscal 2026",
+                                "estado": "publicado",
+                                "archivo": {
+                                  "id": "archivo_nota_enero",
+                                  "nombre": "2026_Nota_Estados_Financieros_Enero.pdf",
+                                  "tipo": "application/pdf",
+                                  "tamanoBytes": 540210,
+                                  "fechaPublicacion": "2026-02-10T16:00:00Z",
+                                  "urlVisualizacion": "/api/v1/archivos/archivo_nota_enero/ver",
+                                  "urlDescarga": "/api/v1/archivos/archivo_nota_enero/descargar"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "id": "nota_estados_financieros_febrero",
+                            "titulo": "Nota a los Estados Financieros — Febrero",
+                            "descripcion": "Información relevante correspondiente al mes de febrero de 2026.",
+                            "periodicidad": "anual",
+                            "orden": 2,
+                            "accionPreferida": "ver",
+                            "periodos": [
+                              {
+                                "clave": "ANUAL",
+                                "nombre": "Ejercicio fiscal 2026",
+                                "estado": "publicado",
+                                "archivo": {
+                                  "id": "archivo_nota_febrero",
+                                  "nombre": "2026_Nota_Estados_Financieros_Febrero.pdf",
+                                  "tipo": "application/pdf",
+                                  "tamanoBytes": 568401,
+                                  "fechaPublicacion": "2026-03-10T16:00:00Z",
+                                  "urlVisualizacion": "/api/v1/archivos/archivo_nota_febrero/ver",
+                                  "urlDescarga": "/api/v1/archivos/archivo_nota_febrero/descargar"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "meta": {
+                        "generadoEn": "2026-09-03T18:00:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/SolicitudInvalida"
+          },
+          "404": {
+            "$ref": "#/components/responses/NoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/transparencia/documentos": {
+      "get": {
+        "tags": [
+          "Documentos"
+        ],
+        "operationId": "buscarDocumentos",
+        "summary": "Busca documentos en una o varias secciones",
+        "parameters": [
+          {
+            "name": "ejercicio",
+            "in": "query",
+            "required": true,
+            "description": "Ejercicio fiscal que se desea consultar.",
+            "schema": {
+              "type": "integer",
+              "minimum": 2000,
+              "maximum": 2100
+            },
+            "example": 2026
+          },
+          {
+            "$ref": "#/components/parameters/BuscarRequerido"
+          },
+          {
+            "name": "seccionId",
+            "in": "query",
+            "required": false,
+            "description": "Limita la búsqueda a una sección.",
+            "schema": {
+              "$ref": "#/components/schemas/Identificador"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Periodo"
+          },
+          {
+            "$ref": "#/components/parameters/EstadoPublicacion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultados encontrados. Una lista vacía también devuelve 200.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaBusqueda"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/SolicitudInvalida"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
+        }
+      }
+    },
+    "/archivos/{archivoId}/ver": {
+      "get": {
+        "tags": [
+          "Archivos"
+        ],
+        "operationId": "visualizarArchivo",
+        "summary": "Visualiza un PDF en el navegador",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ArchivoId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Archivo PDF servido con Content-Disposition: inline.",
+            "headers": {
+              "Content-Disposition": {
+                "description": "Indica visualización en línea y el nombre del archivo.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline; filename=\"Estado_de_Actividades_Q1_2026.pdf\""
+              },
+              "Content-Length": {
+                "description": "Tamaño del archivo en bytes.",
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "Accept-Ranges": {
+                "description": "Indica soporte para solicitudes parciales.",
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                }
+              },
+              "ETag": {
+                "description": "Identificador de versión del archivo para caché HTTP.",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Last-Modified": {
+                "description": "Fecha de última modificación del archivo.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Fragmento del PDF devuelto para una solicitud de rango.",
+            "headers": {
+              "Content-Range": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes 0-1048575/5242880"
+              },
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                }
+              }
+            },
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/ArchivoNoEncontrado"
+          },
+          "410": {
+            "$ref": "#/components/responses/ArchivoRetirado"
+          }
+        }
+      }
+    },
+    "/archivos/{archivoId}/descargar": {
+      "get": {
+        "tags": [
+          "Archivos"
+        ],
+        "operationId": "descargarArchivo",
+        "summary": "Descarga un archivo PDF",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ArchivoId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Archivo PDF servido con Content-Disposition: attachment.",
+            "headers": {
+              "Content-Disposition": {
+                "description": "Indica descarga y el nombre sugerido del archivo.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "attachment; filename=\"Estado_de_Actividades_Q1_2026.pdf\""
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Fragmento del PDF devuelto para una solicitud de rango.",
+            "headers": {
+              "Content-Range": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                }
+              }
+            },
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/ArchivoNoEncontrado"
+          },
+          "410": {
+            "$ref": "#/components/responses/ArchivoRetirado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Ejercicio": {
+        "name": "ejercicio",
+        "in": "path",
+        "required": true,
+        "description": "Año del ejercicio fiscal.",
+        "schema": {
+          "type": "integer",
+          "minimum": 2000,
+          "maximum": 2100
+        },
+        "example": 2026
+      },
+      "SeccionId": {
+        "name": "seccionId",
+        "in": "path",
+        "required": true,
+        "description": "Identificador estable de la sección.",
+        "schema": {
+          "$ref": "#/components/schemas/Identificador"
+        },
+        "example": "estados_financieros"
+      },
+      "ArchivoId": {
+        "name": "archivoId",
+        "in": "path",
+        "required": true,
+        "description": "Identificador opaco del archivo. Nunca es una ruta del servidor.",
+        "schema": {
+          "$ref": "#/components/schemas/Identificador"
+        },
+        "example": "archivo_7f6b3d"
+      },
+      "Buscar": {
+        "name": "buscar",
+        "in": "query",
+        "required": false,
+        "description": "Texto que se busca en título y descripción.",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "example": "flujo"
+      },
+      "BuscarRequerido": {
+        "name": "buscar",
+        "in": "query",
+        "required": true,
+        "description": "Texto que se busca en título y descripción.",
+        "schema": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "example": "ingresos"
+      },
+      "Periodo": {
+        "name": "periodo",
+        "in": "query",
+        "required": false,
+        "description": "Filtra las publicaciones por clave de periodo.",
+        "schema": {
+          "$ref": "#/components/schemas/ClavePeriodo"
+        },
+        "example": "Q2"
+      },
+      "EstadoPublicacion": {
+        "name": "estado",
+        "in": "query",
+        "required": false,
+        "description": "Filtra por estado de publicación.",
+        "schema": {
+          "$ref": "#/components/schemas/EstadoPublicacion"
+        },
+        "example": "publicado"
+      }
+    },
+    "responses": {
+      "SolicitudInvalida": {
+        "description": "Los parámetros enviados no son válidos.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problema"
+            },
+            "example": {
+              "type": "https://soapap.gob.mx/problemas/solicitud-invalida",
+              "title": "Solicitud inválida",
+              "status": 400,
+              "detail": "El periodo solicitado no es válido para esta sección.",
+              "instance": "/api/v1/transparencia/ejercicios/2026/secciones/estados_financieros",
+              "codigo": "PERIODO_INVALIDO"
+            }
+          }
+        }
+      },
+      "NoEncontrado": {
+        "description": "El ejercicio, sección o documento solicitado no existe o no está publicado.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problema"
+            }
+          }
+        }
+      },
+      "ArchivoNoEncontrado": {
+        "description": "El identificador no corresponde a un archivo público.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problema"
+            }
+          }
+        }
+      },
+      "ArchivoRetirado": {
+        "description": "El archivo existió, pero fue retirado de publicación.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problema"
+            }
+          }
+        }
+      },
+      "ErrorInterno": {
+        "description": "Error inesperado del servicio.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problema"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Identificador": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+      },
+      "ClavePeriodo": {
+        "type": "string",
+        "enum": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4",
+          "S1",
+          "S2",
+          "ANUAL"
+        ]
+      },
+      "EstadoPublicacion": {
+        "type": "string",
+        "enum": [
+          "pendiente",
+          "publicado",
+          "retirado"
+        ]
+      },
+      "Periodicidad": {
+        "type": "string",
+        "enum": [
+          "trimestral",
+          "semestral",
+          "anual"
+        ]
+      },
+      "TipoPresentacion": {
+        "type": "string",
+        "enum": [
+          "matriz_periodos",
+          "documentos_simples"
+        ]
+      },
+      "AccionArchivo": {
+        "type": "string",
+        "enum": [
+          "ver",
+          "descargar"
+        ]
+      },
+      "MetadatosRespuesta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "generadoEn"
+        ],
+        "properties": {
+          "generadoEn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "versionDatos": {
+            "type": "string",
+            "description": "Revisión opaca del catálogo, útil para caché y diagnóstico."
+          }
+        }
+      },
+      "Ejercicio": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ejercicio",
+          "estado"
+        ],
+        "properties": {
+          "ejercicio": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "estado": {
+            "type": "string",
+            "enum": [
+              "borrador",
+              "publicado",
+              "archivado"
+            ]
+          }
+        }
+      },
+      "RespuestaEjercicios": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ejercicio"
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetadatosRespuesta"
+          }
+        }
+      },
+      "Presentacion": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tipo",
+          "mostrarFiltroPeriodo"
+        ],
+        "properties": {
+          "tipo": {
+            "$ref": "#/components/schemas/TipoPresentacion"
+          },
+          "mostrarFiltroPeriodo": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SeccionResumen": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "titulo",
+          "orden",
+          "periodicidad",
+          "presentacion",
+          "totalDocumentos",
+          "totalArchivosPublicados"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Identificador"
+          },
+          "titulo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "orden": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "periodicidad": {
+            "$ref": "#/components/schemas/Periodicidad"
+          },
+          "presentacion": {
+            "$ref": "#/components/schemas/Presentacion"
+          },
+          "totalDocumentos": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "totalArchivosPublicados": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "DatosSecciones": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ejercicio",
+          "secciones"
+        ],
+        "properties": {
+          "ejercicio": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "secciones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeccionResumen"
+            }
+          }
+        }
+      },
+      "RespuestaSecciones": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DatosSecciones"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetadatosRespuesta"
+          }
+        }
+      },
+      "PeriodoCatalogo": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "clave",
+          "nombre",
+          "nombreCorto",
+          "orden"
+        ],
+        "properties": {
+          "clave": {
+            "$ref": "#/components/schemas/ClavePeriodo"
+          },
+          "nombre": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "nombreCorto": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "orden": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "Archivo": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "nombre",
+          "tipo",
+          "urlVisualizacion",
+          "urlDescarga"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Identificador"
+          },
+          "nombre": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[^/\\\\]+\\.pdf$"
+          },
+          "tipo": {
+            "type": "string",
+            "const": "application/pdf"
+          },
+          "tamanoBytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fechaPublicacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checksumSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "urlVisualizacion": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "urlDescarga": {
+            "type": "string",
+            "format": "uri-reference"
+          }
+        }
+      },
+      "PublicacionPeriodo": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "clave",
+          "nombre",
+          "estado",
+          "archivo"
+        ],
+        "properties": {
+          "clave": {
+            "$ref": "#/components/schemas/ClavePeriodo"
+          },
+          "nombre": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoPublicacion"
+          },
+          "archivo": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Archivo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "estado": {
+                  "const": "publicado"
+                }
+              },
+              "required": [
+                "estado"
+              ]
+            },
+            "then": {
+              "properties": {
+                "archivo": {
+                  "$ref": "#/components/schemas/Archivo"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "estado": {
+                  "enum": [
+                    "pendiente",
+                    "retirado"
+                  ]
+                }
+              },
+              "required": [
+                "estado"
+              ]
+            },
+            "then": {
+              "properties": {
+                "archivo": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Documento": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "titulo",
+          "periodicidad",
+          "orden",
+          "accionPreferida",
+          "periodos"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Identificador"
+          },
+          "titulo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "descripcion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1000
+          },
+          "periodicidad": {
+            "$ref": "#/components/schemas/Periodicidad"
+          },
+          "orden": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "accionPreferida": {
+            "$ref": "#/components/schemas/AccionArchivo"
+          },
+          "periodos": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PublicacionPeriodo"
+            }
+          }
+        }
+      },
+      "DatosDetalleSeccion": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ejercicio",
+          "seccion",
+          "periodos",
+          "documentos"
+        ],
+        "properties": {
+          "ejercicio": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "seccion": {
+            "$ref": "#/components/schemas/SeccionResumen"
+          },
+          "periodos": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/PeriodoCatalogo"
+            }
+          },
+          "documentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Documento"
+            }
+          }
+        }
+      },
+      "RespuestaDetalleSeccion": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DatosDetalleSeccion"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetadatosRespuesta"
+          }
+        }
+      },
+      "CoincidenciaBusqueda": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ejercicio",
+          "seccion",
+          "documento"
+        ],
+        "properties": {
+          "ejercicio": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "seccion": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "titulo"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/Identificador"
+              },
+              "titulo": {
+                "type": "string"
+              }
+            }
+          },
+          "documento": {
+            "$ref": "#/components/schemas/Documento"
+          }
+        }
+      },
+      "DatosBusqueda": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "total",
+          "resultados"
+        ],
+        "properties": {
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "resultados": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoincidenciaBusqueda"
+            }
+          }
+        }
+      },
+      "RespuestaBusqueda": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DatosBusqueda"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetadatosRespuesta"
+          }
+        }
+      },
+      "Problema": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "minimum": 400,
+            "maximum": 599
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "codigo": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          }
+        }
+      }
+    }
+  }
+}

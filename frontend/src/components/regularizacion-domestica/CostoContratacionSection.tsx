@@ -31,7 +31,7 @@ export default function CostoContratacionSection() {
                         }}>
                             $
                         </Box>
-                        <Typography sx={{ color: 'text.primary', fontWeight: '900', fontSize: { xs: "24px", md: "32px" }, textTransform: 'uppercase' }}>
+                        <Typography sx={{ color: 'text.primary', fontWeight: '900', fontSize: { xs: "1.5rem", md: "2rem" }, textTransform: 'uppercase' }}>
                             COSTO DE CONTRATACIÓN
                         </Typography>
                     </Box>

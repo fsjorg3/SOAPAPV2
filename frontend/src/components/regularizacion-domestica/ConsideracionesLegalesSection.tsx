@@ -29,7 +29,7 @@ export default function ConsideracionesLegalesSection() {
                     <Typography sx={{ color: 'info.main', fontWeight: 'bold', fontSize: '1.15rem', mb: 1, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                         CONSIDERACIONES LEGALES
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                    <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '80ch' }}>
                         Quedan a salvo las facultades de comprobación del cumplimiento de las obligaciones a cargo de los usuarios por parte del Prestador de Servicios y/o del Sistema Operador de los Servicios de Agua Potable y Alcantarillado del Municipio de Puebla, y se procederá conforme a derecho corresponda.
                     </Typography>
                 </Box>

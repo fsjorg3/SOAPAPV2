@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Container from "@mui/material/Container";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -154,7 +153,7 @@ export default function Directorio() {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Box sx={{ py: 4 }}>
       {/* Title */}
       <Box
         sx={{
@@ -168,7 +167,7 @@ export default function Directorio() {
         <Typography
           sx={{
             textAlign: "center",
-            fontSize: "40px",
+            fontSize: "2.5rem",
             fontWeight: "900",
             color: "primary.main",
             borderBottom: "2px solid secondary.main",
@@ -308,6 +307,6 @@ export default function Directorio() {
           },
         }}
       />
-    </Container>
+    </Box>
   );
 }

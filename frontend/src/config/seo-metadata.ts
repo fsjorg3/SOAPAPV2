@@ -27,6 +27,10 @@ export const seoMetadata = {
     title: 'Convocatorias | SOAPAP',
     description: 'Licitaciones, convocatorias y procesos de contratación vigentes publicados por el SOAPAP.',
   },
+  comites: {
+    title: 'Comités | SOAPAP',
+    description: 'Comités del SOAPAP: Comité de Ética y demás órganos colegiados en materia de integridad y buenas prácticas.',
+  },
   etica: {
     title: 'Comité de Ética | SOAPAP',
     description: 'Integrantes, normativa y documentos del Comité de Ética del SOAPAP en materia de integridad pública.',

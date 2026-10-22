@@ -11,7 +11,7 @@ export default function VigenciaSection() {
             {/* ========================================================================= */}
             <Grid container spacing={3} sx={{ mt: 2, mb: 6 }}>
                 <Grid size={12}>
-                    <Typography sx={{ color: 'info.main', fontWeight: '900', fontSize: '24px', textTransform: 'uppercase', mb: 1 }}>
+                    <Typography sx={{ color: 'info.main', fontWeight: '900', fontSize: '1.5rem', textTransform: 'uppercase', mb: 1 }}>
                         VIGENCIA
                     </Typography>
                     <Box sx={{ width: '40px', height: '4px', backgroundColor: 'info.main', mb: 3 }} />

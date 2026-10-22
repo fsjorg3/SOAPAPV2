@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://soapap.gob.mx/schemas/modelado_convocatorias.schema.json",
+  "title": "Modelado del catálogo de Convocatorias",
+  "description": "Estructura fuente (lista plana de convocatorias) que alimenta el contrato de la API de convocatorias. Sin dimensión de ejercicio fiscal ni periodo: cada convocatoria tiene a lo sumo un archivo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["convocatorias"],
+  "properties": {
+    "convocatorias": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Convocatoria" }
+    }
+  },
+  "$defs": {
+    "Identificador": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "EstadoPublicacion": {
+      "type": "string",
+      "enum": ["pendiente", "publicado", "retirado"]
+    },
+    "Categoria": {
+      "type": "string",
+      "enum": ["obra_publica", "adquisiciones"]
+    },
+    "RutaArchivo": {
+      "type": "string",
+      "pattern": "^([A-Za-z0-9_-]+/)?[A-Za-z0-9_-]+\\.pdf$"
+    },
+    "Convocatoria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "expediente", "anio", "categoria", "descripcion", "orden", "link", "estado"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identificador" },
+        "expediente": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "anio": { "type": "integer", "minimum": 2000, "maximum": 2100 },
+        "categoria": { "$ref": "#/$defs/Categoria" },
+        "descripcion": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "orden": { "type": "integer", "minimum": 1 },
+        "link": {
+          "oneOf": [{ "$ref": "#/$defs/RutaArchivo" }, { "type": "null" }]
+        },
+        "estado": { "$ref": "#/$defs/EstadoPublicacion" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "estado": { "const": "publicado" } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "$ref": "#/$defs/RutaArchivo" } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "estado": { "enum": ["pendiente", "retirado"] } },
+            "required": ["estado"]
+          },
+          "then": {
+            "properties": { "link": { "type": "null" } }
+          }
+        }
+      ]
+    }
+  }
+}

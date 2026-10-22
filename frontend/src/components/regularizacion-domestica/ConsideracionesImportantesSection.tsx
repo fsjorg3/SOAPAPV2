@@ -14,7 +14,7 @@ export default function ConsideracionesImportantesSection() {
             {/* ========================================================================= */}
             <Grid container spacing={3} sx={{ mt: 4, mb: 4 }}>
                 <Grid size={12}>
-                    <Typography sx={{ color: 'primary.main', fontWeight: '900', fontSize: '24px', textTransform: 'uppercase', mb: 1 }}>
+                    <Typography sx={{ color: 'primary.main', fontWeight: '900', fontSize: '1.5rem', textTransform: 'uppercase', mb: 1 }}>
                         CONSIDERACIONES IMPORTANTES
                     </Typography>
                     <Box sx={{ width: '100%', height: '3px', backgroundColor: 'primary.main', mb: 3 }} />
@@ -48,12 +48,12 @@ export default function ConsideracionesImportantesSection() {
                         </Box>
 
                         {/* Center Text */}
-                        <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6, flexGrow: 1 }}>
+                        <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6, flexGrow: 1, maxWidth: '80ch' }}>
                             En el supuesto de que los usuarios no presenten o no cumplan con alguno de los requisitos establecidos en el Programa o no encuadren en las diferentes condiciones para considerarse sujetos del presente Acuerdo, no podrán gozar de los beneficios antes mencionados.
                         </Typography>
 
                         {/* Right Icon: Clipboard/document late */}
-                        <Box sx={{ color: '#B8822A', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ color: '#B8822A', flexShrink: 0, display: 'flex', alignItems: 'center', ml: { sm: 'auto' } }}>
                             <AssignmentLateIcon sx={{ fontSize: '2.5rem' }} />
                         </Box>
                     </Card>
@@ -92,12 +92,12 @@ export default function ConsideracionesImportantesSection() {
                         </Box>
 
                         {/* Center Text */}
-                        <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6, flexGrow: 1 }}>
+                        <Typography variant="body2" sx={{ color: 'text.primary', fontSize: '0.95rem', lineHeight: 1.6, flexGrow: 1, maxWidth: '80ch' }}>
                             El presente Programa no tendrá efectos retroactivos, ni dará lugar a devolución o compensación alguna, por pagos realizados con anterioridad a la entrada en vigor del presente Acuerdo.
                         </Typography>
 
                         {/* Right Icon: Credit Card */}
-                        <Box sx={{ color: '#B8822A', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ color: '#B8822A', flexShrink: 0, display: 'flex', alignItems: 'center', ml: { sm: 'auto' } }}>
                             <CreditCardIcon sx={{ fontSize: '2.5rem' }} />
                         </Box>
                     </Card>

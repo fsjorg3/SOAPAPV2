@@ -1,5 +1,7 @@
 import type { ElementType } from 'react';
 import type { SvgIconProps } from '@mui/material/SvgIcon';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import DescriptionIcon from '@mui/icons-material/Description';
 //import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Face3Icon from '@mui/icons-material/Face3';
 import FaceIcon from '@mui/icons-material/Face';
@@ -7,6 +9,19 @@ import FaceIcon from '@mui/icons-material/Face';
 import GavelIcon from '@mui/icons-material/Gavel';
 
 export type IconComponent = ElementType<SvgIconProps>;
+
+// Sesiones del CEPCI, de la más reciente a la más antigua. Agrupan documentos (etiqueta) y fotos (pestañas).
+export type SesionId = 'sesion-2' | 'sesion-1';
+
+export interface Sesion {
+    id: SesionId;
+    etiqueta: string;
+}
+
+export const sesiones: Sesion[] = [
+    { id: 'sesion-2', etiqueta: '2ª Sesión Ordinaria' },
+    { id: 'sesion-1', etiqueta: '1ª Sesión Ordinaria' },
+];
 
 export interface CommitteeMember {
     Icon: IconComponent;
@@ -20,11 +35,16 @@ export interface NormativeDocument {
     title: string;
     description: string;
     pdfUrl: string;
+    // Sesión que generó el documento; sin sesión es normativa externa (p. ej. el Código estatal).
+    sesion?: SesionId;
+    // true: la tarjeta descarga el archivo en lugar de abrirlo en el visor PDF (p. ej. formatos para llenar).
+    descargable?: boolean;
 }
 
 export interface GalleryItem {
     src: string;
     alt: string;
+    sesion: SesionId;
 }
 
 export interface ResourceItem {
@@ -111,10 +131,41 @@ export const committeeMembers: CommitteeMember[] = [
 ];
 
 export const normativeDocuments: NormativeDocument[] = [
+    // Orden: documentos de la sesión más reciente primero; la normativa externa al final.
+    {
+        Icon: GavelIcon,
+        title: 'ACTA SEGUNDA SESIÓN ORDINARIA DEL COMITÉ DE ÉTICA Y PREVENCIÓN DE CONFLICTOS DE INTERÉS (CEPCI)',
+        description: 'Acta de la segunda sesión ordinaria del CEPCI SOAPAP 2026, celebrada el 22 de septiembre.',
+        sesion: 'sesion-2',
+        pdfUrl: '/eticaPDF/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_acta.pdf',
+    },
+    {
+        Icon: DescriptionIcon,
+        title: 'PROTOCOLO PARA LA RECEPCIÓN Y ATENCIÓN DE DENUNCIAS',
+        description: 'Procedimiento para recibir y atender las denuncias presentadas ante el CEPCI del SOAPAP.',
+        sesion: 'sesion-2',
+        pdfUrl: '/eticaPDF/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_protocolo_recepcion_atencion_denuncias.pdf',
+    },
+    {
+        Icon: DescriptionIcon,
+        title: 'ANEXO 1. RUTA PARA PRESENTAR UNA DENUNCIA',
+        description: 'Infografía del protocolo: canales de presentación (físico, electrónico y verbal) y actuación del Comité.',
+        sesion: 'sesion-2',
+        pdfUrl: '/eticaPDF/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_anexo_1.pdf',
+    },
+    {
+        Icon: AssignmentIcon,
+        title: 'FORMATO DE PRESENTACIÓN DE DENUNCIA O QUEJA',
+        description: 'Descarga el formato, llénalo con los datos que conozcas y preséntalo ante el CEPCI.',
+        sesion: 'sesion-2',
+        pdfUrl: '/eticaPDF/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_formato_denuncia_queja.pdf',
+        descargable: true,
+    },
     {
         Icon: GavelIcon,
         title: 'ACTA PRIMERA SESIÓN ORDINARIA DEL COMITÉ DE ÉTICA Y PREVENCIÓN DE CONFLICTOS DE INTERÉS (CEPCI)',
         description: 'Acta de la primera sesión ordinaria del CEPCI SOAPAP 2026.',
+        sesion: 'sesion-1',
         pdfUrl: '/eticaPDF/acta_primera_sesion_CEPCI.pdf',
     },
     {
@@ -148,29 +199,91 @@ export const resourceItems: ResourceItem[] = [
     /// Ejemplo de llenado
 ];
 
+// Las fotos más recientes van primero: 2ª sesión ordinaria (22-sep-2026) y después la 1ª sesión.
 export const galleryItems: GalleryItem[] = [
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto01.webp',
+        alt: 'Integrante del Comité da lectura a un documento durante la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto02.webp',
+        alt: 'Secretaria Ejecutiva toma notas durante la sesión del Comité de Ética',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto03.webp',
+        alt: 'Integrantes del Comité de Ética revisan la presentación proyectada en la sala de juntas',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto04.webp',
+        alt: 'Integrantes del Comité de Ética atienden la exposición durante la sesión',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto05.webp',
+        alt: 'Integrantes del Comité de Ética votan a mano alzada frente a la presentación de la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto06.webp',
+        alt: 'Integrantes del Comité de Ética reunidos en la mesa de trabajo de la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto07.webp',
+        alt: 'Vista general de la mesa de trabajo durante la segunda sesión ordinaria del Comité',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto08.webp',
+        alt: 'Integrantes del Comité de Ética siguen el orden del día de la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto09.webp',
+        alt: 'Integrante del Comité vota a mano alzada durante la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto10.webp',
+        alt: 'Integrantes del Comité de Ética toman notas durante la segunda sesión ordinaria',
+        sesion: 'sesion-2',
+    },
+    {
+        src: '/eticaGalery/Segunda_Sesion/2026-09-22_comite_etica_sesion_2_foto11.webp',
+        alt: 'Integrantes del Comité de Ética aprueban un acuerdo a mano alzada',
+        sesion: 'sesion-2',
+    },
     {
         src: '/eticaGalery/sesion_1_foto1.webp',
         alt: 'Persona utilizando agua en un lavabo',
+        sesion: 'sesion-1',
     },
     {
         src: '/eticaGalery/sesion_1_foto2.webp',
         alt: 'Personas directivas reunidas en una mesa de trabajo',
+        sesion: 'sesion-1',
     },
     {
         src: '/eticaGalery/sesion_1_foto3.webp',
         alt: 'Personas servidoras públicas durante una reunión institucional',
+        sesion: 'sesion-1',
     },
     {
         src: '/eticaGalery/sesion_1_foto4.webp',
         alt: 'Imagen institucional del SOAPAP',
+        sesion: 'sesion-1',
     },
     {
         src: '/eticaGalery/sesion_1_foto5.webp',
         alt: 'Imagen institucional del SOAPAP',
+        sesion: 'sesion-1',
     },
     {
         src: '/eticaGalery/sesion_1_foto6.webp',
         alt: 'Imagen institucional del SOAPAP',
+        sesion: 'sesion-1',
     },
 ];

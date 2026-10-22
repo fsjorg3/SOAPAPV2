@@ -14,7 +14,7 @@ export default function PagoUnicoSection() {
                     <Typography
                         sx={{
                             textAlign: "center",
-                            fontSize: { xs: "24px", md: "34px" },
+                            fontSize: { xs: "1.5rem", md: "2.125rem" },
                             fontWeight: "900",
                             color: "info.main",
                             textTransform: "uppercase",

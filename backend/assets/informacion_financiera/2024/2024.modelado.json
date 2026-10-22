@@ -1,0 +1,939 @@
+{
+  "año": 2024,
+  "secciones": [
+    {
+      "id": "estados_financieros_contables_presupuestales_y_programaticos",
+      "titulo": "Estados financieros, contables, presupuestales y programáticos",
+      "orden": 1,
+      "documentos": [
+        {
+          "id": "estado_de_actividades",
+          "titulo": "Estado de Actividades",
+          "periodicidad": "trimestral",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_de_Actividades.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_de_Actividades.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_de_Actividades.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_de_Actividades.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_de_situacion_financiera",
+          "titulo": "Estado de Situación Financiera",
+          "periodicidad": "trimestral",
+          "orden": 2,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_de_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_de_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_de_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_de_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_de_variacion_en_la_hacienda_publica",
+          "titulo": "Estado de Variación en la Hacienda Pública",
+          "periodicidad": "trimestral",
+          "orden": 3,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_de_Variacion_en_la_Hacienda_Publica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_de_Variacion_en_la_Hacienda_Publica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_de_Variacion_en_la_Hacienda_Publica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_de_Variacion_en_la_Hacienda_Publica.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_de_cambios_en_la_situacion_financiera",
+          "titulo": "Estado de Cambios en la Situación Financiera",
+          "periodicidad": "trimestral",
+          "orden": 4,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_de_Cambios_en_la_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_de_Cambios_en_la_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_de_Cambios_en_la_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_de_Cambios_en_la_Situacion_Financiera.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_de_flujos_de_efectivo",
+          "titulo": "Estado de Flujos de Efectivo",
+          "periodicidad": "trimestral",
+          "orden": 5,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_de_Flujos_de_Efectivo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_de_Flujos_de_Efectivo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_de_Flujos_de_Efectivo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_de_Flujos_de_Efectivo.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_del_activo",
+          "titulo": "Estado Analítico del Activo",
+          "periodicidad": "trimestral",
+          "orden": 6,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_del_Activo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_del_Activo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_del_Activo.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_del_Activo.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_de_la_deuda_y_otros_pasivos",
+          "titulo": "Estado Analítico de la Deuda y Otros Pasivos",
+          "periodicidad": "trimestral",
+          "orden": 7,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_de_la_Deuda_y_Otros_Pasivos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_de_la_Deuda_y_Otros_Pasivos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_de_la_Deuda_y_Otros_Pasivos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_de_la_Deuda_y_Otros_Pasivos.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_de_ingresos",
+          "titulo": "Estado Analítico de Ingresos",
+          "periodicidad": "trimestral",
+          "orden": 8,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_de_Ingresos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_de_Ingresos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_de_Ingresos.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_de_Ingresos.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacion_economica",
+          "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Económica",
+          "periodicidad": "trimestral",
+          "orden": 9,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Economica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Economica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Economica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Economica.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacion_por_objeto_del_gasto",
+          "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación por Objeto del Gasto",
+          "periodicidad": "trimestral",
+          "orden": 10,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Objeto_Gasto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Objeto_Gasto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Objeto_Gasto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Objeto_Gasto.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacion_administrativa",
+          "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Administrativa",
+          "periodicidad": "trimestral",
+          "orden": 11,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Administrativa.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Administrativa.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Administrativa.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Administrativa.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "estado_analitico_del_ejercicio_del_presupuesto_de_egresos_con_clasificacion_funcional",
+          "titulo": "Estado Analítico del Ejercicio del Presupuesto de Egresos con Clasificación Funcional",
+          "periodicidad": "trimestral",
+          "orden": 12,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Funcional.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Funcional.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Funcional.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Funcional.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "gasto_por_categoria_programatica",
+          "titulo": "Gasto por Categoría Programática",
+          "periodicidad": "trimestral",
+          "orden": 13,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Gasto_por_Categoria_Programatica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Gasto_por_Categoria_Programatica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Gasto_por_Categoria_Programatica.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Gasto_por_Categoria_Programatica.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "informe_sobre_pasivos_contingentes",
+          "titulo": "Informe sobre Pasivos Contingentes",
+          "periodicidad": "trimestral",
+          "orden": 14,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Informe_sobre_Pasivos_Contingentes.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Informe_sobre_Pasivos_Contingentes.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Informe_sobre_Pasivos_Contingentes.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Informe_sobre_Pasivos_Contingentes.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "endeudamiento_neto",
+          "titulo": "Endeudamiento Neto",
+          "periodicidad": "trimestral",
+          "orden": 15,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Endeudamiento_Neto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Endeudamiento_Neto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Endeudamiento_Neto.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Endeudamiento_Neto.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "intereses_de_la_deuda",
+          "titulo": "Intereses de la deuda",
+          "periodicidad": "trimestral",
+          "orden": 16,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Intereses_de_la_deuda.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Intereses_de_la_deuda.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Intereses_de_la_deuda.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Intereses_de_la_deuda.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "indicadores_de_resultados",
+          "titulo": "Indicadores de Resultados",
+          "periodicidad": "trimestral",
+          "orden": 17,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Indicadores_de_Resultados.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Indicadores_de_Resultados.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        },
+        {
+          "id": "programas_y_proyectos_de_inversion",
+          "titulo": "Programas y Proyectos de Inversión",
+          "periodicidad": "trimestral",
+          "orden": 18,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Programas_y_Proyectos_de_Inversion.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": "Q2/2024_Q2_Programas_y_Proyectos_de_Inversion.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": "Q3/2024_Q3_Programas_y_Proyectos_de_Inversion.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        },
+        {
+          "id": "disciplina_financiera",
+          "titulo": "Disciplina Financiera",
+          "periodicidad": "trimestral",
+          "orden": 19,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": "Q4/2024_Q4_Disciplina_Financiera.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "sistema_de_alertas",
+          "titulo": "Sistema de Alertas",
+          "periodicidad": "trimestral",
+          "orden": 20,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        },
+        {
+          "id": "manual_de_contabilidad",
+          "titulo": "Manual de contabilidad",
+          "periodicidad": "trimestral",
+          "orden": 21,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": "Q1/2024_Q1_Manual_Contabilidad.pdf",
+              "estado": "publicado"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "montos_pagados_por_ayudas_y_subsidios",
+      "titulo": "Montos pagados por ayudas y subsidios",
+      "orden": 2,
+      "documentos": [
+        {
+          "id": "montos_pagados_por_ayudas_y_subsidios",
+          "titulo": "Montos pagados por ayudas y subsidios",
+          "periodicidad": "trimestral",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notas_a_los_estados_financieros",
+      "titulo": "Notas a los Estados Financieros",
+      "orden": 3,
+      "documentos": [
+        {
+          "id": "notas_a_los_estados_financieros",
+          "titulo": "Notas a los Estados Financieros",
+          "periodicidad": "trimestral",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relacion_de_bienes_que_componen_el_patrimonio",
+      "titulo": "Relación de bienes que componen el patrimonio",
+      "orden": 4,
+      "documentos": [
+        {
+          "id": "inventario_soapap",
+          "titulo": "Inventario SOAPAP",
+          "periodicidad": "semestral",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "S1",
+              "nombre": "Primer semestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "S2",
+              "nombre": "Segundo semestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        },
+        {
+          "id": "inventario_en_concesion",
+          "titulo": "Inventario en Concesión",
+          "periodicidad": "semestral",
+          "orden": 2,
+          "periodos": [
+            {
+              "clave": "S1",
+              "nombre": "Primer semestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "S2",
+              "nombre": "Segundo semestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "informacion_financiera_relativa_a_la_evaluacion_y_rendicion_de_cuentas",
+      "titulo": "Información financiera relativa a la evaluación y rendición de cuentas",
+      "orden": 5,
+      "documentos": [
+        {
+          "id": "ficha_tecnica_programa_presupuestario",
+          "titulo": "Ficha Técnica Programa Presupuestario",
+          "periodicidad": "trimestral",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "Q1",
+              "nombre": "Primer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q2",
+              "nombre": "Segundo trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q3",
+              "nombre": "Tercer trimestre",
+              "link": null,
+              "estado": "pendiente"
+            },
+            {
+              "clave": "Q4",
+              "nombre": "Cuarto trimestre",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        },
+        {
+          "id": "programa_anual_de_evaluacion",
+          "titulo": "Programa Anual de Evaluación",
+          "periodicidad": "anual",
+          "orden": 2,
+          "periodos": [
+            {
+              "clave": "ANUAL",
+              "nombre": "Ejercicio fiscal 2024",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "presupuesto_de_ingresos_y_egresos",
+      "titulo": "Presupuesto de Ingresos y Egresos",
+      "orden": 6,
+      "documentos": [
+        {
+          "id": "ingresos",
+          "titulo": "Ingresos",
+          "periodicidad": "anual",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "ANUAL",
+              "nombre": "Ejercicio fiscal 2024",
+              "link": "2024_Ingresos.pdf",
+              "estado": "publicado"
+            }
+          ]
+        },
+        {
+          "id": "egresos",
+          "titulo": "Egresos",
+          "periodicidad": "anual",
+          "orden": 2,
+          "periodos": [
+            {
+              "clave": "ANUAL",
+              "nombre": "Ejercicio fiscal 2024",
+              "link": "2024_Egresos.pdf",
+              "estado": "publicado"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "norma_para_la_difusion_a_la_ciudadania_de_la_ley_de_ingresos_y_del_presupuesto_de_egresos",
+      "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de egresos",
+      "orden": 7,
+      "documentos": [
+        {
+          "id": "norma_para_la_difusion_a_la_ciudadania_de_la_ley_de_ingresos_y_del_presupuesto_de_gresos",
+          "titulo": "Norma para la difusión a la ciudadanía de la ley de ingresos y del presupuesto de gresos",
+          "periodicidad": "anual",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "ANUAL",
+              "nombre": "Ejercicio fiscal 2024",
+              "link": "2024_Norma_para_la_difusion_a_la_ciudadania_de_la_ley_de_ingresos_y_del_presupuesto_de_egresos.pdf",
+              "estado": "publicado"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "norma_estructura_ejercicio_destino_gasto_federalizado_reintegros",
+      "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+      "orden": 8,
+      "documentos": [
+        {
+          "id": "norma_estructura_ejercicio_destino_gasto_federalizado_reintegros",
+          "titulo": "Norma para establecer la estructura de información del formato del ejercicio y destino de gasto federalizado y reintegros",
+          "periodicidad": "anual",
+          "orden": 1,
+          "periodos": [
+            {
+              "clave": "ANUAL",
+              "nombre": "Ejercicio fiscal 2024",
+              "link": null,
+              "estado": "pendiente"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
