@@ -14,7 +14,7 @@ import { inicializarCatalogoConvocatorias } from './v1/services/catalogoConvocat
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT || 3000;
 
 // 1. Deshabilitar cabecera X-Powered-By por seguridad (evita divulgar que usamos Express)
 app.disable('x-powered-by');
@@ -29,13 +29,13 @@ app.set('trust proxy', 2);
 
 // 2. Cabeceras de seguridad globales con Helmet
 // Configuramos crossOriginResourcePolicy en 'cross-origin' para permitir que el frontend
-// de origen cruzado (ej. http://localhost:5177) cargue y visualice los archivos estáticos sin problemas.
+// de origen cruzado (ej. http://localhost:5173) cargue y visualice los archivos estáticos sin problemas.
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
 // 3. Configuración de CORS
-// Si hay múltiples orígenes, se pueden separar por comas en el .env (ej. http://localhost:5177,https://soapap.gob.mx)
+// Si hay múltiples orígenes, se pueden separar por comas en el .env (ej. http://localhost:5173,https://soapap.gob.mx)
 const isProduction = process.env.NODE_ENV === 'production';
 if (isProduction && !process.env.CORS_ORIGIN) {
   throw new Error('CORS_ORIGIN debe estar definida en producción.');
@@ -43,7 +43,7 @@ if (isProduction && !process.env.CORS_ORIGIN) {
 
 const corsOrigin = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim()).filter(Boolean)
-  : ['http://localhost:5177', 'http://127.0.0.1:5177', 'http://172.16.1.102:5177'];
+  : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://172.16.1.102:5173'];
 
 app.use(cors({
   origin: corsOrigin,
