@@ -47,4 +47,10 @@ export const seoMetadata = {
     title: 'Regularización 2026 | SOAPAP',
     description: 'Programa de Regularización 2026 del SOAPAP: información, requisitos y beneficios para regularizar tu servicio de agua.',
   },
+  permisoDescarga: {
+    title: 'Permiso de descarga de aguas residuales | SOAPAP',
+    description: 'Guía del permiso de descarga de aguas residuales del SOAPAP: quién debe tramitarlo, pasos, documentos por giro y obligaciones.',
+    // Versión de demostración pendiente de validación: fuera de buscadores hasta publicarse.
+    robots: 'noindex, nofollow',
+  },
 } as const;

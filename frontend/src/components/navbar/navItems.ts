@@ -9,6 +9,7 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import ComputerIcon from "@mui/icons-material/Computer";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import PlumbingIcon from "@mui/icons-material/Plumbing";
 
 import { comites } from "../../config/comites";
 
@@ -89,6 +90,8 @@ export const navbarItems: NavItem[] = [
       {
         titulo: "Trámites",
         items: [
+          // Demostración pendiente de validación de la Gerencia: se publica quitando `oculto`.
+          { texto: "Permiso de descarga", ruta: "/tramites/permiso-de-descarga", oculto: true, Icono: PlumbingIcon },
           { texto: "Facturación", oculto: true, Icono: ReceiptLongIcon },
         ],
       },

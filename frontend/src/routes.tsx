@@ -16,6 +16,7 @@ const RegularizacionDomestica = lazy(() => import("./routes/regularizacion-domes
 const Regularizacion2026 = lazy(() => import("./routes/regularizacion_2026"));
 const Comites = lazy(() => import("./routes/comites"));
 const Etica = lazy(() => import("./routes/etica"));
+const PermisoDescarga = lazy(() => import("./routes/permiso-descarga"));
 
 const Error404 = lazy(() => import("./routes/error-404"));
 
@@ -42,6 +43,8 @@ export const router = createBrowserRouter([
           { path: "regularizate_2026", element: <Regularizate2026 /> },
           { path: "regularizacion_domestica", element: <RegularizacionDomestica /> },
           { path: "regularizacion_2026", element: <Regularizacion2026 /> },
+          // Versión de demostración: accesible por URL directa, oculta en menús, footer y sitemap.
+          { path: "tramites/permiso-de-descarga", element: <PermisoDescarga /> },
           { path: "*", element: <Error404 /> },
         ],
       },
