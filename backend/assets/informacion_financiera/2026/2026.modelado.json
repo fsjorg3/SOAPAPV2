@@ -27,8 +27,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_de_Actividades.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -59,8 +59,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_de_Situacion_Financiera.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -91,8 +91,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_de_Variacion_en_la_Hacienda_Publica.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -123,8 +123,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_de_Cambios_en_la_Situacion_Financiera.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -155,8 +155,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_de_Flujos_de_Efectivo.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -187,8 +187,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_del_Activo.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -219,8 +219,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_de_la_Deuda_y_Otros_Pasivos.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -251,8 +251,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_de_Ingresos.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -283,8 +283,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Economica.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -315,8 +315,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Objeto_Gasto.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -347,8 +347,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Administrativa.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -379,8 +379,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Estado_Analitico_del_Ejercicio_del_Presupuesto_de_Egresos_Clasificacion_Funcional.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -411,8 +411,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Gasto_por_Categoria_Programatica.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -443,8 +443,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Informe_sobre_Pasivos_Contingentes.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -475,8 +475,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Endeudamiento_Neto.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -507,8 +507,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Intereses_de_la_deuda.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -603,8 +603,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Disciplina_Financiera.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -706,8 +706,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Montos_Pagados_por_Ayudas_y_Subsidios.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
@@ -745,8 +745,8 @@
             {
               "clave": "Q3",
               "nombre": "Tercer trimestre",
-              "link": null,
-              "estado": "pendiente"
+              "link": "Q3/2026_Q3_Notas_a_los_Estados_Financieros.pdf",
+              "estado": "publicado"
             },
             {
               "clave": "Q4",
