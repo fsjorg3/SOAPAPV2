@@ -29,7 +29,11 @@ export const seoMetadata = {
   },
   comites: {
     title: 'Comités | SOAPAP',
-    description: 'Comités del SOAPAP: Comité de Ética y demás órganos colegiados en materia de integridad y buenas prácticas.',
+    description: 'Comités del SOAPAP: Comité de Ética y Comité de Igualdad Laboral y No Discriminación, órganos colegiados en materia de integridad y buenas prácticas.',
+  },
+  cilynd: {
+    title: 'Comité de Igualdad Laboral y No Discriminación | SOAPAP',
+    description: 'Integrantes, política de igualdad laboral y no discriminación y pronunciamiento de cero tolerancia del SOAPAP.',
   },
   etica: {
     title: 'Comité de Ética | SOAPAP',

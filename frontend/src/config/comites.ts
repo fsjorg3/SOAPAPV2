@@ -22,12 +22,12 @@ export const comites: Comite[] = [
     publicado: true,
   },
   {
-    id: "igualdad-laboral",
+    id: "cilynd",
     nombre: "Comité de Igualdad Laboral y No Discriminación",
-    ruta: "/comites/igualdad-laboral",
-    descripcion: "Acciones y documentos del Comité de Igualdad Laboral y No Discriminación del SOAPAP.",
+    ruta: "/comites/cilynd",
+    descripcion: "Integrantes, política de igualdad laboral y pronunciamiento de cero tolerancia del Comité de Igualdad Laboral y No Discriminación del SOAPAP.",
     Icono: DiversityIcon,
-    publicado: false,
+    publicado: true,
   },
 ];
 

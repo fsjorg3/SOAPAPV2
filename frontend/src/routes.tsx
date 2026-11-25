@@ -16,6 +16,7 @@ const RegularizacionDomestica = lazy(() => import("./routes/regularizacion-domes
 const Regularizacion2026 = lazy(() => import("./routes/regularizacion_2026"));
 const Comites = lazy(() => import("./routes/comites"));
 const Etica = lazy(() => import("./routes/etica"));
+const Cilynd = lazy(() => import("./routes/cilynd"));
 
 const Error404 = lazy(() => import("./routes/error-404"));
 
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
           { path: "convocatorias", element: <Convocatorias /> },
           { path: "comites", element: <Comites /> },
           { path: "comites/etica", element: <Etica /> },
+          { path: "comites/cilynd", element: <Cilynd /> },
           // URL anterior del Comité de ética: se conserva como redirección para no romper enlaces existentes.
           { path: "comite_de_etica", element: <Navigate to="/comites/etica" replace /> },
           { path: "regularizate_2026", element: <Regularizate2026 /> },
