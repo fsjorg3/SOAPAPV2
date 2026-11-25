@@ -11,7 +11,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 export type IconComponent = ElementType<SvgIconProps>;
 
 // Sesiones del CEPCI, de la más reciente a la más antigua. Agrupan documentos (etiqueta) y fotos (pestañas).
-export type SesionId = 'sesion-2' | 'sesion-1';
+export type SesionId = 'sesion-3' | 'sesion-2' | 'sesion-1';
 
 export interface Sesion {
     id: SesionId;
@@ -19,6 +19,7 @@ export interface Sesion {
 }
 
 export const sesiones: Sesion[] = [
+    { id: 'sesion-3', etiqueta: '3ª Sesión Ordinaria' },
     { id: 'sesion-2', etiqueta: '2ª Sesión Ordinaria' },
     { id: 'sesion-1', etiqueta: '1ª Sesión Ordinaria' },
 ];
@@ -132,6 +133,20 @@ export const committeeMembers: CommitteeMember[] = [
 
 export const normativeDocuments: NormativeDocument[] = [
     // Orden: documentos de la sesión más reciente primero; la normativa externa al final.
+    {
+        Icon: GavelIcon,
+        title: 'ACTA TERCERA SESIÓN ORDINARIA DEL COMITÉ DE ÉTICA Y PREVENCIÓN DE CONFLICTOS DE INTERÉS (CEPCI)',
+        description: 'Acta de la tercera sesión ordinaria del CEPCI SOAPAP 2026, celebrada el 22 de octubre.',
+        sesion: 'sesion-3',
+        pdfUrl: '/eticaPDF/Tercera_Sesion/2026-10-22_comite_etica_sesion_3_acta.pdf',
+    },
+    {
+        Icon: GavelIcon,
+        title: 'CÓDIGO DE CONDUCTA DEL SOAPAP',
+        description: 'Versión simplificada y acotada al SOAPAP del Código de Ética, aprobada por el CEPCI.',
+        sesion: 'sesion-3',
+        pdfUrl: '/eticaPDF/Tercera_Sesion/2026-10-22_comite_etica_sesion_3_codigo_conducta.pdf',
+    },
     {
         Icon: GavelIcon,
         title: 'ACTA SEGUNDA SESIÓN ORDINARIA DEL COMITÉ DE ÉTICA Y PREVENCIÓN DE CONFLICTOS DE INTERÉS (CEPCI)',
