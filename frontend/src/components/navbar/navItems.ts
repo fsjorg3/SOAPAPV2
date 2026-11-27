@@ -9,6 +9,8 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import ComputerIcon from "@mui/icons-material/Computer";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
 
 import { comites } from "../../config/comites";
 
@@ -89,6 +91,8 @@ export const navbarItems: NavItem[] = [
       {
         titulo: "Trámites",
         items: [
+          { texto: "Constancia de no adeudo", ruta: "/tramites/constancia-no-adeudo", Icono: TaskAltIcon },
+          { texto: "Constancia de predio no registrado", ruta: "/tramites/constancia-predio-no-registrado", Icono: HomeWorkIcon },
           { texto: "Facturación", oculto: true, Icono: ReceiptLongIcon },
         ],
       },

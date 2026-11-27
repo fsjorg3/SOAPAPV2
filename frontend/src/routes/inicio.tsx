@@ -16,10 +16,10 @@ import WatterCultureOptions from "../components/watter-culture/watter-culture-op
 import InterestSlider from "../components/interest-slider";
 
 
-import ZoomableNotice from "../components/media/ZoomableNotice";
-import constanciasImg from "../assets/constanciasNA.webp";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { seoMetadata } from "../config/seo-metadata";
+import { TRAMITES_INICIO } from "../config/tramites";
+import TarjetaTramite from "../components/tramites/TarjetaTramite";
 
 
 export default function Inicio() {
@@ -176,9 +176,11 @@ export default function Inicio() {
 
 
 
-        {/* Constancias NA */}
+        {/* Trámites: una tarjeta por cada trámite de TRAMITES_INICIO */}
 
         <Box
+          component="section"
+          aria-labelledby="inicio-tramites"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -187,34 +189,35 @@ export default function Inicio() {
           }}
         >
           <Typography
+            id="inicio-tramites"
+            component="h2"
             sx={{
               margin: "80px 80px 0px 80px",
               textAlign: "center",
-              fontSize: "1.875rem",
+              fontSize: "2.5rem",
               fontWeight: "900",
               color: "primary.main",
               borderBottom: "2px solid secondary.main",
             }}
           >
-            Constancia de no adeudo y no registro
+            Trámites
           </Typography>
           <Box sx={{ width: '15%', height: '5px', backgroundColor: 'secondary.main' }} />
 
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
+              gap: 3,
+              width: "100%",
+              maxWidth: 960,
+              px: 2,
               marginTop: { xs: "20px", md: "40px" },
             }}
           >
-            <ZoomableNotice
-              src={constanciasImg}
-              alt="Requisitos para trámites de constancia de no adeudo y no registro"
-              caption="Toca la imagen para ampliar"
-            />
-
+            {TRAMITES_INICIO.map((tramite) => (
+              <TarjetaTramite key={tramite.slug} tramite={tramite} />
+            ))}
           </Box>
         </Box>
 
