@@ -10,6 +10,8 @@
   <url><loc>https://soapap.gob.mx/comites</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://soapap.gob.mx/comites/etica</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://soapap.gob.mx/comites/cilynd</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://soapap.gob.mx/tramites/constancia-no-adeudo</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://soapap.gob.mx/tramites/constancia-predio-no-registrado</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://soapap.gob.mx/regularizate_2026</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://soapap.gob.mx/regularizacion_domestica</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://soapap.gob.mx/regularizacion_2026</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>

@@ -1,3 +1,7 @@
+import { CONSTANCIA_NO_ADEUDO } from './tramites/constanciaNoAdeudo';
+import { CONSTANCIA_PREDIO_NO_REGISTRADO } from './tramites/constanciaPredioNoRegistrado';
+import { textoCosto } from '../utils/tramites';
+
 export const seoMetadata = {
   inicio: {
     title: 'Inicio | SOAPAP',
@@ -38,6 +42,14 @@ export const seoMetadata = {
   etica: {
     title: 'Comité de Ética | SOAPAP',
     description: 'Integrantes, normativa y documentos del Comité de Ética del SOAPAP en materia de integridad pública.',
+  },
+  constanciaNoAdeudo: {
+    title: 'Constancia de No Adeudo | SOAPAP',
+    description: `Requisitos, costo (${textoCosto(CONSTANCIA_NO_ADEUDO)}), formas de pago, horario y lugar de atención para tramitar la Constancia de No Adeudo del SOAPAP.`,
+  },
+  constanciaPredioNoRegistrado: {
+    title: 'Constancia de Predio No Registrado | SOAPAP',
+    description: `Requisitos, costo (${textoCosto(CONSTANCIA_PREDIO_NO_REGISTRADO)}), formas de pago, horario y lugar de atención para tramitar la Constancia de Predio No Registrado del SOAPAP.`,
   },
   regularizate2026: {
     title: 'Regularízate 2026 | SOAPAP',
